@@ -1,0 +1,15 @@
+// Script to initialize work on Thermocline modeling:
+//		* load ThermoCycle 
+//		* define the saving directory
+// RDickes - 14/06/2016 
+
+
+// Load CoolProp, ThermoCycle, ThermalStorage and weather data
+
+
+openModel("E:\Modelica\Packages\ThermoCycle\package.mo");
+openModel("E:\Modelica\Packages\ExternalMedia\Modelica\ExternalMedia 3.2.1\package.mo");
+openModel("E:\SFERA II\PSA_SFERAII_gitHub\Modelling\package_PSA_SFERAII.mo");
+
+// Save simulation results in folder:
+cd("E:\Modelica\Results\PSA_SFERAII")

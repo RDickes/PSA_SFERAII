@@ -25,7 +25,7 @@ package package_PSA_SFERAII
         Tstart_outlet=373.15,
         pstart=200000,
         Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
-        annotation (Placement(transformation(extent={{-38,-28},{22,38}})));
+        annotation (Placement(transformation(extent={{-32,-26},{22,38}})));
 
       Modelica.Blocks.Sources.Step v_wind_input(height=0)
         annotation (Placement(transformation(extent={{-90,66},{-76,80}})));
@@ -37,33 +37,57 @@ package package_PSA_SFERAII
         annotation (Placement(transformation(extent={{-92,-28},{-78,-14}})));
     equation
       connect(v_wind_input.y, solarField_Forristal_Inc.v_wind) annotation (Line(
-          points={{-75.3,73},{-55.65,73},{-55.65,36.02},{-32.6667,36.02}},
+          points={{-75.3,73},{-55.65,73},{-55.65,36.08},{-27.2,36.08}},
           color={0,0,127},
           smooth=Smooth.None));
       connect(theta_input.y, solarField_Forristal_Inc.Theta) annotation (Line(
-          points={{-75.2,42},{-62,42},{-62,15.56},{-32,15.56}},
+          points={{-75.2,42},{-62,42},{-62,16.24},{-26.6,16.24}},
           color={0,0,127},
           smooth=Smooth.None));
       connect(T_amb_input.y, solarField_Forristal_Inc.Tamb) annotation (Line(
-          points={{-77.3,9},{-57.65,9},{-57.65,-1.6},{-32.6667,-1.6}},
+          points={{-77.3,9},{-57.65,9},{-57.65,-0.4},{-27.2,-0.4}},
           color={0,0,127},
           smooth=Smooth.None));
       connect(DNI_input.y, solarField_Forristal_Inc.DNI) annotation (Line(
-          points={{-77.3,-21},{-57.65,-21},{-57.65,-18.76},{-32.6667,-18.76}},
+          points={{-77.3,-21},{-57.65,-21},{-57.65,-17.04},{-27.2,-17.04}},
           color={0,0,127},
           smooth=Smooth.None));
       connect(sourceMdot.flangeB, solarField_Forristal_Inc.InFlow) annotation (
           Line(
-          points={{-63,-72},{2,-72},{2,-28},{1.33333,-28}},
+          points={{-63,-72},{2,-72},{2,-26},{3.4,-26}},
           color={0,0,255},
           smooth=Smooth.None));
       connect(solarField_Forristal_Inc.OutFlow, sinkP.flangeB) annotation (Line(
-          points={{2,43.28},{2,80},{61.6,80}},
+          points={{4,43.12},{4,80},{61.6,80}},
           color={0,0,255},
           smooth=Smooth.None));
       annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{
                 -100,-100},{100,100}}), graphics));
     end Basic1;
+
+    model PTTL_SF_basic "SF + Mdot_source + SinkP"
+      Component.SolarField_Forristal_Inc PTC_field(
+        redeclare package Medium1 = package_PSA_SFERAII.Media.Sytherm800,
+        eps1=1,
+        eps2=1,
+        eps3=1,
+        eps4=1,
+        eps5=1,
+        eps6=1,
+        rho_cl=0.931,
+        Tau_g=0.92,
+        Alpha_g=0.02,
+        Eps_g=0.86,
+        Alpha_t=0.7986,
+        a1_IAM=4.11e-3,
+        a2_IAM=5.513e-5,
+        N=10,
+        Ns=1,
+        Nt=1,
+        L=6*11.98,
+        A_P=5.76) "Field of Eurothrough  PTC"
+        annotation (Placement(transformation(extent={{-28,-38},{32,22}})));
+    end PTTL_SF_basic;
   end Simulations;
 
   package Media "Include new media data"

@@ -7,9 +7,9 @@
 // Load CoolProp, ThermoCycle, ThermalStorage and weather data
 
 
-openModel("E:\Modelica\Packages\ThermoCycle\package.mo");
-openModel("E:\Modelica\Packages\ExternalMedia\Modelica\ExternalMedia 3.2.1\package.mo");
-openModel("E:\SFERA II\PSA_SFERAII_gitHub\Modelling\package_PSA_SFERAII.mo");
+openModel("F:\Modelica\Packages\ThermoCycle\package.mo");
+openModel("F:\Modelica\Packages\ExternalMedia\Modelica\ExternalMedia 3.2.1\package.mo");
+openModel("E:\Modelling\package_PSA_SFERAII.mo");
 
 // Save simulation results in folder:
-cd("E:\Modelica\Results\PSA_SFERAII")
+cd("F:\Modelica\Results\PSA_SFERAII")

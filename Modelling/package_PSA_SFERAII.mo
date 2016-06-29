@@ -141,11 +141,14 @@ package package_PSA_SFERAII
     parameter Real Eps_g = 0.89 "Glass emissivity [-] " annotation (Dialog(group="Optical Properties", tab="General"));
     parameter Real Alpha_t =  0.97 "Tube Absorptivity [-]"
                                                           annotation (Dialog(group="Optical Properties", tab="General"));
+    parameter Real a1_IAM = 0
+        "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
+    parameter Real a2_IAM = 0
+        "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
     Real Eps_t[N] "Coating emissivity [-]";
 
     /**** 3.2 PTC Properties ***********************/
     parameter Integer N = 2 "number of cells";
-    parameter Integer Nt = 1 "number of tubes";
     parameter Modelica.SIunits.Length L "length of one tubes [m]";
     parameter Modelica.SIunits.Length A_P "Aperture of the parabola [m]";
 
@@ -330,7 +333,8 @@ package package_PSA_SFERAII
 
     //Cos_theta and Incidence angle modifier //
     cos_theta = Modelica.Math.cos(Theta);
-    IAM = 1 "---> TO CHANGE : give correlation";
+    IAM = 1-(a1_IAM*Theta+a2_IAM*Theta^2)/cos_theta
+        "Correlation based on Vazuela's paper";
 
     //Optical efficiency //
     eta_opt = eps1*eps2*eps3*eps4*eps5*eps6*rho_cl*IAM;
@@ -342,13 +346,13 @@ package package_PSA_SFERAII
     eta_opt_t = eta_opt * Alpha_t * Tau_g;
 
     //Total area of the reflector //
-    A_ref = L*A_P*Nt;
+    A_ref = L*A_P;
 
     //Total area of the external glass//
-    A_ext_g = pi*Dext_g*L*Nt;
+    A_ext_g = pi*Dext_g*L;
 
     //Total area of the external tube //
-    A_ext_t = pi*Dext_t*L*Nt;
+    A_ext_t = pi*Dext_t*L;
 
     //Total thermal energy on the glass from the Sun //
     Q_glass_tot = eta_opt_g*DNI*cos_theta*A_ref
@@ -434,11 +438,10 @@ package package_PSA_SFERAII
       T_int_t[i] = wall_int.T[i];
 
       // THERMAL EFFICIENCY AT EACH NODE //
-      Q_abs[i] = Phi_tube_int[i]*2*rint_t*pi*L*Nt/N
-          "Heat power absorbed by the fluid in each cell --> CORRECTED";
+      Q_abs[i] = Phi_tube_int[i]*2*rint_t*pi*L/N
+          "Heat power absorbed by the fluid in each cell";
       if Q_tube_tot > 0 then
-        eta_th[i] = Q_abs[i]/(Q_tube_tot/N)
-            "FAUTE---> Q_abs sur base d'un seul PTC alors que Q_tube_tot sur base de tout les collecteurs --> CORRECTED";
+        eta_th[i] = Q_abs[i]/(Q_tube_tot/N);
         eta_TOT[i] = eta_th[i] *eta_opt_t;
       else
         eta_th[i] = 0;
@@ -456,7 +459,9 @@ package package_PSA_SFERAII
     //TOTAL EFFICIENCY
     Eta_TOT = Eta_th*eta_opt_t;
                                                                                                           annotation(Dialog(tab = "Initialisation"),
-                 Diagram(graphics),
+                 Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
+                {100,100}}),
+                         graphics),
         Icon(graphics),Documentation(info="<HTML>
           
          <p><big>Model <b>SolAbsForristal</b>  represents the one-dimensional radial energy balance between the Heat Collector Element (HCE) and the atmosphere based on the
@@ -520,6 +525,10 @@ package package_PSA_SFERAII
     parameter Real Eps_g = 0.89 "Glass emissivity [-] " annotation (Dialog(group="Optical Properties", tab="General"));
     parameter Real Alpha_t =  0.97 "Tube Absorptivity [-]"
                                                           annotation (Dialog(group="Optical Properties", tab="General"));
+    parameter Real a1_IAM = 0
+        "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
+    parameter Real a2_IAM = 0
+        "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
 
     /**** 3.2 PTC Properties ***********************/
     parameter Integer N(min=1) = 10 "Number of cells per tube";
@@ -528,10 +537,10 @@ package package_PSA_SFERAII
     parameter Modelica.SIunits.Length L = 8 "Length of one tube [m]";
     parameter Modelica.SIunits.Length A_P = 5 "Aperture of the parabola [m]";
 
-    final parameter Modelica.SIunits.Area A_lateral= L*D_int_t*pi*Nt
-        "Lateral internal surface of the metal tube";
-    final parameter Modelica.SIunits.Volume V_tube_int = pi*D_int_t^2/4*L*Nt
-        "Internal volume of the metal tube";
+    final parameter Modelica.SIunits.Area A_lateral= L*D_int_t*pi
+        "Lateral internal surface of the metal tube for one collector";
+    final parameter Modelica.SIunits.Volume V_tube_int = pi*D_int_t^2/4*L
+        "Internal volume of the metal tube for one collector";
 
     /**** 3.3 Envelope properties***/
     parameter Modelica.SIunits.Length Dext_g = 0.12
@@ -616,7 +625,7 @@ package package_PSA_SFERAII
     /**** 4.4 Initial state : steady state  or not ***/
      parameter Boolean steadystate_T_fl=false
         "if true, sets the derivative of the fluid Temperature in each cell to zero during Initialization"
-                                                                                                            annotation (Dialog(group="Initialization options", tab="Initialization"));
+                                                                                                        annotation (Dialog(group="Initialization options", tab="Initialization"));
 
     /*************************************************************/
     /*********************** 5. Numerical options ****************/
@@ -636,7 +645,7 @@ package package_PSA_SFERAII
 
      /******************************* COMPONENTS ***********************************/
 
-        ThermoCycle.Components.HeatFlow.Walls.SolarAbsorber.SolAbsForristal[Ns] solAbs(
+        package_PSA_SFERAII.Component.SolAbsForristal[Ns] solAbs(
         each eps1=eps1,
         each eps2=eps2,
         each eps3=eps3,
@@ -648,8 +657,9 @@ package package_PSA_SFERAII
         each Alpha_g = Alpha_g,
         each Eps_g = Eps_g,
         each Alpha_t = Alpha_t,
+        each a1_IAM = a1_IAM,
+        each a2_IAM = a2_IAM,
         each N=N,
-        each Nt=Nt,
         each L=L,
         each A_P=A_P,
         each rho_g=rho_g,
@@ -682,6 +692,7 @@ package package_PSA_SFERAII
         redeclare each final model Flow1DimIncHeatTransferModel =
             FluidHeatTransferModel,
         each N=N,
+        each Nt = Nt,
         each A=A_lateral,
         each V=V_tube_int,
         each Mdotnom=Mdotnom,
@@ -746,69 +757,74 @@ package package_PSA_SFERAII
        replaceable record SummaryClass = SummaryBase;
        SummaryClass Summary( T_profile( n=N,Ns=Ns, T_fluid = T_fluid_,   T_int_t=T_int_t_,  T_t=T_t_, T_ext_t=T_ext_t_,  T_int_g=T_int_g_,  T_g=T_g_, T_ext_g=T_ext_g_), Eta_solarCollector=Eta_solarCollector_,Philoss=Philoss_,Q_htf=Q_htf_);
     protected
-      Modelica.SIunits.Temperature T_fluid_[Ns,N];
-      Modelica.SIunits.Temperature T_int_t_[Ns,N];
-          Modelica.SIunits.Temperature T_t_[Ns,N];
-          Modelica.SIunits.Temperature T_ext_t_[Ns,N];
-          Modelica.SIunits.Temperature T_int_g_[Ns,N];
-          Modelica.SIunits.Temperature T_g_[Ns,N];
-          Modelica.SIunits.Temperature T_ext_g_[Ns,N];
+    Modelica.SIunits.Temperature T_fluid_[Ns,N];
+    Modelica.SIunits.Temperature T_int_t_[Ns,N];
+    Modelica.SIunits.Temperature T_t_[Ns,N];
+    Modelica.SIunits.Temperature T_ext_t_[Ns,N];
+    Modelica.SIunits.Temperature T_int_g_[Ns,N];
+    Modelica.SIunits.Temperature T_g_[Ns,N];
+    Modelica.SIunits.Temperature T_ext_g_[Ns,N];
     Real Eta_solarCollector_;
     Modelica.SIunits.HeatFlux Philoss_;
     Modelica.SIunits.Power Q_htf_;
 
+    /*************************************************************/
+    /************************* MODELLING *************************/
+    /*************************************************************/
     equation
-             for i in 1:Ns loop
-        for k in 1:N loop
-          /* temperature profile of the working fluid*/
-        T_fluid_[i,k] = flow1DimInc[i].Cells[k].T;
 
-        /* temperature profile of the metal tube */
-        T_int_t_[i,k] = solAbs[i].T_int_t[k];
-        T_t_[i,k] = solAbs[i].T_t[k];
-        T_ext_t_[i,k] = solAbs[i].T_ext_t[k];
+      // Temperature profiles
+      for i in 1:Ns loop //Loop for each collector in series
+          for k in 1:N loop // Loop for each cells in a given collector
 
-        /* temperature profile of the glass envelope */
-        T_int_g_[i,k] = solAbs[i].T_int_g[k];
-        T_g_[i,k] = solAbs[i].T_g[k];
-        T_ext_g_[i,k] = solAbs[i].T_ext_g[k];
-        end for;
+            /* temperature profile of the working fluid*/
+            T_fluid_[i,k] = flow1DimInc[i].Cells[k].T;
+
+            /* temperature profile of the metal tube */
+            T_int_t_[i,k] = solAbs[i].T_int_t[k];
+            T_t_[i,k] = solAbs[i].T_t[k];
+            T_ext_t_[i,k] = solAbs[i].T_ext_t[k];
+
+            /* temperature profile of the glass envelope */
+            T_int_g_[i,k] = solAbs[i].T_int_g[k];
+            T_g_[i,k] = solAbs[i].T_g[k];
+            T_ext_g_[i,k] = solAbs[i].T_ext_g[k];
+
+          end for;
+
       end for;
 
-    Eta_solarCollector_ = sum(solAbs[:].Eta_TOT);
-    Philoss_ = sum(solAbs[:].Phi_loss);
-    Q_htf_ = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
+      // Collector performance
+      Eta_solarCollector_ = sum(solAbs[:].Eta_TOT);
+      Philoss_ = sum(solAbs[:].Phi_loss);
+      Q_htf_ = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
 
+      // Element connections
       for i in 1:Ns loop
           connect(solAbs[i].wall_int, flow1DimInc[i].Wall_int) annotation (Line(
           points={{11.8,9},{20.45,9},{20.45,7.5},{21.375,7.5}},
           color={255,0,0},
           smooth=Smooth.None));
-            connect(DNI, solAbs[i].DNI) annotation (Line(
+          connect(DNI, solAbs[i].DNI) annotation (Line(
           points={{-76,-36},{-36,-36},{-36,-10},{-27.36,-10}},
           color={0,0,127},
           smooth=Smooth.None));
-
-           connect(v_wind, solAbs[i].v_wind) annotation (Line(
+          connect(v_wind, solAbs[i].v_wind) annotation (Line(
           points={{-64,94},{-34,94},{-34,30},{-26.92,30}},
           color={0,0,127},
           smooth=Smooth.None));
-
-            connect(Tamb, solAbs[i].Tamb) annotation (Line(
+          connect(Tamb, solAbs[i].Tamb) annotation (Line(
           points={{-74,-6},{-46,-6},{-46,2.5},{-26.92,2.5}},
           color={0,0,127},
           smooth=Smooth.None));
-
-            connect(Theta, solAbs[i].Theta) annotation (Line(
+          connect(Theta, solAbs[i].Theta) annotation (Line(
           points={{-76,24},{-38,24},{-38,12},{-26.92,12},{-26.92,14.5}},
           color={0,0,127},
           smooth=Smooth.None));
-
       end for;
 
-        for i in 1:Ns-1 loop
-      connect(flow1DimInc[i].OutFlow,flow1DimInc[i+1].InFlow);
-
+      for i in 1:Ns-1 loop
+        connect(flow1DimInc[i].OutFlow,flow1DimInc[i+1].InFlow);
       end for;
 
       connect(InFlow, flow1DimInc[1].InFlow) annotation (Line(

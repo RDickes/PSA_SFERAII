@@ -1,0 +1,17 @@
+// Script to initialize work on Thermocline modeling:
+//		* load ThermoCycle 
+//		* define the saving directory
+// AD - 25/06/2016 
+
+
+// Load ExtMedia, ThermoCycle, ThermalStorage and weather data
+
+
+openModel("C:\Users\Admin\Documents\GitHub\Thermocycle-library\ThermoCycle\package.mo");
+
+openModel("C:\Users\Admin\Documents\GitHub\ExternalMedia\Modelica\ExternalMedia 3.2.1\package.mo");
+
+openModel("C:\Users\Admin\Documents\GitHub\PSA_SFERAII\Modelling\package_PSA_SFERAII.mo");
+
+// Save simulation results in folder:
+cd("C:\Users\Admin\Desktop\SFERA_II_Sim")

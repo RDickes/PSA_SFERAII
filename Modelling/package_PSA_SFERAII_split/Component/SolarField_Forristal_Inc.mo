@@ -81,11 +81,11 @@ final parameter Modelica.SIunits.Length D_int_t= Dext_t - 2*th_t
     "internal diameter of the metal tube [m] ";
 parameter Boolean TubeUD = true
     "if true, constant properties defined by the user"                              annotation (Dialog(group="Properties of the tube receiver", tab="General"));
-parameter Modelica.SIunits.Density rho_t = 8000 "tube density [kg/m3]"  annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
-parameter Modelica.SIunits.SpecificHeatCapacity Cp_t = 500
-    "Specific heat capacity of the tube [J/kg.K] "                                                         annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
-parameter Modelica.SIunits.ThermalConductivity lambda_t = 54
-    "Thermal conductivity of the tube [W/m.K] "                                                          annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
+parameter Modelica.SIunits.Density rho_t_ud = 8000 "tube density [kg/m3]"  annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
+parameter Modelica.SIunits.SpecificHeatCapacity Cp_t_ud = 500
+    "Specific heat capacity of the tube [J/kg.K] "                                                            annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
+parameter Modelica.SIunits.ThermalConductivity lambda_t_ud = 54
+    "Thermal conductivity of the tube [W/m.K] "                                                             annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
 replaceable parameter Material.TubeReceiver.MaterialBase TubeMaterial constrainedby
     package_PSA_SFERAII_split.Component.Material.TubeReceiver.MaterialBase
     "Select tube material for the receiver if not user defined"                                     annotation (choicesAllMatching=true, Dialog(enable=not
@@ -211,8 +211,7 @@ constrainedby
     each Dext_g=Dext_g,
     each th_g=th_g,
     each Dext_t=Dext_t,
-    each th_t=th_t)
-    annotation (Placement(transformation(extent={{-30,-16},{14,34}})));
+    each th_t=th_t) annotation (Placement(transformation(extent={{-30,-16},{14,34}})));
 
   ThermoCycle.Components.FluidFlow.Pipes.Flow1DimInc[Ns] flow1DimInc(
     redeclare each package Medium = Medium1,
@@ -276,12 +275,16 @@ public
       Modelica.SIunits.Temperature[Ns,n] T_ext_g;
      end Arrays;
         Real Eta_solarCollector "Total efficiency of solar collector";
-        Modelica.SIunits.HeatFlux Philoss "Heat Flux lost to the environment";
-         Modelica.SIunits.Power Q_htf
-      "Total heat through the termal heat transfer fluid flowing in the solar collector";
+        Modelica.SIunits.Power Q_sol_tot
+      "Total heat power incident to the collectors";
+        Modelica.SIunits.Power Q_htf_tot
+      "Total heat absorbed by the termal heat transfer fluid flowing in the solar collector";
+        Modelica.SIunits.Power Q_loss_tot
+      "Total heat losses by the solar collector";
+
   end SummaryBase;
-   replaceable record SummaryClass = SummaryBase;
-   SummaryClass Summary( T_profile( n=N,Ns=Ns, T_fluid = T_fluid_,   T_int_t=T_int_t_,  T_t=T_t_, T_ext_t=T_ext_t_,  T_int_g=T_int_g_,  T_g=T_g_, T_ext_g=T_ext_g_), Eta_solarCollector=Eta_solarCollector_,Philoss=Philoss_,Q_htf=Q_htf_);
+  replaceable record SummaryClass = SummaryBase;
+     SummaryClass Summary( T_profile( n=N,Ns=Ns, T_fluid = T_fluid_,   T_int_t=T_int_t_,  T_t=T_t_, T_ext_t=T_ext_t_,  T_int_g=T_int_g_,  T_g=T_g_, T_ext_g=T_ext_g_), Eta_solarCollector=Eta_solarCollector_, Q_htf_tot = Q_htf_tot_, Q_sol_tot = Q_sol_tot_, Q_loss_tot = Q_loss_tot_);
 protected
 Modelica.SIunits.Temperature T_fluid_[Ns,N];
 Modelica.SIunits.Temperature T_int_t_[Ns,N];
@@ -291,8 +294,9 @@ Modelica.SIunits.Temperature T_int_g_[Ns,N];
 Modelica.SIunits.Temperature T_g_[Ns,N];
 Modelica.SIunits.Temperature T_ext_g_[Ns,N];
 Real Eta_solarCollector_;
-Modelica.SIunits.HeatFlux Philoss_;
-Modelica.SIunits.Power Q_htf_;
+Modelica.SIunits.Power Q_loss_tot_;
+Modelica.SIunits.Power Q_htf_tot_;
+Modelica.SIunits.Power Q_sol_tot_;
 
 /*************************************************************/
 /************************* MODELLING *************************/
@@ -321,11 +325,13 @@ equation
   end for;
 
   // Collector performance
-  Eta_solarCollector_ = sum(solAbs[:].Eta_TOT);
-  Philoss_ = sum(solAbs[:].Phi_loss);
-  Q_htf_ = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
+  Q_htf_tot_ = sum(flow1DimInc[:].Q_tot) "Total power absorbed by the fluid";
+  Q_sol_tot_ = sum(solAbs[:].Q_sol_tot)
+    "Toal power incident to the solar field";
+  Q_loss_tot_ = sum(solAbs[:].Q_loss_tot) "Total losses of the solar field";
+  Eta_solarCollector_ = Q_htf_tot_/Q_sol_tot_ "global solar field efficiency";
 
-  // Element connections
+  // Element connectionst
   for i in 1:Ns loop
       connect(solAbs[i].wall_int, flow1DimInc[i].Wall_int) annotation (Line(
       points={{11.8,9},{20.45,9},{20.45,7.5},{21.375,7.5}},

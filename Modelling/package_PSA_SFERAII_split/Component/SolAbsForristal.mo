@@ -69,6 +69,7 @@ final parameter Modelica.SIunits.Length rext_g = Dext_g/2
     "Out radius glass [m]"                                                       annotation (Dialog(group="GeometriesAndProperties of the glass envelope", tab="General"));
 final parameter Modelica.SIunits.Length rint_g = rext_g-th_g
     "Int rad glass [m]"                                                          annotation (Dialog(group="GeometriesAndProperties of the glass envelope", tab="General"));
+final parameter Modelica.SIunits.Length Dint_g = 2*rint_g "Int rad glass [m]" annotation (Dialog(group="GeometriesAndProperties of the glass envelope", tab="General"));
 parameter Boolean GlassUD = false
     "if true, constant properties defined by the user"                                annotation (Dialog(group="Properties of the glass envelope", tab="General"));
 parameter Modelica.SIunits.Density rho_g_ud = 2400 "Glass density [kg/m3]"  annotation (Dialog(enable=GlassUD,group="Properties of the glass envelope", tab="General"));
@@ -199,9 +200,12 @@ Modelica.SIunits.Temperature T_g[N](start = T_g_start)
 Modelica.SIunits.Temperature T_ext_g[N] "temperature of the external glass";
 
 /**** 5.4 Heat power ***/
+Modelica.SIunits.HeatFlowRate Q_sol_tot;
 Modelica.SIunits.HeatFlowRate Q_glass_tot;
 Modelica.SIunits.HeatFlowRate Q_tube_tot;
+Modelica.SIunits.HeatFlowRate Q_loss_tot;
 Modelica.SIunits.HeatFlowRate Q_abs[N];
+Modelica.SIunits.HeatFlowRate Q_abs_tot;
 
 /**** 5.5 Heat flux ***/
 Modelica.SIunits.HeatFlux Phi_glass_tot "heat flux absorbed by the glass";
@@ -227,9 +231,9 @@ Real eta_opt_g;
 Real eta_opt_t;
 Real IAM "Incident Angle Modifier";
 Real eta_th[N] "Thermal efficiency at each node";
-Real eta_TOT[N] "Total efficiency : eta_th * eta_opt_t";
+Real eta_tot[N] "Total efficiency : eta_th * eta_opt_t";
 Real Eta_th "Average Thermal efficiency";
-Real Eta_TOT "Average Total efficiency";
+Real Eta_tot "Average Total efficiency";
 Real cos_theta "cos theta";
 
 /**** 5.7 Materials properties ***/
@@ -275,6 +279,9 @@ A_ext_g = pi*Dext_g*L;
 
 //Total area of the external tube //
 A_ext_t = pi*Dext_t*L;
+
+//Total thermal enery incident to te collector //
+Q_sol_tot = DNI*cos_theta*A_ref;
 
 //Total thermal energy on the glass from the Sun //
 Q_glass_tot = eta_opt_g*DNI*cos_theta*A_ref
@@ -330,7 +337,7 @@ for i in 1:N loop
     rho_g[i] = rho_g_ud;
     Cp_g[i] = Cp_g_ud;
     lambda_g[i] = lambda_g_ud;
-  else
+ else
     rho_g[i] = GlassMaterial.a0_rho_g + GlassMaterial.a1_rho_g*(T_g[i]-273.15) + GlassMaterial.a2_rho_g*(T_g[i]-273.15) ^2;
     Cp_g[i] = GlassMaterial.a0_cp_g + GlassMaterial.a1_cp_g*(T_g[i]-273.15) + GlassMaterial.a2_cp_g*(T_g[i]-273.15) ^2;
     lambda_g[i] = GlassMaterial.a0_cp_g + GlassMaterial.a1_lambda_g*(T_g[i]-273.15) + GlassMaterial.a2_lambda_g*(T_g[i]-273.15) ^2;
@@ -349,8 +356,7 @@ for i in 1:N loop
   Phi_conv_gas[i] = Gamma_vacuum[i] *(T_ext_t[i] - T_int_g[i]);
 
   //Radiation in the vacuum //
-  Phi_rad_gas[i] = Sigma*(T_ext_t[i]^4 - T_int_g[i]^4)/(1/Eps_t[N] + Dext_t/Dext_g*(1/Eps_g-1))
-      "FAUTE --> c'est Dext_t/Dint_g";
+  Phi_rad_gas[i] = Sigma*(T_ext_t[i]^4 - T_int_g[i]^4)/(1/Eps_t[N] + Dext_t/Dint_g*(1/Eps_g-1));
 
   //Heat flux to the tube //
   Phi_tube_ext[i] = Phi_tube_tot_N[i] - Phi_glass_int[i];
@@ -373,7 +379,7 @@ for i in 1:N loop
       "Heat conduction through the internal half-thickness";
 
   //Fluid interaction //
-  wall_int.phi[i]=Phi_tube_int[i] "should not be a - ? --> to check";
+  wall_int.phi[i]=Phi_tube_int[i];
   T_int_t[i] = wall_int.T[i];
 
   // THERMAL EFFICIENCY AT EACH NODE //
@@ -381,22 +387,24 @@ for i in 1:N loop
       "Heat power absorbed by the fluid in each cell";
   if Q_tube_tot > 0 then
     eta_th[i] = Q_abs[i]/(Q_tube_tot/N);
-    eta_TOT[i] = eta_th[i] *eta_opt_t;
+    eta_tot[i] = eta_th[i] *eta_opt_t;
   else
     eta_th[i] = 0;
-    eta_TOT[i] = eta_th[i] * eta_opt_t;
+    eta_tot[i] = eta_th[i] * eta_opt_t;
   end if;
 
 end for;
 
 // THERMAL LOSSES PER REFLECTOR SURFACE [W/m2]
-Phi_loss =  (sum(Phi_rad_air) + sum(Phi_conv_air))*A_ext_g /(A_ref*N);
+Q_loss_tot = (sum(Phi_rad_air) + sum(Phi_conv_air))*(A_ext_g /N) "[W]";
+Q_abs_tot = sum(Q_abs[:]) "[W]";
+Phi_loss =  (sum(Phi_rad_air) + sum(Phi_conv_air))*A_ext_g /(A_ref*N) "[W/m2]";
 
 //THERMAL EFFICIENCY
 Eta_th = sum(eta_th)/N;
 
 //TOTAL EFFICIENCY
-Eta_TOT = Eta_th*eta_opt_t;
+Eta_tot = Eta_th*eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
              Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
             {100,100}}),

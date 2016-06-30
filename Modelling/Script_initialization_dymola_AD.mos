@@ -11,7 +11,7 @@ openModel("C:\Users\Admin\Documents\GitHub\Thermocycle-library\ThermoCycle\packa
 
 openModel("C:\Users\Admin\Documents\GitHub\ExternalMedia\Modelica\ExternalMedia 3.2.1\package.mo");
 
-openModel("C:\Users\Admin\Documents\GitHub\PSA_SFERAII\Modelling\package_PSA_SFERAII.mo");
+openModel("C:\Users\Admin\Documents\GitHub\PSA_SFERAII\Modelling\package_PSA_SFERAII_split\package.mo");
 
 // Save simulation results in folder:
 cd("C:\Users\Admin\Desktop\SFERA_II_Sim")

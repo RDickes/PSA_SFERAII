@@ -603,7 +603,7 @@ package package_PSA_SFERAII
     parameter Modelica.SIunits.Length th_g = 0.0025 "Glass thickness [m] "
                                                                           annotation (Dialog(group="Properties of the glass envelope", tab="General"));
     parameter Boolean GlassUD = true
-        "if true, constant properties defined by the used"                               annotation (Dialog(group="Properties of the glass envelope", tab="General"));
+        "if true, constant properties defined by the user"                               annotation (Dialog(group="Properties of the glass envelope", tab="General"));
     parameter Modelica.SIunits.Density rho_g_ud = 2400 "Glass density [kg/m3]"  annotation (Dialog(enable=GlassUD,group="Properties of the glass envelope", tab="General"));
     parameter Modelica.SIunits.SpecificHeatCapacity Cp_g_ud = 753
         "Specific heat capacity of the glass [J/kg.K]"                                                            annotation (Dialog(enable=GlassUD,group="Properties of the glass envelope", tab="General"));
@@ -622,7 +622,7 @@ package package_PSA_SFERAII
     final parameter Modelica.SIunits.Length D_int_t= Dext_t - 2*th_t
         "internal diameter of the metal tube [m] ";
     parameter Boolean TubeUD = true
-        "if true, constant properties defined by the used"                              annotation (Dialog(group="Properties of the tube receiver", tab="General"));
+        "if true, constant properties defined by the user"                              annotation (Dialog(group="Properties of the tube receiver", tab="General"));
     parameter Modelica.SIunits.Density rho_t = 8000 "tube density [kg/m3]"  annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
     parameter Modelica.SIunits.SpecificHeatCapacity Cp_t = 500
         "Specific heat capacity of the tube [J/kg.K] "                                                         annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
@@ -630,7 +630,7 @@ package package_PSA_SFERAII
         "Thermal conductivity of the tube [W/m.K] "                                                          annotation (Dialog(enable=TubeUD,group="Properties of the tube receiver", tab="General"));
     replaceable parameter TubeMaterial.MaterialBase TubeMaterial constrainedby
         package_PSA_SFERAII.Material.TubeReceiver.MaterialBase
-        "Select tube material for the receiver if not user defined"                                                                                                     annotation (choicesAllMatching=true, Dialog(enable=not
+        "Select tube material for the receiver if not user defined"                                     annotation (choicesAllMatching=true, Dialog(enable=not
                                                                                                     (TubeUD),group="Properties of the tube receiver", tab="General"));
 
     /**** 3.5 Atmospheric properties***/
@@ -939,7 +939,7 @@ in the collectors is modeled as an incompressible fluids.
 </HTML>"));
     end SolarField_Forristal_Inc;
   end Component;
-  annotation (uses(Modelica(version="3.2.1")));
+
   package Material
     package TubeReceiver
       record MaterialBase "Material example for the tube receiver in the PTCs"
@@ -963,6 +963,30 @@ in the collectors is modeled as an incompressible fluids.
           "lambda_t = a0_lambda_t + a1_lambda_t*T + a2_lambda_t*T^2";
 
       end MaterialBase;
+
+      record SLsteel_316 "Stainless steell 316 - datareference from EES"
+
+      parameter Real a0_rho_t = 8035.885
+          "rho_t = a0_rho_t + a1_rho_t*T + a2_rho_t*T^2";
+      parameter Real a1_rho_t = -3.935347e-1
+          "rho_t = a0_rho_t + a1_rho_t*T + a2_rho_t*T^2";
+      parameter Real a2_rho_t = 0
+          "rho_t = a0_rho_t + a1_rho_t*T + a2_rho_t*T^2";
+
+      parameter Real a0_cp_t = 484.7236
+          "cp_t = a0_cp_t + a1_cp_t*T + a2_cp_t*T^2";
+      parameter Real a1_cp_t = 1.94885955e-1
+          "cp_t = a0_cp_t + a1_cp_t*T + a2_cp_t*T^2";
+      parameter Real a2_cp_t = 0 "cp_t = a0_cp_t + a1_cp_t*T + a2_cp_t*T^2";
+
+      parameter Real a0_lambda_t = 13.0706
+          "lambda_t = a0_lambda_t + a1_lambda_t*T + a2_lambda_t*T^2";
+      parameter Real a1_lambda_t = 1.61410856e-2
+          "lambda_t = a0_lambda_t + a1_lambda_t*T + a2_lambda_t*T^2";
+      parameter Real a2_lambda_t = 0
+          "lambda_t = a0_lambda_t + a1_lambda_t*T + a2_lambda_t*T^2";
+
+      end SLsteel_316;
     end TubeReceiver;
 
     package GlassEnvelope
@@ -988,6 +1012,31 @@ in the collectors is modeled as an incompressible fluids.
           "lambda_g = a0_lambda_g + a1_lambda_g*T + a2_lambda_g*T^2";
 
       end MaterialBase;
+
+      record Pyrex "Pyrex properties - Reference Borofloat 33 forom Schott"
+
+      parameter Real a0_rho_g = 2230
+          "rho_g = a0_rho_g + a1_rho_g*T + a2_rho_g*T^2";
+      parameter Real a1_rho_g = 0
+          "rho_g = a0_rho_g + a1_rho_g*T + a2_rho_g*T^2";
+      parameter Real a2_rho_g = 0
+          "rho_g = a0_rho_g + a1_rho_g*T + a2_rho_g*T^2";
+
+      parameter Real a0_cp_g = 712.4 "cp_g = a0_cp_g + a1_cp_g*T + a2_cp_g*T^2";
+      parameter Real a1_cp_g = 2.93816
+          "cp_g = a0_cp_g + a1_cp_g*T + a2_cp_g*T^2";
+      parameter Real a2_cp_g = -3.5399e-3
+          "cp_g = a0_cp_g + a1_cp_g*T + a2_cp_g*T^2";
+
+      parameter Real a0_lambda_g = 1.0433
+          "lambda_g = a0_lambda_g + a1_lambda_g*T + a2_lambda_g*T^2";
+      parameter Real a1_lambda_g = 1.7e-3
+          "lambda_g = a0_lambda_g + a1_lambda_g*T + a2_lambda_g*T^2";
+      parameter Real a2_lambda_g = 0
+          "lambda_g = a0_lambda_g + a1_lambda_g*T + a2_lambda_g*T^2";
+
+      end Pyrex;
     end GlassEnvelope;
   end Material;
+  annotation (uses(Modelica(version="3.2.1")));
 end package_PSA_SFERAII;

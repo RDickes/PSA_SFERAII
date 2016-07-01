@@ -24,34 +24,34 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
       TubeMaterial,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
     N=20,
+    Unom=2000,
+    redeclare model FluidHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     T_g_start_in=373.15,
     T_g_start_out=373.15,
     T_t_start_in=373.15,
     T_t_start_out=373.15,
-    Unom=2000,
     Tstart_inlet=373.15,
     Tstart_outlet=373.15,
-    pstart=1000000,
-    redeclare model FluidHeatTransferModel =
-        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant)
+    pstart=1000000)
     annotation (Placement(transformation(extent={{-12,-28},{44,36}})));
 
-  ExpData.FullDay_20160629.DNI DNI
+ Sources.FullDay_20160629.DNI DNI
     annotation (Placement(transformation(extent={{-90,-18},{-70,2}})));
-  ExpData.FullDay_20160629.theta theta
+  Sources.FullDay_20160629.theta theta
     annotation (Placement(transformation(extent={{-90,44},{-70,64}})));
-  ExpData.FullDay_20160629.V_wind v_wind
+  Sources.FullDay_20160629.V_wind v_wind
     annotation (Placement(transformation(extent={{-90,70},{-70,90}})));
-  ExpData.FullDay_20160629.T_amb T_amb
+  Sources.FullDay_20160629.T_amb T_amb
     annotation (Placement(transformation(extent={{-90,16},{-70,36}})));
-  ExpData.FullDay_20160629.M_dot_htf m_dot_htf
+  Sources.FullDay_20160629.M_dot_htf m_dot_htf
     annotation (Placement(transformation(extent={{-90,-84},{-70,-64}})));
-  ExpData.FullDay_20160629.T_htf_su T_htf_su
+  Sources.FullDay_20160629.T_htf_su T_htf_su
     annotation (Placement(transformation(extent={{-90,-56},{-70,-36}})));
-  ThermoCycle.Components.FluidFlow.Sensors.SensTp sensTp_out(redeclare package
+  ThermoCycle.Components.FluidFlow.Sensors.SensTp SensTex(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800)
     annotation (Placement(transformation(extent={{36,62},{56,82}})));
-  ThermoCycle.Components.FluidFlow.Sensors.SensTp sensTp_in(redeclare package
+  ThermoCycle.Components.FluidFlow.Sensors.SensTp sensTsu(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800)
     annotation (Placement(transformation(extent={{-6,-84},{14,-64}})));
 equation
@@ -79,19 +79,19 @@ equation
       points={{-69,-46},{-28,-46},{-28,-78},{-28.2,-78}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(EuroTrough.OutFlow, sensTp_out.InFlow) annotation (Line(
+  connect(EuroTrough.OutFlow, SensTex.InFlow) annotation (Line(
       points={{25.3333,41.12},{24.6667,41.12},{24.6667,62.6},{46,62.6}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(Sink.flangeB, sensTp_out.InFlow) annotation (Line(
+  connect(Sink.flangeB, SensTex.InFlow) annotation (Line(
       points={{73.6,62},{58,62},{58,62.6},{46,62.6}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(Supply.flangeB, sensTp_in.InFlow) annotation (Line(
+  connect(Supply.flangeB, sensTsu.InFlow) annotation (Line(
       points={{-19,-84},{-8,-84},{-8,-83.4},{4,-83.4}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(sensTp_in.InFlow, EuroTrough.InFlow) annotation (Line(
+  connect(sensTsu.InFlow, EuroTrough.InFlow) annotation (Line(
       points={{4,-83.4},{4,-83.7},{24.7111,-83.7},{24.7111,-28}},
       color={0,0,255},
       smooth=Smooth.None));

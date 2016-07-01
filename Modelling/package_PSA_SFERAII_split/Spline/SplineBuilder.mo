@@ -1,5 +1,5 @@
-within package_PSA_SFERAII_split.Component;
-model SplineBuilder_RD
+within package_PSA_SFERAII_split.Spline;
+model SplineBuilder
   extends Modelica.Blocks.Interfaces.SO;
   parameter Real table[:,2]
     "Time on first column, the time-dependant variavle on the second column";
@@ -8,11 +8,10 @@ model SplineBuilder_RD
   Real yspline;
 protected
   parameter Integer n = size(table,1) "Number of data points";
-  parameter Real y2[n]= package_PSA_SFERAII_split.UtilitiesSFERAII.Spline.MakeSpline(
-                                   n, table[:,1], table[:,2])
+  parameter Real y2[n]= MakeSpline(n, table[:,1], table[:,2])
     "Spline derivative data";
 equation
-  yspline = package_PSA_SFERAII_split.UtilitiesSFERAII.Spline.EvalSpline(time,table[:, 1], table[:, 2], y2)*attenuation.y;
+  yspline = EvalSpline(time,table[:, 1], table[:, 2], y2)*attenuation.y;
   y = smooth(1, noEvent(if yspline < 0.0001 then 0.0001 else yspline));
 
   annotation (Placement(transformation(extent={{-24,14},{-4,34}})),
@@ -24,4 +23,4 @@ equation
         Line(points={{-70,-22},{-60,-14},{-46,-6},{-32,-2},{-18,-4},{-8,-10},{
               2,-16},{14,-22},{28,-26},{38,-26},{48,-20},{56,-10},{62,2},{66,14}},
             color={0,0,0})}));
-end SplineBuilder_RD;
+end SplineBuilder;

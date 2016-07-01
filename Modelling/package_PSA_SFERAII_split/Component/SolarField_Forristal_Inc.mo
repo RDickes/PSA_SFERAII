@@ -233,32 +233,38 @@ constrainedby
         origin={34.5,7.5})));
 
   ThermoCycle.Interfaces.Fluid.FlangeA InFlow(redeclare package Medium = Medium1) annotation (Placement(
-        transformation(extent={{28,-110},{48,-90}}), iconTransformation(extent={{28,-110},{48,-90}})));
+        transformation(extent={{32,-118},{52,-98}}), iconTransformation(extent={{32,-118},
+            {52,-98}})));
 
   ThermoCycle.Interfaces.Fluid.FlangeB OutFlow(redeclare package Medium = Medium1) annotation (Placement(
-        transformation(extent={{30,106},{50,126}}), iconTransformation(extent={{30,106},{50,126}})));
+        transformation(extent={{34,106},{54,126}}), iconTransformation(extent={{34,106},
+            {54,126}})));
 
   Modelica.Blocks.Interfaces.RealInput v_wind
-    annotation (Placement(transformation(extent={{-84,74},{-44,114}}),
-        iconTransformation(extent={{-20,-20},{20,20}},
+    annotation (Placement(transformation(extent={{-188,86},{-148,126}}),
+        iconTransformation(extent={{-13,-13},{13,13}},
         rotation=0,
-        origin={-64,94})));
+        origin={-69,75})));
   Modelica.Blocks.Interfaces.RealInput Theta
     annotation (Placement(transformation(extent={{-96,4},{-56,44}}),
-        iconTransformation(extent={{-20,-20},{20,20}},
+        iconTransformation(extent={{-14,-14},{14,14}},
         rotation=0,
-        origin={-62,32})));
+        origin={-68,38})));
   Modelica.Blocks.Interfaces.RealInput Tamb
     annotation (Placement(transformation(extent={{-94,-26},{-54,14}}),
-        iconTransformation(extent={{-20,-20},{20,20}},
+        iconTransformation(extent={{-14,-14},{14,14}},
         rotation=0,
-        origin={-64,-20})));
+        origin={-68,-4})));
   Modelica.Blocks.Interfaces.RealInput DNI
     annotation (Placement(transformation(extent={{-96,-56},{-56,-16}}),
-        iconTransformation(extent={{-20,-20},{20,20}},
+        iconTransformation(extent={{-14,-14},{14,14}},
         rotation=0,
-        origin={-64,-72})));
-
+        origin={-68,-46})));
+  Modelica.Blocks.Interfaces.IntegerInput Focus(start=1)
+    "PTC focused if Focus = 1, PTC unfocused = 0"
+    annotation (Placement(
+        transformation(extent={{-106,-96},{-66,-56}}), iconTransformation(
+          extent={{-82,-100},{-54,-72}})));
    /**************************************************** SUMMARY ********************************************/
 public
   record SummaryBase
@@ -301,8 +307,8 @@ Modelica.SIunits.Power Q_sol_tot_;
 /*************************************************************/
 /************************* MODELLING *************************/
 /*************************************************************/
-equation
 
+equation
   // Temperature profiles
   for i in 1:Ns loop //Loop for each collector in series
       for k in 1:N loop // Loop for each cells in a given collector
@@ -334,24 +340,28 @@ equation
   // Element connectionst
   for i in 1:Ns loop
       connect(solAbs[i].wall_int, flow1DimInc[i].Wall_int) annotation (Line(
-      points={{11.8,9},{20.45,9},{20.45,7.5},{21.375,7.5}},
+      points={{12.3077,9.83333},{20.45,9.83333},{20.45,7.5},{21.375,7.5}},
       color={255,0,0},
       smooth=Smooth.None));
       connect(DNI, solAbs[i].DNI) annotation (Line(
-      points={{-76,-36},{-36,-36},{-36,-10},{-27.36,-10}},
+      points={{-76,-36},{-36,-36},{-36,-1},{-27.6308,-1}},
       color={0,0,127},
       smooth=Smooth.None));
       connect(v_wind, solAbs[i].v_wind) annotation (Line(
-      points={{-64,94},{-34,94},{-34,30},{-26.92,30}},
+      points={{-168,106},{-34,106},{-34,28.1667},{-27.6308,28.1667}},
       color={0,0,127},
       smooth=Smooth.None));
       connect(Tamb, solAbs[i].Tamb) annotation (Line(
-      points={{-74,-6},{-46,-6},{-46,2.5},{-26.92,2.5}},
+      points={{-74,-6},{-46,-6},{-46,9},{-27.6308,9}},
       color={0,0,127},
       smooth=Smooth.None));
       connect(Theta, solAbs[i].Theta) annotation (Line(
-      points={{-76,24},{-38,24},{-38,12},{-26.92,12},{-26.92,14.5}},
+      points={{-76,24},{-38,24},{-38,12},{-27.6308,12},{-27.6308,18.5833}},
       color={0,0,127},
+      smooth=Smooth.None));
+      connect(Focus, solAbs[i].Focus) annotation (Line(
+      points={{-86,-76},{-46,-76},{-46,-11},{-27.6308,-11}},
+      color={255,127,0},
       smooth=Smooth.None));
   end for;
 
@@ -360,20 +370,21 @@ equation
   end for;
 
   connect(InFlow, flow1DimInc[1].InFlow) annotation (Line(
-      points={{38,-100},{36,-100},{36,-15.4167},{34.5,-15.4167}},
+      points={{42,-108},{36,-108},{36,-15.4167},{34.5,-15.4167}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(flow1DimInc[Ns].OutFlow, OutFlow) annotation (Line(
-      points={{34.2375,30.4167},{34.2375,116},{40,116}},
+      points={{34.2375,30.4167},{34.2375,116},{44,116}},
       color={0,0,255},
       smooth=Smooth.None));
+
                                                                                                       annotation (Dialog(group="Heat transfer", tab="General"),
               Diagram(coordinateSystem(extent={{-80,-100},{100,100}},
           preserveAspectRatio=false),
                       graphics), Icon(coordinateSystem(extent={{-80,-100},{100,
             100}},    preserveAspectRatio=false),
                                       graphics={
-                                      Bitmap(extent={{-96,118},{126,-100}}, fileName=
+                                      Bitmap(extent={{-96,114},{134,-112}}, fileName=
               "modelica://ThermoCycle/Resources/Images/Avatar_SF.jpg"),
                                           Text(
           extent={{-44,106},{40,78}},
@@ -382,21 +393,25 @@ equation
           fillPattern=FillPattern.Solid,
           textString="%name"),
         Text(
-          extent={{-56,-32},{-30,-40}},
+          extent={{-58,-12},{-26,-26}},
           lineColor={0,0,0},
           textString="Tamb[K]"),
         Text(
-          extent={{-56,-82},{-26,-92}},
+          extent={{-58,-52},{-16,-66}},
           lineColor={0,0,0},
-          textString="DNI"),
+          textString="DNI [W/m2]"),
         Text(
-          extent={{-64,22},{-14,14}},
+          extent={{-60,32},{-8,20}},
           lineColor={0,0,0},
           textString="Theta[rad]"),
         Text(
-          extent={{-62,82},{-18,72}},
+          extent={{-56,66},{-12,56}},
           lineColor={0,0,0},
-          textString="v_wind [m/s]")}),
+          textString="v_wind [m/s]"),
+        Text(
+          extent={{-56,-90},{-20,-102}},
+          lineColor={0,0,0},
+          textString="Focus")}),
      Documentation(info="<HTML>
 
 <p><big>The <b>SolarField_Forristal_Inc</b> is the same model of the <a href=\"modelica://ThermoCycle.Components.Units.Solar.SolarField_Forristal\">SolarField_Forristal</a> except that the heat transfer fluid flowing

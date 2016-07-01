@@ -5,7 +5,7 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
     Mdot_0=5,
     redeclare package Medium = package_PSA_SFERAII_split.Media.Sytherm800,
     T_0=423.15)
-    annotation (Placement(transformation(extent={{-38,-94},{-18,-74}})));
+    annotation (Placement(transformation(extent={{-38,-102},{-18,-82}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800, p0=1200000)
     annotation (Placement(transformation(extent={{72,52},{92,72}})));
@@ -37,7 +37,7 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
     annotation (Placement(transformation(extent={{-12,-28},{44,36}})));
 
  Sources.FullDay_20160629.DNI DNI
-    annotation (Placement(transformation(extent={{-90,-18},{-70,2}})));
+    annotation (Placement(transformation(extent={{-90,-12},{-70,8}})));
   Sources.FullDay_20160629.theta theta
     annotation (Placement(transformation(extent={{-90,44},{-70,64}})));
   Sources.FullDay_20160629.V_wind v_wind
@@ -45,42 +45,46 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
   Sources.FullDay_20160629.T_amb T_amb
     annotation (Placement(transformation(extent={{-90,16},{-70,36}})));
   Sources.FullDay_20160629.M_dot_htf m_dot_htf
-    annotation (Placement(transformation(extent={{-90,-84},{-70,-64}})));
+    annotation (Placement(transformation(extent={{-90,-94},{-70,-74}})));
   Sources.FullDay_20160629.T_htf_su T_htf_su
-    annotation (Placement(transformation(extent={{-90,-56},{-70,-36}})));
+    annotation (Placement(transformation(extent={{-90,-68},{-70,-48}})));
   ThermoCycle.Components.FluidFlow.Sensors.SensTp SensTex(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800)
     annotation (Placement(transformation(extent={{36,62},{56,82}})));
   ThermoCycle.Components.FluidFlow.Sensors.SensTp sensTsu(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800)
-    annotation (Placement(transformation(extent={{-6,-84},{14,-64}})));
+    annotation (Placement(transformation(extent={{-6,-92},{14,-72}})));
+  Modelica.Blocks.Math.RealToInteger realToInteger
+    annotation (Placement(transformation(extent={{-48,-40},{-36,-28}})));
+  Sources.FullDay_20160629.Focus focus
+    annotation (Placement(transformation(extent={{-90,-38},{-70,-18}})));
 equation
   connect(DNI.y, EuroTrough.DNI) annotation (Line(
-      points={{-69,-8},{-42,-8},{-42,-19.04},{-7.02222,-19.04}},
+      points={{-69,-2},{-54,-2},{-54,-10.72},{-8.26667,-10.72}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(theta.y, EuroTrough.Theta) annotation (Line(
-      points={{-69,54},{-40,54},{-40,14.24},{-6.4,14.24}},
+      points={{-69,54},{-40,54},{-40,16.16},{-8.26667,16.16}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(v_wind.y, EuroTrough.v_wind) annotation (Line(
-      points={{-69,80},{-26,80},{-26,34.08},{-7.02222,34.08}},
+      points={{-69,80},{-26,80},{-26,28},{-8.57778,28}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(m_dot_htf.y, Supply.in_Mdot) annotation (Line(
-      points={{-69,-74},{-34,-74},{-34,-78}},
+      points={{-69,-84},{-34,-84},{-34,-86}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(T_amb.y, EuroTrough.Tamb) annotation (Line(
-      points={{-69,26},{-44,26},{-44,-2.4},{-7.02222,-2.4}},
+      points={{-69,26},{-44,26},{-44,2.72},{-8.26667,2.72}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(T_htf_su.y, Supply.in_T) annotation (Line(
-      points={{-69,-46},{-28,-46},{-28,-78},{-28.2,-78}},
+      points={{-69,-58},{-28,-58},{-28,-86},{-28.2,-86}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(EuroTrough.OutFlow, SensTex.InFlow) annotation (Line(
-      points={{25.3333,41.12},{24.6667,41.12},{24.6667,62.6},{46,62.6}},
+      points={{26.5778,41.12},{24.6667,41.12},{24.6667,62.6},{46,62.6}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(Sink.flangeB, SensTex.InFlow) annotation (Line(
@@ -88,12 +92,20 @@ equation
       color={0,0,255},
       smooth=Smooth.None));
   connect(Supply.flangeB, sensTsu.InFlow) annotation (Line(
-      points={{-19,-84},{-8,-84},{-8,-83.4},{4,-83.4}},
+      points={{-19,-92},{-8,-92},{-8,-91.4},{4,-91.4}},
       color={0,0,255},
       smooth=Smooth.None));
   connect(sensTsu.InFlow, EuroTrough.InFlow) annotation (Line(
-      points={{4,-83.4},{4,-83.7},{24.7111,-83.7},{24.7111,-28}},
+      points={{4,-91.4},{4,-91.7},{25.9556,-91.7},{25.9556,-30.56}},
       color={0,0,255},
+      smooth=Smooth.None));
+  connect(realToInteger.y, EuroTrough.Focus) annotation (Line(
+      points={{-35.4,-34},{-24,-34},{-24,-23.52},{-8.26667,-23.52}},
+      color={255,127,0},
+      smooth=Smooth.None));
+  connect(focus.y, realToInteger.u) annotation (Line(
+      points={{-69,-28},{-60,-28},{-60,-34},{-49.2,-34}},
+      color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
             -100},{100,100}}),      graphics));

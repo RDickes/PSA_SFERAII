@@ -9,16 +9,16 @@ model SolAbsForristal
 
   Modelica.Blocks.Interfaces.RealInput DNI
     annotation (Placement(transformation(extent={{-120,-40},{-80,0}}),
-        iconTransformation(extent={{-108,-96},{-68,-56}})));
+        iconTransformation(extent={{-106,-48},{-66,-8}})));
     Modelica.Blocks.Interfaces.RealInput v_wind
     annotation (Placement(transformation(extent={{-120,50},{-80,90}}),
-        iconTransformation(extent={{-106,64},{-66,104}})));
+        iconTransformation(extent={{-106,92},{-66,132}})));
   Modelica.Blocks.Interfaces.RealInput Theta "In radiants"
     annotation (Placement(transformation(extent={{-120,20},{-80,60}}),
-        iconTransformation(extent={{-106,2},{-66,42}})));
+        iconTransformation(extent={{-106,46},{-66,86}})));
   Modelica.Blocks.Interfaces.RealInput Tamb
     annotation (Placement(transformation(extent={{-120,-10},{-80,30}}),
-        iconTransformation(extent={{-106,-46},{-66,-6}})));
+        iconTransformation(extent={{-106,0},{-66,40}})));
 
 /*************************************************************/
 /*********************** 2. CONSTANTS  ***********************/
@@ -247,11 +247,15 @@ Modelica.SIunits.ThermalConductivity lambda_t[N];
 /**** 5.8 Thermal port ***/
  ThermoCycle.Interfaces.HeatTransfer.ThermalPort wall_int(N=N) annotation (
       Placement(transformation(extent={{60,20},{80,40}}), iconTransformation(
-          extent={{80,-10},{100,10}})));
+          extent={{140,14},{160,34}})));
 
 /*************************************************************/
 /************************* 6. MODELLING***********************/
 /*************************************************************/
+  Modelica.Blocks.Interfaces.IntegerInput Focus(start=1)
+    "PTC focused if Focus = 1, PTC unfocused = 0" annotation (Placement(
+        transformation(extent={{-106,-96},{-66,-56}}), iconTransformation(
+          extent={{-106,-96},{-66,-56}})));
 equation
 
 //Sky temperature //
@@ -272,7 +276,7 @@ eta_opt_g = eta_opt * Alpha_g;
 eta_opt_t = eta_opt * Alpha_t * Tau_g;
 
 //Total area of the reflector //
-A_ref = L*A_P;
+A_ref = (Focus*L*A_P) + (1-Focus)*L*Dext_t;
 
 //Total area of the external glass//
 A_ext_g = pi*Dext_g*L;
@@ -406,10 +410,11 @@ Eta_th = sum(eta_th)/N;
 //TOTAL EFFICIENCY
 Eta_tot = Eta_th*eta_opt_t;
                                                                                                       annotation(Dialog(tab = "Initialisation"),
-             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,-100},
-            {100,100}}),
+             Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
+            -100},{160,140}}),
                      graphics),
-    Icon(graphics),Documentation(info="<HTML>
+    Icon(coordinateSystem(extent={{-100,-100},{160,140}}, preserveAspectRatio=false),
+         graphics),Documentation(info="<HTML>
           
          <p><big>Model <b>SolAbsForristal</b>  represents the one-dimensional radial energy balance between the Heat Collector Element (HCE) and the atmosphere based on the
           <a href=\"http://www.nrel.gov/csp/troughnet/pdfs/34169.pdf\">Forristal model</a>.

@@ -78,11 +78,15 @@ Data = readtable([ folder_path '\RAW_DATA\' filename],'Delimiter','\t', 'Format'
 %FA106      --> Flow in Eurotrough (calculated)
 
 %% DATA POSTREATEMENT
-time_global_start = '08:00:00';
+time_global_start = Data.Hora(1);
 time_global_stop = Data.Hora(end);
 [ ~,index_global_start] = min(abs(Data.Hora - time_global_start));
 [ ~,index_global_stop] = min(abs(Data.Hora - time_global_stop));
 vec_global = index_global_start:index_global_stop;
+for k = 1:length(Data.Hora)
+    [Y,M,D,H,MN,S] = datevec(Data.Hora(k));
+    Data.time_sec(k,1) = (H*60 + MN)*60 + S;
+end
 
 % Sampling time - definition
 time_sample_start = time_global_start; %'11:30:00';
@@ -112,11 +116,11 @@ if plot_all
     j= 0;
     for k = 2:3
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Line Leg k 
@@ -127,11 +131,11 @@ if plot_all
     j= 0;
     for k = 4:5
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Line Leg k
@@ -142,11 +146,11 @@ if plot_all
     j= 0;
     for k = 6:7
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time') 
     clear Line Leg k
@@ -156,11 +160,11 @@ if plot_all
     j= 0;
     for k = 11
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Leg Line k
@@ -170,11 +174,11 @@ if plot_all
     j= 0;
     for k = 10
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Leg Line k
@@ -184,11 +188,11 @@ if plot_all
     j= 0;
     for k = 12
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     
@@ -202,11 +206,11 @@ if plot_sample
     j= 0;
     for k = 2:3
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Line Leg k 
@@ -217,11 +221,11 @@ if plot_sample
     j= 0;
     for k = 4:5
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Line Leg k
@@ -232,11 +236,11 @@ if plot_sample
     j= 0;
     for k = 6:7
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time') 
     clear Line Leg k
@@ -246,11 +250,11 @@ if plot_sample
     j= 0;
     for k = 11
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Leg Line k
@@ -260,11 +264,11 @@ if plot_sample
     j= 0;
     for k = 10
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     clear Leg Line k
@@ -274,22 +278,21 @@ if plot_sample
     j= 0;
     for k = 12
         j = j+1;
-        eval(['Line(j) = plot(Data.Hora(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(Data.time_sec(vec_sample), Data.' Variable2Plot{k} '(vec_sample), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
-    legend(Line, Leg)
+    legend(Line, Leg, 'Location', 'NorthWest')
     grid on
     xlabel('Time')
     
     tightfig
 end
 %% EXPORT RESULTS :
-if 1
+if 0
     clear point
     Point_name = 'FullDay_2016_06_29';
     mkdir([folder_path '\' Point_name] )
-    vec_export = vec_sample;
     point.vector_sample = vec_sample;
     point.raw_file_name = 'filename';
     point.point_name = Point_name;
@@ -303,7 +306,7 @@ if 1
     point.V_wind_5 = Data.ST087(vec_sample)/3.6;%m/s
     point.D_wind_5 = Data.WD089(vec_sample);% compared to the north (+90 is east)
     point.time_day = Data.Hora(vec_sample);
-    point.time_sec = NaN*ones(length(vec_sample),1);
+    point.time_sec = Data.time_sec(vec_sample);
     point.time_vs_DNI_text = '';
     point.time_vs_Tamb_text = '';
     point.time_vs_theta_text = '';
@@ -315,8 +318,6 @@ if 1
 
     j = 0;
     for k = 1:length(vec_sample)
-        [Y,M,D,H,MN,S] = datevec(Data.Hora(vec_sample(k))-Data.Hora(vec_sample(1)));
-        point.time_sec(k,1) = (((Y*365 + M*30 + D)*24 + H)*60 + MN)*60 + S;
         if not(isnan(point.time_sec(k,1))) && not(isnan(point.DNI(k,1))) && not(isnan(point.T_amb(k,1))) && not(isnan(point.theta(k,1))) && not(isnan(point.M_dot_htf(k,1))) && not(isnan(point.T_ptc_su(k,1))) && not(isnan(point.P_ptc_su(k,1))) && not(isnan(point.V_wind_5(k,1))) && not(isnan(point.D_wind_5(k,1)))
             point.time_vs_DNI_text = [point.time_vs_DNI_text num2str(point.time_sec(k,1)) ',' num2str(point.DNI(k,1)) ';'];
             point.time_vs_Tamb_text = [point.time_vs_Tamb_text num2str(point.time_sec(k,1)) ',' num2str(point.T_amb(k,1)) ';'];
@@ -328,6 +329,7 @@ if 1
             point.time_vs_Dwind_text = [point.time_vs_Dwind_text num2str(point.time_sec(k,1)) ',' num2str(point.D_wind_5(k,1)) ';'];
         end
     end
+    
     point.time_vs_DNI_text(end) = '';
     point.time_vs_Tamb_text(end) = '';
     point.time_vs_theta_text(end) = '';

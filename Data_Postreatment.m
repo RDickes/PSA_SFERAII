@@ -101,11 +101,11 @@ vec_sample = index_sample_start:index_sample_stop;
 LW = 1;
 LS = '-';
 plot_all = 1;
-plot_sample = 1;
+plot_sample = 0;
 
 Vector2Plot =   [1,         2,              3,              4,          5,          6,         	7,              8,                	9,                  10,             11,         12,         13,         14,         15,               16              17          18];
-Variable2Plot = {'TA029',	'TA060',    	'TA066',        'FA032',	'FA023',    'PA021',    'PA052',        'pocision_EURO', 	'consigna_EURO',    'Incidencia'    'IA028'     'ST087'     'ST072'     'WD089'     'WD088'};
-Label2Plot =    {'T_{amb}', 'T_{ptc,su}',	'T_{ptc,ex}',   'M_{dot}',	'V_{dot}',	'P_{tk}',	'P_{ptc,su}',	'pocision_EURO',  	'consigna_EURO',    'Incidencia'    'DNI'       'V_{wd,5}'  'V_{wd,12}'	'D_{wd,5}'  'D_{wd,12}'};
+Variable2Plot = {'TA029',	'TA060',    	'TA066',        'FA032',	'FA023',    'PA021',    'PA052',        'posicion_EURO', 	'consigna_EURO',    'Incidencia'    'IA028'     'ST087'     'ST072'     'WD089'     'WD088'};
+Label2Plot =    {'T_{amb}', 'T_{ptc,su}',	'T_{ptc,ex}',   'M_{dot}',	'V_{dot}',	'P_{tk}',	'P_{ptc,su}',	'posicion_EURO',  	'consigna_EURO',    'Incidencia'    'DNI'       'V_{wd,5}'  'V_{wd,12}'	'D_{wd,5}'  'D_{wd,12}'};
 
 
 if plot_all
@@ -186,9 +186,10 @@ if plot_all
     subplot(2,3,6)
     hold all
     j= 0;
-    for k = 12
+    for k = 8:9
         j = j+1;
         eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        %eval(['Line(j) = plot( Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -288,6 +289,14 @@ if plot_sample
     
     tightfig
 end
+
+%% USER-DEFINED WHEN FOCUS/UNFOCUS
+Data.FocusState = ones(length(Data.Hora), 1);
+if 1
+    vec_unfocus = [1:7658 9610:9690  11037:11091  11381:11444 11652:11687];
+    Data.FocusState(vec_unfocus) = 0;
+end
+
 %% EXPORT RESULTS :
 if 0
     clear point
@@ -304,9 +313,10 @@ if 0
     point.T_amb = Data.TA029(vec_sample)+273.15;% K
     point.theta = Data.Incidencia(vec_sample)*pi/180;% rad
     point.V_wind_5 = Data.ST087(vec_sample)/3.6;%m/s
-    point.D_wind_5 = Data.WD089(vec_sample);% compared to the north (+90 is east)
+    point.D_wind_5 = Data.WD089(vec_sample); %compared to the north (+90 is east)
     point.time_day = Data.Hora(vec_sample);
     point.time_sec = Data.time_sec(vec_sample);
+    point.FocusState = Data.FocusState(vec_sample);
     point.time_vs_DNI_text = '';
     point.time_vs_Tamb_text = '';
     point.time_vs_theta_text = '';
@@ -315,6 +325,7 @@ if 0
     point.time_vs_Psu_text = '';
     point.time_vs_Vwind_text = '';
     point.time_vs_Dwind_text = '';
+    point.time_vs_FocusState_text = '';
 
     j = 0;
     for k = 1:length(vec_sample)
@@ -327,6 +338,7 @@ if 0
             point.time_vs_Psu_text = [point.time_vs_Psu_text num2str(point.time_sec(k,1)) ',' num2str(point.P_ptc_su(k,1)) ';'];
             point.time_vs_Vwind_text = [point.time_vs_Vwind_text num2str(point.time_sec(k,1)) ',' num2str(point.V_wind_5(k,1)) ';'];
             point.time_vs_Dwind_text = [point.time_vs_Dwind_text num2str(point.time_sec(k,1)) ',' num2str(point.D_wind_5(k,1)) ';'];
+            point.time_vs_FocusState_text = [point.time_vs_FocusState_text num2str(point.time_sec(k,1)) ',' num2str(point.FocusState(k,1)) ';'];
         end
     end
     
@@ -338,6 +350,7 @@ if 0
     point.time_vs_Psu_text(end) = '';
     point.time_vs_Dwind_text(end) = '';
     point.time_vs_Vwind_text(end) = '';
+    point.time_vs_FocusState_text(end) = '';
     
     eval(['save(''' [ folder_path '\' Point_name '\' Point_name] '.mat'', ''point'' ) '])
     
@@ -372,4 +385,8 @@ if 0
     file_Dwind = fopen([folder_path '\' Point_name '\' Point_name '_time_Dwind.txt'],'w');
     fprintf(file_Dwind,'%s',point.time_vs_Dwind_text);
     fclose(file_Dwind); 
+    
+    file_Focus = fopen([folder_path '\' Point_name '\' Point_name '_time_Focus.txt'],'w');
+    fprintf(file_Focus,'%s',point.time_vs_FocusState_text);
+    fclose(file_Focus); 
 end

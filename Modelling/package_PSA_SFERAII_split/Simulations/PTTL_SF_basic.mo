@@ -6,19 +6,11 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
     Mdot_0=5,
     redeclare package Medium = package_PSA_SFERAII_split.Media.Sytherm800,
     T_0=423.15)
-    annotation (Placement(transformation(extent={{-62,-86},{-42,-66}})));
+    annotation (Placement(transformation(extent={{-38,-94},{-18,-74}})));
   ThermoCycle.Components.FluidFlow.Reservoirs.SinkP Sink(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800, p0=1200000)
-    annotation (Placement(transformation(extent={{70,62},{90,82}})));
-  Modelica.Blocks.Sources.Step v_wind_input(height=0)
-    annotation (Placement(transformation(extent={{-80,76},{-66,90}})));
-  Modelica.Blocks.Sources.Step theta_input(height=0)
-    annotation (Placement(transformation(extent={{-82,18},{-66,34}})));
-  Modelica.Blocks.Sources.Step T_amb_input(height=298)
-    annotation (Placement(transformation(extent={{-82,-14},{-68,0}})));
-  Modelica.Blocks.Sources.Step DNI_input(height=1000)
-    annotation (Placement(transformation(extent={{-82,-44},{-68,-30}})));
-  Component.SolarField_Forristal_Inc solarField_Forristal_Inc(
+    annotation (Placement(transformation(extent={{70,52},{90,72}})));
+  Component.SolarField_Forristal_Inc EuroTrough(
     redeclare package Medium1 = package_PSA_SFERAII_split.Media.Sytherm800,
     Ns=1,
     Nt=1,
@@ -31,38 +23,63 @@ model PTTL_SF_basic "SF + Mdot_source + SinkP"
     redeclare
       package_PSA_SFERAII_split.Component.Material.TubeReceiver.SLsteel_316
       TubeMaterial,
+    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
+
+    N=20,
     T_g_start_in=373.15,
     T_g_start_out=373.15,
     T_t_start_in=373.15,
     T_t_start_out=373.15,
+    Unom=2000,
     Tstart_inlet=373.15,
     Tstart_outlet=373.15,
     pstart=1000000,
-    Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal)
+    redeclare model FluidHeatTransferModel =
+        ThermoCycle.Components.HeatFlow.HeatTransfer.Constant)
     annotation (Placement(transformation(extent={{-14,-22},{42,42}})));
+  ExpData.FullDay_20160629.DNI DNI
+    annotation (Placement(transformation(extent={{-90,-18},{-70,2}})));
+  ExpData.FullDay_20160629.theta theta
+    annotation (Placement(transformation(extent={{-90,44},{-70,64}})));
+  ExpData.FullDay_20160629.V_wind v_wind
+    annotation (Placement(transformation(extent={{-90,70},{-70,90}})));
+  ExpData.FullDay_20160629.T_amb T_amb
+    annotation (Placement(transformation(extent={{-90,16},{-70,36}})));
+  ExpData.FullDay_20160629.M_dot_htf m_dot_htf
+    annotation (Placement(transformation(extent={{-90,-84},{-70,-64}})));
+  ExpData.FullDay_20160629.T_htf_su T_htf_su
+    annotation (Placement(transformation(extent={{-90,-56},{-70,-36}})));
 equation
-  connect(v_wind_input.y, solarField_Forristal_Inc.v_wind) annotation (Line(
-      points={{-65.3,83},{-39.65,83},{-39.65,40.08},{-9.02222,40.08}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(theta_input.y, solarField_Forristal_Inc.Theta) annotation (Line(
-      points={{-65.2,26},{-38,26},{-38,20.24},{-8.4,20.24}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(T_amb_input.y, solarField_Forristal_Inc.Tamb) annotation (Line(
-      points={{-67.3,-7},{-39.65,-7},{-39.65,3.6},{-9.02222,3.6}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(DNI_input.y, solarField_Forristal_Inc.DNI) annotation (Line(
-      points={{-67.3,-37},{-40.65,-37},{-40.65,-13.04},{-9.02222,-13.04}},
-      color={0,0,127},
-      smooth=Smooth.None));
-  connect(Supply.flangeB, solarField_Forristal_Inc.InFlow) annotation (Line(
-      points={{-43,-76},{22,-76},{22,-22},{22.7111,-22}},
+  connect(Supply.flangeB, EuroTrough.InFlow) annotation (Line(
+      points={{-19,-84},{22,-84},{22,-22},{22.7111,-22}},
       color={0,0,255},
       smooth=Smooth.None));
-  connect(solarField_Forristal_Inc.OutFlow, Sink.flangeB) annotation (Line(
-      points={{23.3333,47.12},{23.6667,47.12},{23.6667,72},{71.6,72}},
+  connect(DNI.y, EuroTrough.DNI) annotation (Line(
+      points={{-69,-8},{-42,-8},{-42,-13.04},{-9.02222,-13.04}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(theta.y, EuroTrough.Theta) annotation (Line(
+      points={{-69,54},{-40,54},{-40,20.24},{-8.4,20.24}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(v_wind.y, EuroTrough.v_wind) annotation (Line(
+      points={{-69,80},{-26,80},{-26,40.08},{-9.02222,40.08}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(m_dot_htf.y, Supply.in_Mdot) annotation (Line(
+      points={{-69,-74},{-34,-74},{-34,-78}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(T_amb.y, EuroTrough.Tamb) annotation (Line(
+      points={{-69,26},{-44,26},{-44,3.6},{-9.02222,3.6}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(T_htf_su.y, Supply.in_T) annotation (Line(
+      points={{-69,-46},{-28,-46},{-28,-78},{-28.2,-78}},
+      color={0,0,127},
+      smooth=Smooth.None));
+  connect(EuroTrough.OutFlow, Sink.flangeB) annotation (Line(
+      points={{23.3333,47.12},{23.6667,47.12},{23.6667,62},{71.6,62}},
       color={0,0,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,

@@ -6,11 +6,11 @@ clc
 
 %% PARAMETERS
 filename = '29-06-2016_bis.txt';
-folder_path = [cd '\ExperimentalData\' ];
+folder_path = [cd '\ExperimentalData' ];
 
 %% DATA IMPORTATION
 formatSpec = '%{dd/MM/yyyy}D%{HH:mm:ss}D%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f%f';
-Data = readtable([ folder_path filename],'Delimiter','\t', 'Format',formatSpec);
+Data = readtable([ folder_path '\RAW_DATA\' filename],'Delimiter','\t', 'Format',formatSpec);
 
 %% SENSOR NOMENCLATURE
 %Fecha      --> Date
@@ -287,17 +287,20 @@ end
 %% EXPORT RESULTS :
 if 1
     clear point
-    Point_name = 'FullDay_29_06_2016';
+    Point_name = 'FullDay_2016_06_29';
+    mkdir([folder_path '\' Point_name] )
     vec_export = vec_sample;
     point.vector_sample = vec_sample;
-    point.T_ptc_su = Data.TA060(vec_sample); 
-    point.T_ptc_ex = Data.TA066(vec_sample); 
+    point.raw_file_name = 'filename';
+    point.point_name = Point_name;
+    point.T_ptc_su = Data.TA060(vec_sample)+273.15; % K
+    point.T_ptc_ex = Data.TA066(vec_sample)+273.15; % K
     point.P_ptc_su = Data.PA052(vec_sample)*1e5; % bar
     point.M_dot_htf = Data.FA032(vec_sample);% kg/s
     point.DNI  = Data.IA028(vec_sample);% W/m2
-    point.T_amb = Data.TA029(vec_sample);%
-    point.theta = Data.Incidencia(vec_sample)*pi/180;% 
-    point.V_wind_5 = Data.ST087(vec_sample);%
+    point.T_amb = Data.TA029(vec_sample)+273.15;% K
+    point.theta = Data.Incidencia(vec_sample)*pi/180;% rad
+    point.V_wind_5 = Data.ST087(vec_sample)/3.6;%m/s
     point.D_wind_5 = Data.WD089(vec_sample);% compared to the north (+90 is east)
     point.time_day = Data.Hora(vec_sample);
     point.time_sec = NaN*ones(length(vec_sample),1);
@@ -307,18 +310,64 @@ if 1
     point.time_vs_Mdot_text = '';
     point.time_vs_Tsu_text = '';
     point.time_vs_Psu_text = '';
+    point.time_vs_Vwind_text = '';
+    point.time_vs_Dwind_text = '';
+
+    j = 0;
     for k = 1:length(vec_sample)
         [Y,M,D,H,MN,S] = datevec(Data.Hora(vec_sample(k))-Data.Hora(vec_sample(1)));
         point.time_sec(k,1) = (((Y*365 + M*30 + D)*24 + H)*60 + MN)*60 + S;
-        point.time_vs_DNI_text = [point.time_vs_DNI_text num2str(point.time_sec(k,1)) ',' num2str(point.DNI(k,1)) '; '];
-        point.time_vs_Tamb_text = [point.time_vs_Tamb_text num2str(point.time_sec(k,1)) ',' num2str(point.T_amb(k,1)) '; '];
-        point.time_vs_theta_text = [point.time_vs_theta_text num2str(point.time_sec(k,1)) ',' num2str(point.theta(k,1)) '; '];
-        point.time_vs_Mdot_text = [point.time_vs_Mdot_text num2str(point.time_sec(k,1)) ',' num2str(point.M_dot_htf(k,1)) '; '];
-        point.time_vs_Tsu_text = [point.time_vs_Tsu_text num2str(point.time_sec(k,1)) ',' num2str(point.T_ptc_su(k,1)) '; '];
-        point.time_vs_Psu_text = [point.time_vs_Psu_text num2str(point.time_sec(k,1)) ',' num2str(point.P_ptc_su(k,1)) '; '];
-        
+        if not(isnan(point.time_sec(k,1))) && not(isnan(point.DNI(k,1))) && not(isnan(point.T_amb(k,1))) && not(isnan(point.theta(k,1))) && not(isnan(point.M_dot_htf(k,1))) && not(isnan(point.T_ptc_su(k,1))) && not(isnan(point.P_ptc_su(k,1))) && not(isnan(point.V_wind_5(k,1))) && not(isnan(point.D_wind_5(k,1)))
+            point.time_vs_DNI_text = [point.time_vs_DNI_text num2str(point.time_sec(k,1)) ',' num2str(point.DNI(k,1)) ';'];
+            point.time_vs_Tamb_text = [point.time_vs_Tamb_text num2str(point.time_sec(k,1)) ',' num2str(point.T_amb(k,1)) ';'];
+            point.time_vs_theta_text = [point.time_vs_theta_text num2str(point.time_sec(k,1)) ',' num2str(point.theta(k,1)) ';'];
+            point.time_vs_Mdot_text = [point.time_vs_Mdot_text num2str(point.time_sec(k,1)) ',' num2str(point.M_dot_htf(k,1)) ';'];
+            point.time_vs_Tsu_text = [point.time_vs_Tsu_text num2str(point.time_sec(k,1)) ',' num2str(point.T_ptc_su(k,1)) ';'];
+            point.time_vs_Psu_text = [point.time_vs_Psu_text num2str(point.time_sec(k,1)) ',' num2str(point.P_ptc_su(k,1)) ';'];
+            point.time_vs_Vwind_text = [point.time_vs_Vwind_text num2str(point.time_sec(k,1)) ',' num2str(point.V_wind_5(k,1)) ';'];
+            point.time_vs_Dwind_text = [point.time_vs_Dwind_text num2str(point.time_sec(k,1)) ',' num2str(point.D_wind_5(k,1)) ';'];
+        end
     end
+    point.time_vs_DNI_text(end) = '';
+    point.time_vs_Tamb_text(end) = '';
+    point.time_vs_theta_text(end) = '';
+    point.time_vs_Mdot_text(end) = '';
+    point.time_vs_Tsu_text(end) = '';
+    point.time_vs_Psu_text(end) = '';
+    point.time_vs_Dwind_text(end) = '';
+    point.time_vs_Vwind_text(end) = '';
     
-    eval([ Point_name ' = point;'])
-    eval(['save(''' Point_name '.mat'', ''' Point_name ''' ) '])
+    eval(['save(''' [ folder_path '\' Point_name '\' Point_name] '.mat'', ''point'' ) '])
+    
+    file_DNI = fopen([folder_path '\' Point_name '\' Point_name '_time_DNI.txt'],'w');
+    fprintf(file_DNI,'%s',point.time_vs_DNI_text);
+    fclose(file_DNI);
+    
+    file_Tamb = fopen([folder_path '\' Point_name '\' Point_name '_time_Tamb.txt'],'w');
+    fprintf(file_Tamb,'%s',point.time_vs_Tamb_text);
+    fclose(file_Tamb);
+    
+    file_theta = fopen([folder_path '\' Point_name '\' Point_name '_time_theta.txt'],'w');
+    fprintf(file_theta,'%s',point.time_vs_theta_text);
+    fclose(file_theta); 
+    
+    file_Mdot = fopen([folder_path '\' Point_name '\' Point_name '_time_Mdot.txt'],'w');
+    fprintf(file_Mdot,'%s',point.time_vs_Mdot_text);
+    fclose(file_Mdot);   
+    
+    file_Tsu = fopen([folder_path '\' Point_name '\' Point_name '_time_Tsu.txt'],'w');
+    fprintf(file_Tsu,'%s',point.time_vs_Tsu_text);
+    fclose(file_Tsu); 
+    
+    file_Psu = fopen([folder_path '\' Point_name '\' Point_name '_time_Psu.txt'],'w');
+    fprintf(file_Psu,'%s',point.time_vs_Psu_text);
+    fclose(file_Psu); 
+    
+    file_Vwind = fopen([folder_path '\' Point_name '\' Point_name '_time_Vwind.txt'],'w');
+    fprintf(file_Vwind,'%s',point.time_vs_Vwind_text);
+    fclose(file_Vwind); 
+    
+    file_Dwind = fopen([folder_path '\' Point_name '\' Point_name '_time_Dwind.txt'],'w');
+    fprintf(file_Dwind,'%s',point.time_vs_Dwind_text);
+    fclose(file_Dwind); 
 end

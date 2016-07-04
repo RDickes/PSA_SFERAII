@@ -313,7 +313,8 @@ Gamma_air = k_air*Nu/Dext_g
 for i in 1:N loop
 
   //Tube Emissivity //
-  Eps_t[i] = 0.062 + (2E-7)*(T_ext_t[i]-273.15)^2 "--> TO CHANGE";
+  Eps_t[i] = 0.06282 + (1.208E-4)*(T_ext_t[i]-273.15)+ (1.907E-7)*(T_ext_t[i]-273.15)^2
+      "Corrected UVAC emissivity";
 
   //Heat transfer in vaccum  //
   T_g_t[i] = (T_int_g[i] + T_ext_t[i])/2 "mean temperature inside annulus";

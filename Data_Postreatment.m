@@ -107,6 +107,7 @@ Vector2Plot =   [1,         2,              3,              4,          5,      
 Variable2Plot = {'TA029',	'TA060',    	'TA066',        'FA032',	'FA023',    'PA021',    'PA052',        'posicion_EURO', 	'consigna_EURO',    'Incidencia'    'IA028'     'ST087'     'ST072'     'WD089'     'WD088'};
 Label2Plot =    {'T_{amb}', 'T_{ptc,su}',	'T_{ptc,ex}',   'M_{dot}',	'V_{dot}',	'P_{tk}',	'P_{ptc,su}',	'posicion_EURO',  	'consigna_EURO',    'Incidencia'    'DNI'       'V_{wd,5}'  'V_{wd,12}'	'D_{wd,5}'  'D_{wd,12}'};
 
+x_time = Data.Hora;
 
 if plot_all
     % Global results - TEMPERATURE PROFILES
@@ -116,7 +117,7 @@ if plot_all
     j= 0;
     for k = 2:3
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -131,7 +132,7 @@ if plot_all
     j= 0;
     for k = 4:5
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -146,7 +147,7 @@ if plot_all
     j= 0;
     for k = 6:7
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -160,7 +161,7 @@ if plot_all
     j= 0;
     for k = 11
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -174,7 +175,7 @@ if plot_all
     j= 0;
     for k = 10
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end
     hold off
@@ -188,7 +189,7 @@ if plot_all
     j= 0;
     for k = 8:9
         j = j+1;
-        eval(['Line(j) = plot(Data.time_sec(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
+        eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         %eval(['Line(j) = plot( Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
     end

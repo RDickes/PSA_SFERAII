@@ -1,0 +1,25 @@
+// Script to perform a parametric study on the PTTL facility model
+//
+// RDickes - 13/10/2014
+
+
+N_cell_param = {1 0.9 0.8}
+
+
+for i in 1:3 loop	
+
+	
+	cd("F:\Modelica\Results\PSA_SFERAII");
+	// translateModel("ThermalStorage.Test_RD.ECOS2015.SF_SDDickes(SF(N_cell="+String(N_cell_param[i])+"))");
+	translateModel("E:\Modelling\package_PSA_SFERAII_split\Simulations\PTTL_SF_basic");
+	simulateModel(
+ 	problem = "E:\Modelling\package_PSA_SFERAII_split\Simulations\PTTL_SF_basic",
+	startTime = 46000,
+ 	stopTime= 58000, 
+ 	numberOfIntervals = 2000,
+ 	method="dassl", 
+ 	tolerance = 1e-4,
+ 	fixedstepsize = 0,
+ 	resultFile="SimResult_D1"+String(N_cell_param[i])+"cells_2000tsteps");
+
+end for

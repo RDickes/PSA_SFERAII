@@ -5,7 +5,7 @@ close all
 clc
 
 %% PARAMETERS
-filename = '30-06-2016_bis.txt';
+filename = '04-07-2016_bis.txt';
 folder_path = [cd '\ExperimentalData' ];
 
 %% DATA IMPORTATION
@@ -107,7 +107,7 @@ Vector2Plot =   [1,         2,              3,              4,          5,      
 Variable2Plot = {'TA029',	'TA060',    	'TA066',        'FA032',	'FA023',    'PA021',    'PA052',        'posicion_EURO', 	'consigna_EURO',    'Incidencia'    'IA028'     'ST087'     'ST072'     'WD089'     'WD088'};
 Label2Plot =    {'T_{amb}', 'T_{ptc,su}',	'T_{ptc,ex}',   'M_{dot}',	'V_{dot}',	'P_{tk}',	'P_{ptc,su}',	'posicion_EURO',  	'consigna_EURO',    'Incidencia'    'DNI'       'V_{wd,5}'  'V_{wd,12}'	'D_{wd,5}'  'D_{wd,12}'};
 
-x_time = 1:length(Data.Hora);
+x_time = Data.Hora; %1:length(Data.Hora);
 
 if plot_all
     % Global results - TEMPERATURE PROFILES

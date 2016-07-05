@@ -19,36 +19,36 @@ constant Real  pi = Modelica.Constants.pi;
 /*************************************************************/
 
 /**** 3.1 Optical Properties ***********************/
-parameter Real eps1 = 0.9754 "HCE Shadowing [-]"
-                                                annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real eps2 = 0.994 "Tracking error [-]"
-                                                annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real eps3 = 0.98 "Geometry error [-]"
-                                               annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real eps4 = 0.962566845 "Dirt on Mirrors [-]"
-                                                       annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real eps5 = 0.981283422 "Dirt on HCE [-]"
-                                                   annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real eps6 = 0.96 "Unaccounted [-]"
+parameter Real eps1 = 1 "HCE Shadowing [-]"
+                                           annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps2 = 1 "Tracking error [-]"
                                             annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real rho_cl = 0.935 "Mirror reflectivity [-]"
-                                                       annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real Tau_g = 0.963 "Glass Transmissivity [-]" annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps3 = 1 "Geometry error [-]"
+                                            annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps4 = 1 "Dirt on Mirrors [-]"
+                                             annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps5 = 1 "Dirt on HCE [-]"
+                                         annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real eps6 = 1 "Unaccounted [-]"
+                                         annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real rho_cl = 0.9388 "Mirror reflectivity [-]"
+                                                        annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real Tau_g = 0.92 "Glass Transmissivity [-]" annotation (Dialog(group="Optical Properties", tab="General"));
 parameter Real Alpha_g = 0.02 "Glass Absorptivity [-] " annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real Eps_g = 0.89 "Glass emissivity [-] " annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real Alpha_t =  0.97 "Tube Absorptivity [-]"
-                                                      annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real a1_IAM = 0
+parameter Real Eps_g = 0.86 "Glass emissivity [-] " annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real Alpha_t =  0.7919 "Tube Absorptivity [-]"
+                                                        annotation (Dialog(group="Optical Properties", tab="General"));
+parameter Real a1_IAM = 4.11e-3
     "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
-parameter Real a2_IAM = 0
+parameter Real a2_IAM = 5.513e-5
     "IAM coefficiencs : IAM = 1-(a1_IAM*theta+a2_IAM*theta^2)/cos_theta"                       annotation (Dialog(group="Optical Properties", tab="General"));
 
 /**** 3.2 PTC Properties ***********************/
-parameter Integer N(min=1) = 10 "Number of cells per tube";
-parameter Integer Ns(min=1) = 2 "Number of tube in series";
+parameter Integer N(min=1) = 20 "Number of cells per tube";
+parameter Integer Ns(min=1) = 1 "Number of tube in series";
 parameter Integer Nt(min=1) = 1 "Number of tubes in parallel";
-parameter Modelica.SIunits.Length L = 8 "Length of one tube [m]";
-parameter Modelica.SIunits.Length A_P = 5 "Aperture of the parabola [m]";
+parameter Modelica.SIunits.Length L = 6*11.8 "Length of one tube [m]";
+parameter Modelica.SIunits.Length A_P = 5.76 "Aperture of the parabola [m]";
 
 final parameter Modelica.SIunits.Area A_lateral= L*D_int_t*pi
     "Lateral internal surface of the metal tube for one collector";

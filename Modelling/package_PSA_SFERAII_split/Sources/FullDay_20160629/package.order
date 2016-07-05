@@ -3,6 +3,7 @@ theta
 V_wind
 T_amb
 T_htf_su
+T_htf_ex
 M_dot_htf
 P_htf
 Focus

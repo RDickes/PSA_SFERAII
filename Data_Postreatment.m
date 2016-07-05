@@ -5,7 +5,7 @@ close all
 clc
 
 %% PARAMETERS
-filename = '29-06-2016_bis.txt';
+filename = '04-07-2016_bis.txt';
 folder_path = [cd '\ExperimentalData' ];
 
 %% DATA IMPORTATION
@@ -107,7 +107,7 @@ Vector2Plot =   [1,         2,              3,              4,          5,      
 Variable2Plot = {'TA029',	'TA060',    	'TA066',        'FA032',	'FA023',    'PA021',    'PA052',        'posicion_EURO', 	'consigna_EURO',    'Incidencia'    'IA028'     'ST087'     'ST072'     'WD089'     'WD088'};
 Label2Plot =    {'T_{amb}', 'T_{ptc,su}',	'T_{ptc,ex}',   'M_{dot}',	'V_{dot}',	'P_{tk}',	'P_{ptc,su}',	'posicion_EURO',  	'consigna_EURO',    'Incidencia'    'DNI'       'V_{wd,5}'  'V_{wd,12}'	'D_{wd,5}'  'D_{wd,12}'};
 
-x_time = Data.Hora;
+x_time = 1:length(Data.Hora); %Data.Hora; %;
 
 if plot_all
     % Global results - TEMPERATURE PROFILES
@@ -173,7 +173,7 @@ if plot_all
     subplot(2,3,5)
     hold all
     j= 0;
-    for k = 10
+    for k = 12
         j = j+1;
         eval(['Line(j) = plot(x_time(vec_global), Data.' Variable2Plot{k} '(vec_global), ''LineStyle'', LS, ''LineWidth'', LW);'])
         Leg{j} = Label2Plot{k};
@@ -198,7 +198,7 @@ if plot_all
     grid on
     xlabel('Time')
     
-    tightfig
+    %tightfig
 end
 
 if plot_sample
@@ -294,14 +294,18 @@ end
 %% USER-DEFINED WHEN FOCUS/UNFOCUS
 Data.FocusState = ones(length(Data.Hora), 1);
 if 1
-    vec_unfocus = [1:7658 9610:9690  11037:11091  11381:11444 11652:11687];
+%    vec_unfocus = [1:7658 9610:9690  11037:11091  11381:11444 11652:11687]; %29/06/2016
+%    vec_unfocus = [1:6804 10385:10433 11428:11560]; %30/06/2016
+%    vec_unfocus = [1:271 2961:3049 3707:3780 4104:4171 4527:4644]; %01/07/2016
+    vec_unfocus = [1:6755 9847:9913 10167:10266 11400:11525]; %04/07/2016
+
     Data.FocusState(vec_unfocus) = 0;
 end
 
 %% EXPORT RESULTS :
-if 0
+if 1
     clear point
-    Point_name = 'FullDay_2016_06_29';
+    Point_name = 'FullDay_2016_07_04';
     mkdir([folder_path '\' Point_name] )
     point.vector_sample = vec_sample;
     point.raw_file_name = 'filename';
@@ -323,6 +327,7 @@ if 0
     point.time_vs_theta_text = '';
     point.time_vs_Mdot_text = '';
     point.time_vs_Tsu_text = '';
+    point.time_vs_Tex_text = '';
     point.time_vs_Psu_text = '';
     point.time_vs_Vwind_text = '';
     point.time_vs_Dwind_text = '';
@@ -336,6 +341,7 @@ if 0
             point.time_vs_theta_text = [point.time_vs_theta_text num2str(point.time_sec(k,1)) ',' num2str(point.theta(k,1)) ';'];
             point.time_vs_Mdot_text = [point.time_vs_Mdot_text num2str(point.time_sec(k,1)) ',' num2str(point.M_dot_htf(k,1)) ';'];
             point.time_vs_Tsu_text = [point.time_vs_Tsu_text num2str(point.time_sec(k,1)) ',' num2str(point.T_ptc_su(k,1)) ';'];
+            point.time_vs_Tex_text = [point.time_vs_Tex_text num2str(point.time_sec(k,1)) ',' num2str(point.T_ptc_ex(k,1)) ';'];
             point.time_vs_Psu_text = [point.time_vs_Psu_text num2str(point.time_sec(k,1)) ',' num2str(point.P_ptc_su(k,1)) ';'];
             point.time_vs_Vwind_text = [point.time_vs_Vwind_text num2str(point.time_sec(k,1)) ',' num2str(point.V_wind_5(k,1)) ';'];
             point.time_vs_Dwind_text = [point.time_vs_Dwind_text num2str(point.time_sec(k,1)) ',' num2str(point.D_wind_5(k,1)) ';'];
@@ -348,6 +354,7 @@ if 0
     point.time_vs_theta_text(end) = '';
     point.time_vs_Mdot_text(end) = '';
     point.time_vs_Tsu_text(end) = '';
+    point.time_vs_Tex_text(end) = '';
     point.time_vs_Psu_text(end) = '';
     point.time_vs_Dwind_text(end) = '';
     point.time_vs_Vwind_text(end) = '';
@@ -374,6 +381,10 @@ if 0
     file_Tsu = fopen([folder_path '\' Point_name '\' Point_name '_time_Tsu.txt'],'w');
     fprintf(file_Tsu,'%s',point.time_vs_Tsu_text);
     fclose(file_Tsu); 
+    
+    file_Tex = fopen([folder_path '\' Point_name '\' Point_name '_time_Tex.txt'],'w');
+    fprintf(file_Tex,'%s',point.time_vs_Tex_text);
+    fclose(file_Tex); 
     
     file_Psu = fopen([folder_path '\' Point_name '\' Point_name '_time_Psu.txt'],'w');
     fprintf(file_Psu,'%s',point.time_vs_Psu_text);

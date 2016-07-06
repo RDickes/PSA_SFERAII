@@ -19,10 +19,10 @@ rc('text', usetex=True)
 
 
 Directory ='C:/Users/Admin/Documents/GitHub/PSA_SFERAII/ExperimentalData/RAW_DATA/'
-File = '05-07-2016_bis.txt'
+File = '06-07-2016_bis.txt'
 df = pd.read_table(Directory+'/'+File,low_memory=False)
 
-Day = '2016_07_05'
+Day = '2016_07_06'
 
 # TIME IN hours 'h:m:s'
 Time_h = df['Hora'].values

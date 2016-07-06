@@ -37,15 +37,15 @@ SAVE_FIGURES = 'True'
 DIRECTORY_FIGURES = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/Modelling/Results/'
 
 # --------------    Select the day of experiments  -----------------
-Days = ['20160629', '20160630',  '20160701',  '20160704',  '20160705']
-KKK = 4
+Days = ['20160629', '20160630',  '20160701',  '20160704',  '20160705', '20160706']
+KKK = 5
 # --------------------  SET FLAG  --------------
 OPTIMIZE = 'False'   # To true to optimize eps6
-SIMULATE = 'False'   # To true to simulate the modelica data
+SIMULATE = 'False'    # To true to simulate the modelica data
                      # Both to false to plot the results !!!! MAKE SURE THE SIMULATION FILE EXIST IN THE DEFINED DIRECTORY!!!
 # --------------     LOAD EXPERIMENTAL RESULTS  -----------------
 DirectoryExpData = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/ExperimentalData/'
-file = ['2016_06_29_DATA.csv','2016_06_30_DATA.csv','2016_07_01_DATA.csv','2016_07_04_DATA.csv','2016_07_05_DATA.csv']
+file = ['2016_06_29_DATA.csv','2016_06_30_DATA.csv','2016_07_01_DATA.csv','2016_07_04_DATA.csv','2016_07_05_DATA.csv','2016_07_06_DATA.csv']
 # data as dataframe
 df = pd.read_csv(DirectoryExpData+file[KKK])
 
@@ -55,9 +55,9 @@ StoreModResult = 'C:/Users/Admin/Desktop/SFERA_II_Sim/'+Days[KKK]
 FileSimulation = 'PTTL_SF_'
 
 # ----------- DEFINE SIMULATION TIME ------------
-             # 2016.06.29   #2016.06.30   #2016.07.01  #2016.07.04
-StartModTime = [46000,       40000,        37000,      43000,          43000]
-StopModTime =  [58000,       54000,        53000,      57000,          56000]
+             # 2016.06.29   #2016.06.30   #2016.07.01  #2016.07.04    #2016.07.05    #2016.07.06
+StartModTime = [46000,       40000,        37000,      43000,          43000,     41000]
+StopModTime =  [58000,       54000,        53000,      57000,          56000,     50000]
 Delta_Time = StopModTime[KKK] - StartModTime[KKK]
 
 #----------- LOAD AND TRANSLATE MODELICA MODEL           ------------
@@ -168,7 +168,7 @@ ax1.plot(df['Seconds']-StartPlotTime[0],df['TA060'],label=r'T$_\mathrm{pt,su}$ e
 ax1.legend(loc = 'best',fancybox='True',shadow='True',labelspacing=0.1)
 plt.ylabel(r'Temperature [$^{\circ}$C]')
 plt.xlim(0,TimeSim[-1])
-ax1.set_ylim(200,330)
+ax1.set_ylim(180,350)
 plt.tight_layout()
 plt.grid()
 if SAVE_FIGURES == 'True': fig.savefig(DIRECTORY_FIGURES+Days[KKK]+'/'+'_Trittico.pdf')
@@ -191,7 +191,7 @@ for xx in ax2.get_yticklabels():
     xx.set_color('darkgoldenrod')
 plt.tight_layout()
 ax2.set_ylim(600,1000)
-ax1.set_ylim(200,330)
+ax1.set_ylim(180,350)
 plt.xlim(0,TimeSim[-1])
 plt.grid()
 plt.tight_layout()

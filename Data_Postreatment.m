@@ -5,7 +5,7 @@ close all
 clc
 
 %% PARAMETERS
-filename = '05-07-2016_bis.txt';
+filename = '06-07-2016_bis.txt';
 folder_path = [cd '\ExperimentalData' ];
 
 %% DATA IMPORTATION
@@ -293,20 +293,21 @@ end
 
 %% USER-DEFINED WHEN FOCUS/UNFOCUS
 Data.FocusState = ones(length(Data.Hora), 1);
-if 1
+if 0
 %    vec_unfocus = [1:7658 9610:9690  11037:11091  11381:11444 11652:11687]; %29/06/2016
 %    vec_unfocus = [1:6804 10385:10433 11428:11560]; %30/06/2016
 %    vec_unfocus = [1:271 2961:3049 3707:3780 4104:4171 4527:4644]; %01/07/2016
 %    vec_unfocus = [1:6755 9847:9913 10167:10266 11400:11525]; %04/07/2016
-    vec_unfocus = [1:7460 10815:10876 11253:11373]; %05/07/2016
+%    vec_unfocus = [1:7460 10815:10876 11253:11373]; %05/07/2016
+%    vec_unfocus = [1:6558 9145:9192 9289:9500 10039:10166]; %06/07/2016
 
     Data.FocusState(vec_unfocus) = 0;
 end
 
 %% EXPORT RESULTS :
-if 1
+if 0
     clear point
-    Point_name = 'FullDay_2016_07_05';
+    Point_name = 'FullDay_2016_07_06';
     mkdir([folder_path '\' Point_name] )
     point.vector_sample = vec_sample;
     point.raw_file_name = 'filename';

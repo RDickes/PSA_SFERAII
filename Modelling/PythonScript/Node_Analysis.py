@@ -1,5 +1,9 @@
+'''
+This script get the Modelica simulation files using the buildingspy library.
+And plot the results for the different nodes...
+
+'''
 from __future__ import division
-__author__ = 'Admin'
 
 import sys,os
 import buildingspy.simulate.Simulator as si
@@ -19,11 +23,11 @@ rc('text', usetex=True)
 
 # --------------    SAVE GRAPHS   -----------------------------
 SAVE_FIGURES = 'True'
-DIRECTORY_FIGURES = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/Modelling/Results/'
+DIRECTORY_FIGURES = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling\ResultsFigure/'
 FolderFig = '2016.06.29/'
 
 # ---------    LOAD EXPERIMENTAL RESULTS    ---------
-DirectoryExpData = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/ExperimentalData/'
+DirectoryExpData = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\ExperimentalData/'
 file = '2016_06_29_DATA.csv'
 # data as dataframe
 df = pd.read_csv(DirectoryExpData+file)
@@ -32,7 +36,7 @@ df = pd.read_csv(DirectoryExpData+file)
 
 # ---------------------  MODELICA MODEL ---------------
 # Define directory to store results
-ResultDirectory = 'C:/Users/Admin/Desktop/SFERA_II_Sim/'
+ResultDirectory = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling\ModelicaResults/'
 # Define simulation results name
 FileSimulation = 'PTTL_SF_N'#'PTTL_SF_'
 
@@ -51,8 +55,8 @@ Nodes = [2,5,10,20,50]
 
 if SIMULATE =='True':
     # LOAD MODELICA MODEL
-    model ='package_PSA_SFERAII_split.Simulations.PTTL_SF_basic'
-    s = si.Simulator(model,'dymola',outputDirectory= ResultDirectory,packagePath='C:/Users/Admin/Documents/GitHub/PSA_SFERAII/Modelling/package_PSA_SFERAII_split')
+    model ='package_PSA_SFERAII.Simulations.PTTL_SF_basic'
+    s = si.Simulator(model,'dymola',outputDirectory= ResultDirectory,packagePath='C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling/package_PSA_SFERAII')
     s.setNumberOfIntervals(500)
     s.setSolver('Dassl')
     for kk in range(len(Nodes)):

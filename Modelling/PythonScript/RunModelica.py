@@ -33,24 +33,24 @@ def pdense(ax,x, y, sigma, M=1000):
 
 
 # --------------    SAVE GRAPHS   -----------------------------
-SAVE_FIGURES = 'True'
-DIRECTORY_FIGURES = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/Modelling/Results/'
+SAVE_FIGURES = 'False'
+DIRECTORY_FIGURES = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling\ResultsFigure/'
 
 # --------------    Select the day of experiments  -----------------
 Days = ['20160629', '20160630',  '20160701',  '20160704',  '20160705', '20160706']
 KKK = 5
 # --------------------  SET FLAG  --------------
 OPTIMIZE = 'False'   # To true to optimize eps6
-SIMULATE = 'False'    # To true to simulate the modelica data
+SIMULATE = 'True'    # To true to simulate the modelica data
                      # Both to false to plot the results !!!! MAKE SURE THE SIMULATION FILE EXIST IN THE DEFINED DIRECTORY!!!
 # --------------     LOAD EXPERIMENTAL RESULTS  -----------------
-DirectoryExpData = 'C:/Users/Admin/Documents/GitHub/PSA_SFERAII/ExperimentalData/'
+DirectoryExpData = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\ExperimentalData/'
 file = ['2016_06_29_DATA.csv','2016_06_30_DATA.csv','2016_07_01_DATA.csv','2016_07_04_DATA.csv','2016_07_05_DATA.csv','2016_07_06_DATA.csv']
 # data as dataframe
 df = pd.read_csv(DirectoryExpData+file[KKK])
 
 # --------------------- DIRECTORY TO STORE  MODELICA MODEL ---------------
-StoreModResult = 'C:/Users/Admin/Desktop/SFERA_II_Sim/'+Days[KKK]
+StoreModResult = 'C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling\ModelicaResults/'+Days[KKK]
 # Define simulation results name
 FileSimulation = 'PTTL_SF_'
 
@@ -61,8 +61,11 @@ StopModTime =  [58000,       54000,        53000,      57000,          56000,   
 Delta_Time = StopModTime[KKK] - StartModTime[KKK]
 
 #----------- LOAD AND TRANSLATE MODELICA MODEL           ------------
-model ='package_PSA_SFERAII_split.Simulations.PTTL_SF_basic_'+Days[KKK]
-s = si.Simulator(model,'dymola',outputDirectory= StoreModResult,packagePath='C:/Users/Admin/Documents/GitHub/PSA_SFERAII/Modelling/package_PSA_SFERAII_split')
+model ='package_PSA_SFERAII.Simulations.PTTL_SF_basic_'+Days[KKK]
+
+
+PACKAGE = os.path.join('C:\Users\susanna\Documents\GitHub\PSA_SFERAII\Modelling/', 'package_PSA_SFERAII')
+s = si.Simulator(model,'dymola',outputDirectory= StoreModResult,packagePath=PACKAGE)
 
 # Set Time for plot
 TimeNoInit = 500                            # Set a value to phase out the initialization line
@@ -134,7 +137,10 @@ DNI = ((sim['DNI.y'].values(t=(StartPlotTime[0],StopPlotTime[0]))))
 m_wf = ((sim['m_dot_htf.y'].values(t=(StartPlotTime[0],StopPlotTime[0]))))
 T_amb = ((sim['T_amb.y'].values(t=(StartPlotTime[0],StopPlotTime[0])))-273.15)
 
+
 Sigma_T=np.empty(len(df['TA066'].values)); Sigma_T.fill(0.9) # for an array of equal element
+
+
 
 # ----------     PLOTS RESULTS  -------------------------
 # TRITTICO DNI, m_dot, Temperatures

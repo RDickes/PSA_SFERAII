@@ -1,5 +1,5 @@
-within package_PSA_SFERAII_split.Simulations;
-model PTTL_SF_basic_20160629 "SF + Mdot_source + SinkP"
+within package_PSA_SFERAII_split.Simulations.NodeAnalysis;
+model PTTL_SF_basic_20160705 "SF + Mdot_source + SinkP"
 
   ThermoCycle.Components.FluidFlow.Reservoirs.SourceMdot Supply(
     Mdot_0=5,
@@ -23,11 +23,11 @@ model PTTL_SF_basic_20160629 "SF + Mdot_source + SinkP"
       package_PSA_SFERAII_split.Component.Material.TubeReceiver.SLsteel_316
       TubeMaterial,
     Discretization=ThermoCycle.Functions.Enumerations.Discretizations.upwind_AllowFlowReversal,
-    N=20,
     Unom=2000,
     redeclare model FluidHeatTransferModel =
         ThermoCycle.Components.HeatFlow.HeatTransfer.Constant,
     eps6=0.943771684737,
+    N=5,
     T_g_start_in=373.15,
     T_g_start_out=373.15,
     T_t_start_in=373.15,
@@ -37,17 +37,17 @@ model PTTL_SF_basic_20160629 "SF + Mdot_source + SinkP"
     pstart=1000000)
     annotation (Placement(transformation(extent={{-12,-28},{44,36}})));
 
- Sources.FullDay_20160629.DNI DNI
+ Sources.FullDay_20160705.DNI DNI
     annotation (Placement(transformation(extent={{-90,-12},{-70,8}})));
-  Sources.FullDay_20160629.theta theta
+  Sources.FullDay_20160705.theta theta
     annotation (Placement(transformation(extent={{-90,44},{-70,64}})));
-  Sources.FullDay_20160629.V_wind v_wind
+  Sources.FullDay_20160705.V_wind v_wind
     annotation (Placement(transformation(extent={{-90,70},{-70,90}})));
-  Sources.FullDay_20160629.T_amb T_amb
+  Sources.FullDay_20160705.T_amb T_amb
     annotation (Placement(transformation(extent={{-90,16},{-70,36}})));
-  Sources.FullDay_20160629.M_dot_htf m_dot_htf
+  Sources.FullDay_20160705.M_dot_htf m_dot_htf
     annotation (Placement(transformation(extent={{-90,-96},{-70,-76}})));
-  Sources.FullDay_20160629.T_htf_su T_htf_su
+  Sources.FullDay_20160705.T_htf_su T_htf_su
     annotation (Placement(transformation(extent={{-90,-68},{-70,-48}})));
   ThermoCycle.Components.FluidFlow.Sensors.SensTp SensTex(redeclare package
       Medium = package_PSA_SFERAII_split.Media.Sytherm800)
@@ -57,9 +57,9 @@ model PTTL_SF_basic_20160629 "SF + Mdot_source + SinkP"
     annotation (Placement(transformation(extent={{-6,-92},{14,-72}})));
   Modelica.Blocks.Math.RealToInteger realToInteger
     annotation (Placement(transformation(extent={{-48,-40},{-36,-28}})));
-  Sources.FullDay_20160629.Focus focus
+  Sources.FullDay_20160705.Focus focus
     annotation (Placement(transformation(extent={{-90,-38},{-70,-18}})));
-  Sources.FullDay_20160629.T_htf_ex t_htf_ex
+  Sources.FullDay_20160705.T_htf_ex t_htf_ex
     annotation (Placement(transformation(extent={{-8,74},{8,90}})));
   Component.Delta_T DeltaT
     annotation (Placement(transformation(extent={{52,78},{72,98}})));
@@ -121,5 +121,7 @@ equation
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100,
-            -100},{100,100}}),      graphics));
-end PTTL_SF_basic_20160629;
+            -100},{100,100}}),      graphics),
+    experiment(StartTime=43000, StopTime=57000),
+    __Dymola_experimentSetupOutput);
+end PTTL_SF_basic_20160705;

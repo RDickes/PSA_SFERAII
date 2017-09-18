@@ -1,0 +1,3 @@
+ETC = similar to Evacuated Tube Collector
+
+provided sensor table?

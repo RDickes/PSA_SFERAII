@@ -72,6 +72,8 @@
 
 %%%%%%%%%%%%%%% PACKAGE TO INCREASE THICKNESS OF TABLE ROW %%%%%%%%%%%%%%%%%%%%
 \usepackage{array}
+\usepackage{todonotes}
+
 
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \newcolumntype{N}{@{}m{0pt}@{}}
@@ -137,14 +139,14 @@
 %\author{Adriano Desideri, Martin van den broek, Gusev Sergei, Vincent Lemort, Sylvain Quoilin}
 % Define authors %
 %\fnref{fn1}}
-\author[rvt]{Remi Dickes\corref{cor1}}
+\author[rvt]{Adriano Desideri\corref{cor1}}
 \ead{adesideri@ulg.ac.be}
 \cortext[cor1]{Corresponding author}
-\author[rvt]{Adriano Desideri}
+\author[rvt]{Remi Dickes}
 \author[focal]{Javier Bonilla}
 \author[focal]{Loreto Valenzuela}
 \author[rvt]{Sylvain Quoilin}
-
+\author[rvt]{Vincent Lemort}
 \address[rvt]{Thermodynamics laboratory, University of Li\`ege,
 Campus du Sart Tilman, B49, B-4000 Li\`ege, Belgium}
 \address[focal]{PSA-CIEMAT, Plataforma Solar de Almer\' ia - Centro de Investigaciones Energ\' eticas, MedioAmbientales y Tecnológicas, Crta. de Sen\' es s/n, 04200, Tabernas (Almer\' ia), Spain}
@@ -274,9 +276,12 @@ The solar field was characterized by three parallel lines of parabolic trough co
 %
 During the experimental campaign on the PTTL facility, the EuroTrough collectors (ETC) line was tested. The ETC line was composed by 6 EuroTrough modules connected in series and 18 prototype receiver tubes from a Chinese manufacturer for a total length of 70.8 m and a net aperture area of 409.9 m$^2$.
 %
-\subsection{Dynamic experiments}
+\subsection{Steady-state and dynamic experiments}
 %
-In order to characterize the dynamic performance of the ETC, the facility was run at different operating conditions by varying the pump speed velocity and the temperature at the inlet of the ETC for a total of 5 days of testing. In Table \ref{Tab:SF_workCond}, the working conditions ranges of the main variables and of the external ambient conditions during the experimental campaign are reported. 
+In order to characterize the performance of the ETC test unit, xx steady-state points are collected for different
+operating conditions, by varying the pump speed velocity the temperature at the inlet of the ETC for a total of 5 days of testing. The system is run in stable conditions (RTD temperature variations
+below XX$^{\circ}$C) for XX minutes and the steady-state point is recorded by averaging the measurements over a period of XX minutes. The acquired data are used to calibrate and to validate the model in steady-state.
+In order to characterize the dynamic performance of the ETC, the facility was run at different operating conditions by varying the pump speed velocity and the temperature at the inlet of the ETC. In Table \ref{Tab:SF_workCond}, the working conditions ranges of the main variables and of the external ambient conditions during the experimental campaign are reported. 
 %
 \begin{table}[h!]
 \centering
@@ -331,6 +336,42 @@ Unit & [m s$^{-1}$] & [Rad]    &  [$^{\circ}$C] &  [$W$ m$^{-2}$]      & [-]    
 \label{Tab:SF_Inputs}
 \end{table}
 %
+\begin{table}[h!]
+	\centering
+	\caption{Values of the parameters for the SF Modelica model}
+	\begin{tabularx}{\textwidth}{Xcc}
+		\toprule
+		Parameter & Units & Value \\
+		\midrule 
+		General parameters &  &  \\
+		\hspace*{0.3cm} N - Number of discretized cells  & [-]    & 20 \\
+		\hspace*{0.3cm} L - PTC length   & [m]    & 70.8 \\
+		\hspace*{0.3cm} A$_\mathrm{p}$ - Parabola aperture & [m]    & 5.76 \\
+		Optical properties &  &  \\   
+		\hspace*{0.3cm} $\rho_{cl}$ - Mirror reflectivity & [-]    & 0.9388 \\
+		\hspace*{0.3cm} $\tau_{gl}$ - Glass transmissivity & [-]    & 0.92 \\
+		\hspace*{0.3cm} $\alpha_{gl}$ - Glass absorptivity  & [-]    & 0.02 \\
+		\hspace*{0.3cm} $\epsilon_{gl}$ - Glass emissivity & [-]   & 0.86 \\
+		\hspace*{0.3cm} $\alpha_{tu}$ - Tube Absorptivity & [-] & 0.7919 \\
+		\hspace*{0.3cm} $a_\mathrm{I}$ - IAM coefficient I & [-] & 4.11$e^{-3}$ \\
+		\hspace*{0.3cm} $a_\mathrm{II}$ - IAM coefficient II & [-] & 5.513$e^{-5}$ \\
+		\hspace*{0.3cm} $\epsilon_\mathrm{un}$ - Unaccounted & [-] & 0.9437 \\
+		Glass envelope geometries &  &  \\
+		\hspace*{0.3cm} D$_{gl}$ - External glass diameter & [m] & 0.12\\
+		\hspace*{0.3cm} t$_{gl}$ - Glass thickness  & [m] & 0.0025\\
+		Receiver tube geometries &  &  \\
+		\hspace*{0.3cm} D$_{tu}$ - External glass diameter & [m] & 0.07\\
+		\hspace*{0.3cm} t$_{tu}$ - Glass thickness  & [m] & 0.002\\
+		Vacuum properties &  &  \\
+		\hspace*{0.3cm} p$_{vacuum}$ - Vacuum pressure & [bar] & 1.333$e^{-7}$\\
+		\hspace*{0.3cm} $\Gamma$ - Ratio of specific heats for the annulus gas & [-] & 1.39\\
+		\hspace*{0.3cm} $\Delta_{mol}$ - Molecular diameter for the annulus gas & [m] & 3.53$e^{-10}$\\
+		\hspace*{0.3cm} $k_\mathrm{std}$ - Thermal conductivity at standard pressure and temperature & [W m$^{-1}$K$^{-1}$] & 0.02551\\
+		\bottomrule
+	\end{tabularx}%
+	\label{tab:SF_parameter}%
+\end{table}%
+%
 The SF model was parametrized based on the data-sheets of the EuroTrough collector and the receiver tubes. The incidence angle modifier (IAM), required for the optical efficiency calculation, was computed with an empirical equation as:
 %
 \begin{equation}
@@ -339,41 +380,7 @@ IAM = 1 - \frac{a_\mathrm{I} \cdot \Theta_\mathrm{incid} + a_\mathrm{II}\cdot \T
 %
 where $\Theta_\mathrm{incid}$ is the incidence angle of solar radiation and $a_\mathrm{I}-a_\mathrm{II}$ are two empirical parameters derived through an experimental campaign as described in \cite{Sallaberry2016} following the methodology presented in \cite{Valenzuela2014}. In order to consider unaccounted optical effects during testing, e.g., dirt on the parabolic mirrors and tube receivers, the parameter $\epsilon_\mathrm{un}$ was included in the calculation of the optical efficiency. Its value was obtained through a least square optimization routine aimed at minimizing the error between the simulated SF outlet temperature and the measured one over a three minutes interval  of the initial steady-state condition characterizing the first day of testing (see Figure \ref{fig:SF_ModRes_All}). In Table \ref{tab:SF_parameter} the values assigned to the parameters of the SF model are reported.
 %
-\begin{table}[h]
-  \centering
-  \caption{Values of the parameters for the SF Modelica model}
-    \begin{tabularx}{\textwidth}{Xcc}
-    \toprule
-    Parameter & Units & Value \\
-\midrule 
-   General parameters &  &  \\
-   \hspace*{0.3cm} N - Number of discretized cells  & [-]    & 20 \\
-   \hspace*{0.3cm} L - PTC length   & [m]    & 70.8 \\
-   \hspace*{0.3cm} A$_\mathrm{p}$ - Parabola aperture & [m]    & 5.76 \\
-   Optical properties &  &  \\   
-   \hspace*{0.3cm} $\rho_{cl}$ - Mirror reflectivity & [-]    & 0.9388 \\
-   \hspace*{0.3cm} $\tau_{gl}$ - Glass transmissivity & [-]    & 0.92 \\
-   \hspace*{0.3cm} $\alpha_{gl}$ - Glass absorptivity  & [-]    & 0.02 \\
-   \hspace*{0.3cm} $\epsilon_{gl}$ - Glass emissivity & [-]   & 0.86 \\
-   \hspace*{0.3cm} $\alpha_{tu}$ - Tube Absorptivity & [-] & 0.7919 \\
-   \hspace*{0.3cm} $a_\mathrm{I}$ - IAM coefficient I & [-] & 4.11$e^{-3}$ \\
-   \hspace*{0.3cm} $a_\mathrm{II}$ - IAM coefficient II & [-] & 5.513$e^{-5}$ \\
-   \hspace*{0.3cm} $\epsilon_\mathrm{un}$ - Unaccounted & [-] & 0.9437 \\
-   Glass envelope geometries &  &  \\
-   \hspace*{0.3cm} D$_{gl}$ - External glass diameter & [m] & 0.12\\
-   \hspace*{0.3cm} t$_{gl}$ - Glass thickness  & [m] & 0.0025\\
-   Receiver tube geometries &  &  \\
-   \hspace*{0.3cm} D$_{tu}$ - External glass diameter & [m] & 0.07\\
-   \hspace*{0.3cm} t$_{tu}$ - Glass thickness  & [m] & 0.002\\
-    Vacuum properties &  &  \\
-   \hspace*{0.3cm} p$_{vacuum}$ - Vacuum pressure & [bar] & 1.333$e^{-7}$\\
-   \hspace*{0.3cm} $\Gamma$ - Ratio of specific heats for the annulus gas & [-] & 1.39\\
-   \hspace*{0.3cm} $\Delta_{mol}$ - Molecular diameter for the annulus gas & [m] & 3.53$e^{-10}$\\
-   \hspace*{0.3cm} $k_\mathrm{std}$ - Thermal conductivity at standard pressure and temperature & [W m$^{-1}$K$^{-1}$] & 0.02551\\
-    \bottomrule
-    \end{tabularx}%
-  \label{tab:SF_parameter}%
-\end{table}%
+
 %
 The \textit{GlassUD} and \textit{TubeUD} options were set to false such that the density, specific heat capacity and thermal conductivity of the glass and the metal tube were computed as dependent on the glass and tube temperatures respectively.
 The heat transfer coefficient was computed based on the Gnielinski single phase correlation \cite{Gnielinski2010}.
@@ -382,10 +389,23 @@ The thermal oil, Syltherm 800, flowing through the tube receivers was modelled a
 
 
 %
-\subsection{Results:Steady-state validation}
+\subsection{Results: Steady-state validation}
+%
+The SF model is compared against the 24 collected steady-state experimental points. The data are acquired at different temperature levels at the inlet of the collectors, by varying the pump rotational speed and the thermal input of the heaters and air coolers . In Figure 3, the model prediction for the temperature at the outlet of the collectors are plotted versus the experimental values.
 %
 
-
+%
+The developed model is able to reproduce the measured data points with a good agreement. The temperature at the outlet of the collectors is characterized  by an accuracy within 3$^{\circ}$C.
+\clearpage
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\textwidth]{Figures/StSt_Validation.pdf}
+	\caption{Parity plot for the ETC outlet temperature.}
+	\label{fig:SF_ModModel}
+\end{figure}
+%
+%
+\subsection{Results:Dynamic validation}
 %
 The SF Modelica model was run on Dymola2015. The Differential Algebraic System Solver (DASSL) \cite{Petzold1983} was selected as numerical solver, setting the relative tolerance to 10$^{-4}$. In order to increase the model robustness and decrease the computational time, the measured variables imposed as exogenous inputs to the SF model (see Table \ref{Tab:SF_Inputs}) are approximated by a spline function in the Modelica/Dymola simulation environment.\\
 In Figure \ref{fig:SF_ModRes_Zoomed}, the simulated ETC outlet temperature is plotted versus time and compared against the measured data for each of the three performed dynamic experiments. On the left abscissa the measured ETC inlet and outlet temperatures and the simulated ETC outlet temperature are plotted versus time. On the right abscissa the DNI and oil mass flow rate normalized with respect to the maximum value reached during the day are reported. For all the plots it is possible to see how the DNI was characterized by variation smaller than 2\%. In Figure \ref{fig:SF_ModRes_Zoomed}a the results for the MFE experiments and simulation results are reported. Starting from a steady-state condition two consecutive steps of the same magnitude upwards and downwards were imposed to the pump rotational speed at t=450 seconds and t=1430 seconds respectively. As the rotational speed increased at t=450 seconds, the velocity and pressure of the fluid in the high pressure line increased. This resulted in an oil mass flow rate, $\dot{m}_\mathrm{oil,su}$, increment of about 40\% in around 60 seconds. The increase in oil mass flow rate caused a drop in the temperature at the outlet of the ETC, $T_\mathrm{oil,ex}$. The $T_\mathrm{oil,ex}$ drop was registered at around t=500 seconds, 50 seconds after the oil mass flow rate started changing. This was due to the time required by the oil mass flow rate to reach the outlet of the 70.8 m long receiver tubes. During the experiments the ETC inlet temperature, $T_\mathrm{oil,su}$, was maintained constant  by manually manipulating the air cooler and electrical heaters power. 
@@ -396,6 +416,9 @@ The ETC outlet temperature presented a symmetrical trend for the upwards and dow
 In Figure \ref{fig:SF_ModRes_Zoomed}b the TE experiments and simulation results are reported. Starting from a steady-state condition the air-cooler was turned off at t=900 seconds. This resulted in an increase of $T_\mathrm{oil,su}$ and a consequently growth of $T_\mathrm{oil,ex}$ delayed by around 100 seconds due to the time required by the oil mass flow to travel through the tube receiver. The shut-down of the oil-cooler did not allow to impose a step to $T_\mathrm{oil,su}$ which increased with a slow first order trend. The large time constant characterizing $T_\mathrm{oil,su}$ defined the change of the outlet ETC temperature. The SF model was able to correctly predict the experimental results including  the delay characterizing the $T_\mathrm{oil,ex}$ change.\\
 Finally in Figure \ref{fig:SF_ModRes_Zoomed}c the SBE experiments and simulation results are shown. Starting from a steady-state condition the ETCs were defocused at t=360 seconds, such that no solar radiation was reflected to the receiver tubes. This caused a sudden decrease of $T_\mathrm{oil,ex}$ which reached the $T_\mathrm{oil,su}$ value in about 200 seconds. The ETCs were focused again at t=650 bringing $T_\mathrm{oil,ex}$ back to its initial value. During the experiment the oil mass flow rate and $T_\mathrm{oil,su}$ were kept constant. The latter was maintained at its initial value by manually manipulating the power of the two electrical heaters installed after the pump. This resulted in a small bump of less then 4 K after the collectors were focused at t=700 seconds. The $T_\mathrm{oil,ex}$ was characterized by a symmetrical behaviour during the focusing-defocusing experiments, as the thermal energy losses were relatively small. The SF model was able to replicate the trend and presented a slightly smaller time constant than the real system.\\
 Overall it can be concluded that the SF Modelica model was capable of predicting the physical phenomena characterizing the real system behaviour during the three performed experiments and can be considered validated.
+
+In Figure \ref{fig:SF_ModRes_All} the simulation and experimental results for all of the five days of the experimental campaign are reported. In the first Figure, \textit{Day I}, the three minutes time over which the $\epsilon_\mathrm{un}$ parameter was optimized are highlighted by two vertical black dotted lines.
+\clearpage
 %
 \begin{figure}[h!]
 \centering
@@ -404,17 +427,36 @@ Overall it can be concluded that the SF Modelica model was capable of predicting
 \label{fig:SF_ModRes_Zoomed}
 \end{figure}
 %
-In Figure \ref{fig:SF_ModRes_All} the simulation and experimental results for all of the five days of the experimental campaign are reported. In the first Figure, \textit{Day I}, the three minutes time over which the $\epsilon_\mathrm{un}$ parameter was optimized are highlighted by two vertical black dotted lines.
 %
 \begin{figure}[h!]
 \centering
-\includegraphics[width=1\textwidth]{Figures/_FirstFiveDays.pdf}
-\caption{Simulation versus experimental results for each full day of the experimental campaign plotted versus time. }
+\includegraphics[width=1\textwidth]{Figures/_FirstThreeDays.pdf}
+\caption{Simulation versus experimental results for the first three days of the experimental campaign plotted versus time. }
 \label{fig:SF_ModRes_All}
 \end{figure}
 %
-\subsection{Results: number of tube receiver CVs parametric analysis } 
 %
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\textwidth]{Figures/_SecondThreeDays.pdf}
+	\caption{Simulation versus experimental results for  the second three days of the experimental campaign plotted versus time. }
+	\label{fig:SF_ModRes_All}
+\end{figure}
+%
+%
+\section{Discussion} 
+%
+This work aims at proposing tools to analyse the unsteady operations of parabolic through collectorss, with a special
+attention for the following characteristics:
+%
+\begin{itemize}
+	\item Satisfactory accuracy for engineering scopes
+	\item Low computational time
+\end{itemize}
+%
+The model of the parabolic through is based on the finite volume method, characterized by a trade-off between model accuracy and computational time: increasing the number of CVs leads to better accuracy but negatively affects
+the computational effort.
+
 In order to investigate the effect of the level of discretization on the performance of the SF model when compared to the experimental results a parametric analysis was performed. The SF model, discretized with a number of control volumes (CVs) varying from 1 to 50,  was simulated to replicate the  experimental data of Day $IV$ (see Figure \ref{fig:SF_ModRes_All}). The results are displayed in Figure \ref{fig:SF_ModRes_ParAnalysis}a where the simulated SF outlet temperature for the different levels of discretization is plotted versus time and compared against the measured experimental data on the left abscissa. On the right abscissa the nominal DNI and oil mass flow rate are plotted. Overall as the level of discretization increased the SF outlet temperature got closer to the measurements data. From 10 to 50 CVs the improvement in model accuracy was negligible. On the other hand the 5 CVs and 1 CVs SF model presented a slower time constant compared to the real system and were not able to properly predict the different undershoot and overshoot characterizing the measured outlet ETC temperature when the boundary conditions where changed, e.g., step change in the mass flow or defocusing-focusing.\\
 In Figure \ref{fig:SF_ModRes_ParAnalysis}b the percentage computational effort (PCE) defined in equation \ref{eq:PCE} as the ratio of the computational time (Time$_\mathrm{Comp}$) with respect to the simulated real time ($\mathrm{Time}_\mathrm{Real}$), is plotted for each simulation result. All the simulation results were characterized by a much shorter time compared to the real simulated time. This is related to the remarkably simple simulation framework on which the modelling results were based on (see section \ref{subsec:SF_model}). 
 %
@@ -463,7 +505,7 @@ As it possible to see, the overall percentage relative error on the total energy
 %
 %
 %
-\section{Discussion}
+
 %
 
 

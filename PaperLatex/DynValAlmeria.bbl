@@ -1,4 +1,4 @@
-\begin{thebibliography}{13}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -69,6 +69,45 @@
 \newblock \bibinfo{journal}{Communications in Nonlinear Science and Numerical
   Simulation}
   \bibinfo{year}{2015};\bibinfo{volume}{20}(\bibinfo{number}{3}):\bibinfo{pages}{743--768}.
+%Type = Phdthesis
+\bibitem[{Elmqvist(1978)}]{Elmqvist1978}
+\bibinfo{author}{Elmqvist\xfnm[ H.]}.
+\newblock \bibinfo{title}{{A Structured Model Language for Large Continous
+  Systems}}.
+\newblock Ph.D. thesis; Lund Institute of Technology; \bibinfo{year}{1978}.
+%Type = Inproceedings
+\bibitem[{Quoilin et~al.(2014)Quoilin, Desideri, Wronski, Bell and
+  Lemort}]{Quoilin2014a}
+\bibinfo{author}{Quoilin\xfnm[ S.]}, \bibinfo{author}{Desideri\xfnm[ A.]},
+  \bibinfo{author}{Wronski\xfnm[ J.]}, \bibinfo{author}{Bell\xfnm[ I.H.]},
+  \bibinfo{author}{Lemort\xfnm[ V.]}.
+\newblock \bibinfo{title}{{ThermoCycle: A Modelica library for the simulation
+  of thermodynamic systems}}.
+\newblock In: \bibinfo{booktitle}{Proceedings of the 10\textsuperscript{th}
+  International Modelica Conference}. \bibinfo{year}{2014},.
+%Type = Article
+\bibitem[{Bell et~al.(2014)Bell, Wronski, Quoilin and
+  Lemort}]{Bell_CoolProp_2013}
+\bibinfo{author}{Bell\xfnm[ I.]}, \bibinfo{author}{Wronski\xfnm[ J.]},
+  \bibinfo{author}{Quoilin\xfnm[ S.]}, \bibinfo{author}{Lemort\xfnm[ V.]}.
+\newblock \bibinfo{title}{{Pure- and Pseudo-Pure Fluid Thermophysical Property
+  Evaluation and the Open-Source Thermophysical Property Library CoolProp}}.
+\newblock \bibinfo{journal}{Industrial \& Engineering Chemistry Research}
+  \bibinfo{year}{2014};\bibinfo{volume}{53}:\bibinfo{pages}{2498--2508}.
+\newblock \DOIprefix\doi{10.1021/ie4033999}.
+%Type = Techreport
+\bibitem[{Forristall(2003)}]{Forristall2003}
+\bibinfo{author}{Forristall\xfnm[ R.]}.
+\newblock \bibinfo{title}{{Heat Transfer Analysis and Modeling of a Parabolic
+  Trough Solar Receiver Implemented in Engineering Equation Solver}}.
+\newblock \bibinfo{type}{Tech. Rep.} \bibinfo{number}{October}; National
+  Renewable Energy Laboratory; \bibinfo{year}{2003}.
+%Type = Misc
+\bibitem[{Desideri(2016)}]{Desideri2016}
+\bibinfo{author}{Desideri\xfnm[ A.]}.
+\newblock \bibinfo{title}{Dynamic modeling of organic rankine cycle power
+  systems}.
+\newblock \bibinfo{year}{2016}.
 %Type = Techreport
 \bibitem[{{Dow Oil and Gas}(1997)}]{DowOilandGas1997}
 \bibinfo{author}{{Dow Oil and Gas}\xfnm[]}.

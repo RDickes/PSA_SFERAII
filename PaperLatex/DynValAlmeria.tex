@@ -87,6 +87,8 @@
 %%%%%%%%%%% LANDSCAPE %%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{lscape}
 
+\usepackage{amsmath}
+\usepackage{amssymb}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% The lineno packages adds line numbers. Start line numbering with
@@ -250,7 +252,68 @@ Overall there is a lack of systematic work covering the validation of dynamic mo
 %
 \section{Parabolic trough collector modelling}
 \label{Sec:DynModel}
+
+The parabolic trough model is developed in the Modelica language~\cite{Elmqvist1978} and is part of the open-source ThermoCycle library ~\cite{Quoilin2014a}. As depicted in Figure~\ref{fig:PTC_FV}, the model relies on a finite-volume approach for the modelling of the heat collection element (HCE), which is discretized along its axial axis in $N$ constant and uniform control volumes (CV). The one-dimensional modelling method is justified by the large ratio between the diameter and the length of the HCE. 
 %
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=0.95\textwidth]{Figures/PTC_FV.pdf}
+		\caption{}
+		\label{fig:PTC_FV}	
+	\end{subfigure}
+	\begin{subfigure}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=0.7\textwidth]{Figures/PTC_GUI}
+		\caption{}
+		\label{fig:PTC_GUI}
+	\end{subfigure}
+	\caption{Parabolic trough collector model in ThermoCycle. \ref{fig:PTC_FV}: One-dimensional finite-volume modelling of the PTC. \ref{fig:PTC_GUI}: Object diagram of the solar collector model from the GUI of Dymola.}
+	\label{fig:PTC_model}
+\end{figure}
+%
+Following the object-oriented formalism of Modelica, the PTC model is built by interconnecting two sub-components, i.e. the \textit{Flow1D} and the \textit{SolAbs} models. These two are linked together through a thermal port as depicted in Figure~\ref{fig:PTC_GUI}.\\
+
+The \textit{Flow1D} component simulates the fluid flow in the HCE. In each CV, both mass and energy balances are solved assuming an incompressible fluid and a static momentum balance. Considering the above mentioned assumptions, the final conservation law formulations for each CV are reported in Equations \ref{eq:MassBalance} to \ref{eq:MomentumBalance}, taking pressure, p, and specific enthalpy, h, as dynamic state variables.
+
+\begin{align}
+\label{eq:MassBalance}
+\frac{dM}{dt} & = \dot{m}_{su}-\dot{m}_{ex} = 0  \quad \text{with} \quad
+\frac{dM}{dt} = V \left( \frac{\partial \rho}{\partial h}  \cdot \frac{dh}{dt} + \frac{\partial \rho}{\partial p} \cdot \frac{dp}{dt} \right) \\
+\label{eq:EnergyBalance}
+V\rho \frac{dh}{dt} & = \dot{m}_{su}(h_{su} - h) - \dot{m}_{ex}(h_{ex} - h) + V \frac{dp}{dt} + A \cdot \dot{q}_{conv,fl} \\
+\label{eq:MomentumBalance}
+p_{su} & = p_{ex}
+\end{align}
+where $\partial \rho / \partial h$ and $\partial \rho / \partial p$ are thermodynamic properties of the fluid directly computed by the open-source CoolProp library \cite{Bell_CoolProp_2013}. The ''su'' (supply) and ''ex'' (exhaust) subscripts denote the nodes variable of each CV, $A$ is the lateral surface through which the heat flux $\dot{q}_{conv,fl}$ is transferred to the fluid and $V$ is the constant volume of each CV. An upwind discretization scheme is selected.
+
+The \textit{SolAbs} submodel simulates the effective thermal energy transferred from the ambient through the HCE to the fluid. The model is built upon Forristall steady-state equations ~\cite{Forristall2003} and implements the dynamic 1D radial energy balance around the HCE, see Figure~\ref{fig:Forristal_cs2}. The model relies on physics-based equations and accounts for:
+%
+\begin{itemize}
+	\item conduction and thermal energy accumulation in the metal pipe;
+	\item convection and radiation between the glass envelope and the metal pipe;
+	\item conduction and thermal energy accumulation in the glass envelope;
+	\item radiation and convection losses to the environment.
+\end{itemize}
+%
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/Forristal_cs2.pdf}
+	\caption{Energy balance around the HCE. In blue the glass envelope, in grey the metal pipe and in white the vacuum between the two. Heat transfer is highlighted with red arrows.}
+	\label{fig:Forristal_cs2}
+\end{figure}
+%
+Such  modelling approach allows simulating the relationship between the environmental parameters (DNI , $\Theta_{incid}$, $\mathrm{T}_\mathrm{amb}$, $v_\mathrm{wind}$) and the axial temperature distribution along the absorber tube. The thermal power transferred to the fluid ($\dot{q}_\mathrm{conv,fl}$), the losses to the environment ($\mathrm{\dot{q}}_\mathrm{conv,amb} + \dot{q}_\mathrm{rad,amb}$) and the temperatures of both the metal pipe ($\mathrm{T}_\mathrm{t}$) and the glass envelope ($\mathrm{T}_\mathrm{g}$) can then be evaluated. Temperatures, heat transfer coefficients and thermodynamic properties are considered uniform around the circumference of the HCE (1D model). Heat losses through the support brackets are neglected and  solar absorptions in the tube and the glass envelope are treated as a linear phenomenon. Unlike Forristall's original model, the energy balance in the glass envelope and the metal pipe is calculated  accounting for their thermal capacitance as shown in Equations \ref{eq:GlassThBal}-\ref{eq:TubeThBal}.
+\begin{align}
+\label{eq:GlassThBal}
+\rho_g C_{p,g} \frac{d T_g}{dt} & = \dot{q}_{int,g} D_{int,g} \pi + \dot{q}_{ext,g} D_{ext,g} \pi \\
+\label{eq:TubeThBal}
+\rho_t C_{p,t} \frac{d T_t}{dt} & = \dot{q}_{int,t} D_{int,t} \pi + \dot{q}_{ext,t} D_{ext,t} \pi
+\end{align}
+For a detailed description of all the heat transfer equations between the different elements, please refer to~\cite{Forristall2003} and ~\cite{Desideri2016}. 
+
+
 %
 %
 \section{Measurements and experiments}

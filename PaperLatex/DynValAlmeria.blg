@@ -1,10 +1,16 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: DynValAlmeria.aux
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: DynValAlmeria.aux
 The style file: model3-num-names.bst
 Database file #1: Solar.bib
+Warning--entry type for "Desideri2016" isn't style-file defined
+--line 6254 of file Solar.bib
 Name 1 in "Angelino, G., and Gaia, M., and Macchi, E." has a comma at the end for entry Angelino1984Areview
 while executing---line 1591 of file model3-num-names.bst
 Name 1 in "Hirsch T., and Eck M., and Steinmann W.D." has a comma at the end for entry Hirsch2005
 while executing---line 1591 of file model3-num-names.bst
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--missing institution in Prabhu2006
 Name 1 in "Angelino, G., and Gaia, M., and Macchi, E." has a comma at the end for entry Angelino1984Areview
 while executing---line 1685 of file model3-num-names.bst
@@ -23,4 +29,46 @@ while executing---line 1685 of file model3-num-names.bst
 Name 2 in "Hirsch T., and Eck M., and Steinmann W.D." has a comma at the end for entry Hirsch2005
 while executing---line 1685 of file model3-num-names.bst
 Warning--empty pages in Hirsch2005
+Warning--empty pages in Quoilin2014a
+You've used 18 entries,
+            3138 wiz_defined-function locations,
+            796 strings with 8816 characters,
+and the built_in function-call counts, 12495 in all, are:
+= -- 979
+> -- 310
+< -- 12
++ -- 166
+- -- 82
+* -- 1310
+:= -- 1652
+add.period$ -- 60
+call.type$ -- 18
+change.case$ -- 94
+chr.to.int$ -- 18
+cite$ -- 21
+duplicate$ -- 1103
+empty$ -- 1084
+format.name$ -- 120
+if$ -- 2416
+int.to.chr$ -- 1
+int.to.str$ -- 19
+missing$ -- 165
+newline$ -- 111
+num.names$ -- 54
+pop$ -- 367
+preamble$ -- 1
+purify$ -- 90
+quote$ -- 0
+skip$ -- 263
+stack$ -- 0
+substring$ -- 978
+swap$ -- 557
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 108
+warning$ -- 3
+while$ -- 64
+width$ -- 0
+write$ -- 267
 (There were 10 error messages)

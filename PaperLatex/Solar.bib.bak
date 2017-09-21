@@ -1,5 +1,4 @@
-% This file was created with JabRef 2.10.
-% Encoding: Cp1252
+% Encoding: windows-1252
 
 
 @Electronic{OpenModelica,
@@ -1169,7 +1168,7 @@ Haglind F.},
   Year                     = {2010},
   Pages                    = {691--700},
 
-  Doi                      = {10.1007/978-3-540-77877-6_34},
+  Doi                      = {$10.1007/978-3-540-77877-6_34$},
   File                     = {:C$\backslash$:/Users/Admin/Documents/Mendeley Desktop/Gnielinski - 2010 - Heat Transfer in Pipe Flow.pdf:pdf},
   ISBN                     = {978-3-540-77876-9},
   Owner                    = {Admin},
@@ -2280,14 +2279,13 @@ Haglind F.},
   Timestamp                = {2014.04.14}
 }
 
-@InProceedings{ThermoCycle_2014,
-  Title                    = {{ThermoCycle: A Modelica library for the simulation of thermodynamic systems}},
-  Author                   = {Quoilin, S. and Desideri, A. and Wronski, J. and Bell, I. H. and Lemort, V.},
-  Booktitle                = {Proceedings of the 10\textsuperscript{th} International Modelica Conference},
-  Year                     = {2014},
-
-  Owner                    = {user},
-  Timestamp                = {2014.12.01}
+@InProceedings{Quoilin2014a,
+  author    = {Quoilin, S. and Desideri, A. and Wronski, J. and Bell, I. H. and Lemort, V.},
+  title     = {{ThermoCycle: A Modelica library for the simulation of thermodynamic systems}},
+  booktitle = {Proceedings of the 10\textsuperscript{th} International Modelica Conference},
+  year      = {2014},
+  owner     = {user},
+  timestamp = {2014.12.01},
 }
 
 @Conference{Quoilin_TechSurv_2009,
@@ -3132,3 +3130,4 @@ organic Rankine cycle applications},
   Timestamp                = {2015.10.13}
 }
 
+@Comment{jabref-meta: databaseType:biblatex;}

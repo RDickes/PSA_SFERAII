@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -45,6 +45,27 @@
 \newblock \bibinfo{journal}{Verein Deutscher Ingenieure Berichte 539}
   \bibinfo{year}{1984};:\bibinfo{pages}{465--482}.
 %Type = Article
+\bibitem[{Fern\'{a}ndez-García et~al.(2010)Fern\'{a}ndez-García, Zarza,
+  Valenzuela and P\'{e}rez}]{Fernandez_Garcia2010}
+\bibinfo{author}{Fern\'{a}ndez-García\xfnm[ A.]}, \bibinfo{author}{Zarza\xfnm[
+  E.]}, \bibinfo{author}{Valenzuela\xfnm[ L.]},
+  \bibinfo{author}{P\'{e}rez\xfnm[ M.]}.
+\newblock \bibinfo{title}{Parabolic-trough solar collectors and their
+  applications}.
+\newblock \bibinfo{journal}{Renewable and Sustainable Energy Reviews}
+  \bibinfo{year}{2010};\bibinfo{volume}{14}(\bibinfo{number}{7}):\bibinfo{pages}{1695
+  -- 1721}.
+\newblock \DOIprefix\doi{https://doi.org/10.1016/j.rser.2010.03.012}.
+%Type = Article
+\bibitem[{Bonilla et~al.(2015)Bonilla, Dormido and Cellier}]{Bonilla_MB_2015}
+\bibinfo{author}{Bonilla\xfnm[ J.]}, \bibinfo{author}{Dormido\xfnm[ S.]},
+  \bibinfo{author}{Cellier\xfnm[ F.E.]}.
+\newblock \bibinfo{title}{Switching moving boundary models for two-phase flow
+  evaporators and condensers}.
+\newblock \bibinfo{journal}{Communications in Nonlinear Science and Numerical
+  Simulation}
+  \bibinfo{year}{2015};\bibinfo{volume}{20}(\bibinfo{number}{3}):\bibinfo{pages}{743--768}.
+%Type = Article
 \bibitem[{Ray(1981)}]{Ray1981}
 \bibinfo{author}{Ray\xfnm[ A.]}.
 \newblock \bibinfo{title}{{Nonlinear dynamic model of a solar steam
@@ -61,14 +82,117 @@
 \newblock In: \bibinfo{booktitle}{Proceedings of the 4th International Modelica
   Conference}. \bibinfo{year}{2005},.
 %Type = Article
-\bibitem[{Bonilla et~al.(2015)Bonilla, Dormido and Cellier}]{Bonilla_MB_2015}
-\bibinfo{author}{Bonilla\xfnm[ J.]}, \bibinfo{author}{Dormido\xfnm[ S.]},
-  \bibinfo{author}{Cellier\xfnm[ F.E.]}.
-\newblock \bibinfo{title}{Switching moving boundary models for two-phase flow
-  evaporators and condensers}.
-\newblock \bibinfo{journal}{Communications in Nonlinear Science and Numerical
-  Simulation}
-  \bibinfo{year}{2015};\bibinfo{volume}{20}(\bibinfo{number}{3}):\bibinfo{pages}{743--768}.
+\bibitem[{Eck and Hirsch(2007)}]{Eck2007}
+\bibinfo{author}{Eck\xfnm[ M.]}, \bibinfo{author}{Hirsch\xfnm[ T.]}.
+\newblock \bibinfo{title}{Dynamics and control of parabolic trough collector
+  loops with direct steam generation}.
+\newblock \bibinfo{journal}{Solar Energy}
+  \bibinfo{year}{2007};\bibinfo{volume}{81}(\bibinfo{number}{2}):\bibinfo{pages}{268
+  -- 279}.
+\newblock \DOIprefix\doi{10.1016/j.solener.2006.01.008}.
+%Type = Article
+\bibitem[{Silva et~al.(2013)Silva, P\'{e}rez and
+  Fern\'{a}ndez-Garcia}]{Silva2013}
+\bibinfo{author}{Silva\xfnm[ R.]}, \bibinfo{author}{P\'{e}rez\xfnm[ M.]},
+  \bibinfo{author}{Fern\'{a}ndez-Garcia\xfnm[ A.]}.
+\newblock \bibinfo{title}{Modeling and co-simulation of a parabolic trough
+  solar plant for industrial process heat}.
+\newblock \bibinfo{journal}{Applied Energy}
+  \bibinfo{year}{2013};\bibinfo{volume}{106}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{287 -- 300}.
+\newblock \DOIprefix\doi{10.1016/j.apenergy.2013.01.069}.
+%Type = Article
+\bibitem[{Lob\'{o}n et~al.(2014)Lob\'{o}n, Valenzuela and
+  Baglietto}]{Lobon2014}
+\bibinfo{author}{Lob\'{o}n\xfnm[ D.H.]}, \bibinfo{author}{Valenzuela\xfnm[
+  L.]}, \bibinfo{author}{Baglietto\xfnm[ E.]}.
+\newblock \bibinfo{title}{Modeling the dynamics of the multiphase fluid in the
+  parabolic-trough solar steam generating systems}.
+\newblock \bibinfo{journal}{Energy Conversion and Management}
+  \bibinfo{year}{2014};\bibinfo{volume}{78}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{393 -- 404}.
+\newblock \DOIprefix\doi{10.1016/j.enconman.2013.10.072}.
+%Type = Article
+\bibitem[{Hefni(2014)}]{Hefni2014}
+\bibinfo{author}{Hefni\xfnm[ B.E.]}.
+\newblock \bibinfo{title}{Dynamic modeling of concentrated solar power plants
+  with the thermosyspro library (parabolic trough collectors, fresnel reflector
+  and solar-hybrid)}.
+\newblock \bibinfo{journal}{Energy Procedia}
+  \bibinfo{year}{2014};\bibinfo{volume}{49}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{1127 -- 1137}.
+\newblock \URLprefix
+  \url{http://www.sciencedirect.com/science/article/pii/S1876610214005761}.
+  \DOIprefix\doi{10.1016/j.egypro.2014.03.122}; \bibinfo{note}{proceedings of
+  the SolarPACES 2013 International Conference}.
+%Type = Article
+\bibitem[{Al-Maliki et~al.(2016{\natexlab{a}})Al-Maliki, Alobaid, Starkloff,
+  Kez and Epple}]{Almaliki2016_1}
+\bibinfo{author}{Al-Maliki\xfnm[ W.A.K.]}, \bibinfo{author}{Alobaid\xfnm[ F.]},
+  \bibinfo{author}{Starkloff\xfnm[ R.]}, \bibinfo{author}{Kez\xfnm[ V.]},
+  \bibinfo{author}{Epple\xfnm[ B.]}.
+\newblock \bibinfo{title}{Investigation on the dynamic behaviour of a parabolic
+  trough power plant during strongly cloudy days}.
+\newblock \bibinfo{journal}{Applied Thermal Engineering}
+  \bibinfo{year}{2016}{\natexlab{a}};\bibinfo{volume}{99}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{114 -- 132}.
+\newblock \DOIprefix\doi{10.1016/j.applthermaleng.2015.11.104}.
+%Type = Article
+\bibitem[{Al-Maliki et~al.(2016{\natexlab{b}})Al-Maliki, Alobaid, Kez and
+  Epple}]{Almaliki2016_2}
+\bibinfo{author}{Al-Maliki\xfnm[ W.A.K.]}, \bibinfo{author}{Alobaid\xfnm[ F.]},
+  \bibinfo{author}{Kez\xfnm[ V.]}, \bibinfo{author}{Epple\xfnm[ B.]}.
+\newblock \bibinfo{title}{Modelling and dynamic simulation of a parabolic
+  trough power plant}.
+\newblock \bibinfo{journal}{Journal of Process Control}
+  \bibinfo{year}{2016}{\natexlab{b}};\bibinfo{volume}{39}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{123 -- 138}.
+\newblock \DOIprefix\doi{10.1016/j.jprocont.2016.01.002}.
+%Type = Article
+\bibitem[{Biencinto et~al.(2016)Biencinto, Gonz\'{a}lez and
+  Valenzuela}]{Biencinto2016}
+\bibinfo{author}{Biencinto\xfnm[ M.]}, \bibinfo{author}{Gonz\'{a}lez\xfnm[
+  L.]}, \bibinfo{author}{Valenzuela\xfnm[ L.]}.
+\newblock \bibinfo{title}{A quasi-dynamic simulation model for direct steam
+  generation in parabolic troughs using trnsys}.
+\newblock \bibinfo{journal}{Applied Energy}
+  \bibinfo{year}{2016};\bibinfo{volume}{161}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{133 -- 142}.
+\newblock \DOIprefix\doi{10.1016/j.apenergy.2015.10.001}.
+%Type = Article
+\bibitem[{Serrano-Aguilera et~al.(2017)Serrano-Aguilera, Valenzuela and
+  Parras}]{Serrano2017}
+\bibinfo{author}{Serrano-Aguilera\xfnm[ J.]}, \bibinfo{author}{Valenzuela\xfnm[
+  L.]}, \bibinfo{author}{Parras\xfnm[ L.]}.
+\newblock \bibinfo{title}{Thermal hydraulic relap5 model for a solar direct
+  steam generation system based on parabolic trough collectors operating in
+  once-through mode}.
+\newblock \bibinfo{journal}{Energy}
+  \bibinfo{year}{2017};\bibinfo{volume}{133}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{796 -- 807}.
+\newblock \DOIprefix\doi{10.1016/j.energy.2017.05.156}.
+%Type = Article
+\bibitem[{Guo et~al.(2017)Guo, Liu, Chu, Chen, Xu, Liu et~al.}]{Guo2017}
+\bibinfo{author}{Guo\xfnm[ S.]}, \bibinfo{author}{Liu\xfnm[ D.]},
+  \bibinfo{author}{Chu\xfnm[ Y.]}, \bibinfo{author}{Chen\xfnm[ X.]},
+  \bibinfo{author}{Xu\xfnm[ C.]}, \bibinfo{author}{Liu\xfnm[ Q.]}, et~al.
+\newblock \bibinfo{title}{Dynamic behavior and transfer function of collector
+  field in once-through dsg solar trough power plants}.
+\newblock \bibinfo{journal}{Energy}
+  \bibinfo{year}{2017};\bibinfo{volume}{121}(\bibinfo{number}{Supplement
+  C}):\bibinfo{pages}{513 -- 523}.
+\newblock \DOIprefix\doi{10.1016/j.energy.2017.01.002}.
+%Type = Book
+\bibitem[{Forristall et~al.(2003)Forristall, (U.S.), of~Energy, of~Energy.
+  Office~of Scientific and Information}]{Forristal2003}
+\bibinfo{author}{Forristall\xfnm[ R.]}, \bibinfo{author}{(U.S.)\xfnm[
+  N.R.E.L.]}, \bibinfo{author}{of~Energy\xfnm[ U.S.D.]},
+  \bibinfo{author}{of~Energy. Office~of Scientific\xfnm[ U.S.D.]},
+  \bibinfo{author}{Information\xfnm[ T.]}.
+\newblock \bibinfo{title}{Heat Transfer Analysis and Modeling of a Parabolic
+  Trough Solar Receiver Implemented in Engineering Equation Solver}.
+\newblock \bibinfo{publisher}{National Renewable Energy Laboratory};
+  \bibinfo{year}{2003}.
 %Type = Phdthesis
 \bibitem[{Elmqvist(1978)}]{Elmqvist1978}
 \bibinfo{author}{Elmqvist\xfnm[ H.]}.

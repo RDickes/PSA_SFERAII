@@ -153,7 +153,7 @@ Extremum-Seeking control}},
 
 @Article{Angelino1984Areview,
   Title                    = {A review of italian activity in the field of Organic {R}ankine Cycles},
-  Author                   = {Angelino, G., and Gaia, M., and Macchi, E.},
+  Author                   = {Angelino, G. and Gaia, M. and Macchi, E.},
   Journal                  = {Verein Deutscher Ingenieure Berichte 539},
   Year                     = {1984},
   Pages                    = {465-482},
@@ -1336,7 +1336,7 @@ Haglind F.},
 
 @InProceedings{Hirsch2005,
   Title                    = {{Simulation of transient two-phase flow in parabolic trough collectors using Modelica}},
-  Author                   = {Hirsch T., and Eck M., and Steinmann W.D.},
+  Author                   = {Hirsch T. and Eck M. and Steinmann W.D.},
   Booktitle                = {Proceedings of the 4th International Modelica Conference},
   Year                     = {2005},
   Month                    = {March},
@@ -1400,14 +1400,13 @@ Haglind F.},
 }
 
 @TechReport{IEA_SolarRoadMap2014,
-  Title                    = {{Technology Roadmap Solar Thermal Electricity - 2014 edition}},
-  Author                   = {IEA},
-  Institution              = {INternational Energy Agency},
-  Year                     = {2014},
-
-  Keywords                 = {Clean Energy Technologies,Climate change,Renewables,Scenarios.,Solar Power},
-  Owner                    = {susanna},
-  Timestamp                = {2016.09.13}
+  author      = {IEA},
+  title       = {{Technology Roadmap Solar Thermal Electricity - 2014 edition}},
+  institution = {International Energy Agency},
+  year        = {2014},
+  keywords    = {Clean Energy Technologies,Climate change,Renewables,Scenarios.,Solar Power},
+  owner       = {susanna},
+  timestamp   = {2016.09.13},
 }
 
 @TechReport{IEA_WHR_2010,
@@ -3128,6 +3127,237 @@ organic Rankine cycle applications},
 
   Owner                    = {Admin},
   Timestamp                = {2015.10.13}
+}
+
+@Thesis{Desideri2016,
+  author      = {Desideri, A.},
+  title       = {Dynamic modeling of organic Rankine cycle power systems},
+  type        = {PhD Thesis},
+  institution = {University of Liege},
+  year        = {2016},
+}
+
+@article{Fernandez_Garcia2010,
+title = "Parabolic-trough solar collectors and their applications",
+journal = "Renewable and Sustainable Energy Reviews",
+volume = "14",
+number = "7",
+pages = "1695 - 1721",
+year = "2010",
+issn = "1364-0321",
+doi = "https://doi.org/10.1016/j.rser.2010.03.012",
+author = "A. Fern\'{a}ndez-García and E. Zarza and L. Valenzuela and M. P\'{e}rez",
+keywords = "Solar energy",
+keywords = "Solar collector",
+keywords = "Concentrated Solar Power plant",
+keywords = "Industrial process heat",
+keywords = "Heat water production",
+keywords = "Solar cooling"
+}
+
+@article{Eck2007,
+title = "Dynamics and control of parabolic trough collector loops with direct steam generation",
+journal = "Solar Energy",
+volume = "81",
+number = "2",
+pages = "268 - 279",
+year = "2007",
+issn = "0038-092X",
+doi = "10.1016/j.solener.2006.01.008",
+author = "Markus Eck and Tobias Hirsch",
+keywords = "Parabolic trough",
+keywords = "Direct steam generation",
+keywords = "Power plant",
+keywords = "Feed water control",
+keywords = "Modelica",
+keywords = "Dynamic simulation"
+}
+
+@article{Lobon2014,
+title = "Modeling the dynamics of the multiphase fluid in the parabolic-trough solar steam generating systems",
+journal = "Energy Conversion and Management",
+volume = "78",
+number = "Supplement C",
+pages = "393 - 404",
+year = "2014",
+issn = "0196-8904",
+doi = "10.1016/j.enconman.2013.10.072",
+author = "David H. Lob\'{o}n and Loreto Valenzuela and Emilio Baglietto",
+keywords = "Parabolic-trough solar collector",
+keywords = "Dynamic behavior",
+keywords = "Direct steam generation",
+keywords = "CFD modeling",
+keywords = "DISS test facility"
+}
+
+@article{Almaliki2016_1,
+title = "Investigation on the dynamic behaviour of a parabolic trough power plant during strongly cloudy days",
+journal = "Applied Thermal Engineering",
+volume = "99",
+number = "Supplement C",
+pages = "114 - 132",
+year = "2016",
+issn = "1359-4311",
+doi = "10.1016/j.applthermaleng.2015.11.104",
+author = "Wisam Abed Kattea Al-Maliki and Falah Alobaid and Ralf Starkloff and Vitali Kez and Bernd Epple",
+keywords = "Solar thermal power plant",
+keywords = "Advanced Process Simulation Software",
+keywords = "Measured data",
+keywords = "Comparative study"
+}
+
+@article{Almaliki2016_2,
+title = "Modelling and dynamic simulation of a parabolic trough power plant",
+journal = "Journal of Process Control",
+volume = "39",
+number = "Supplement C",
+pages = "123 - 138",
+year = "2016",
+issn = "0959-1524",
+doi = "10.1016/j.jprocont.2016.01.002",
+author = "Wisam Abed Kattea Al-Maliki and Falah Alobaid and Vitali Kez and Bernd Epple",
+keywords = "Parabolic trough solar thermal power plant",
+keywords = "APROS",
+keywords = "Dynamic simulation",
+keywords = "Validation study"
+}
+
+@article{Serrano2017,
+title = "Thermal hydraulic RELAP5 model for a solar direct steam generation system based on parabolic trough collectors operating in once-through mode",
+journal = "Energy",
+volume = "133",
+number = "Supplement C",
+pages = "796 - 807",
+year = "2017",
+issn = "0360-5442",
+doi = "10.1016/j.energy.2017.05.156",
+author = "J.J. Serrano-Aguilera and L. Valenzuela and L. Parras",
+keywords = "Solar direct steam generation",
+keywords = "RELAP5",
+keywords = "Parabolic trough collector",
+keywords = "Two-phase flow",
+keywords = "Thermal-hydraulics",
+keywords = "Severe slugging"
+}
+
+@article{Biencinto2016,
+title = "A quasi-dynamic simulation model for direct steam generation in parabolic troughs using TRNSYS",
+journal = "Applied Energy",
+volume = "161",
+number = "Supplement C",
+pages = "133 - 142",
+year = "2016",
+issn = "0306-2619",
+doi = "10.1016/j.apenergy.2015.10.001",
+author = "Mario Biencinto and Lourdes Gonz\'{a}lez and Loreto Valenzuela",
+keywords = "Direct steam generation",
+keywords = "Parabolic-trough collector",
+keywords = "Simulation model"
+}
+
+@article{Silva2013,
+title = "Modeling and co-simulation of a parabolic trough solar plant for industrial process heat",
+journal = "Applied Energy",
+volume = "106",
+number = "Supplement C",
+pages = "287 - 300",
+year = "2013",
+issn = "0306-2619",
+doi = "10.1016/j.apenergy.2013.01.069",
+author = "R. Silva and M. P\'{e}rez and A. Fern\'{a}ndez-Garcia",
+keywords = "Parabolic-trough collectors",
+keywords = "Process heat",
+keywords = "Co-simulation",
+keywords = "TISC",
+keywords = "Modelica",
+keywords = "TRNSYS"
+}
+
+@book{Forristal2003,
+  title={Heat Transfer Analysis and Modeling of a Parabolic Trough Solar Receiver Implemented in Engineering Equation Solver},
+  author={Forristall, R.E. and National Renewable Energy Laboratory (U.S.) and United States. Department of Energy and United States. Department of Energy. Office of Scientific and Technical Information},
+  year={2003},
+  publisher={National Renewable Energy Laboratory}
+}
+
+@Article{Hefni2014,
+  author   = {Baligh El Hefni},
+  title    = {Dynamic Modeling of Concentrated Solar Power Plants with the ThermoSysPro Library (Parabolic Trough Collectors, Fresnel Reflector and Solar-Hybrid)},
+  journal  = {Energy Procedia},
+  year     = {2014},
+  volume   = {49},
+  number   = {Supplement C},
+  pages    = {1127 - 1137},
+  note     = {Proceedings of the SolarPACES 2013 International Conference},
+  issn     = {1876-6102},
+  doi      = {10.1016/j.egypro.2014.03.122},
+  keywords = {ThermoSysPro, Modelica, thermal-hydraulics, combined cycle power plant, heat exchanger, solar, CSP plant, dynamic modeling},
+}
+
+@article{Guo2017,
+title = "Dynamic behavior and transfer function of collector field in once-through DSG solar trough power plants",
+journal = "Energy",
+volume = "121",
+number = "Supplement C",
+pages = "513 - 523",
+year = "2017",
+issn = "0360-5442",
+doi = "10.1016/j.energy.2017.01.002",
+author = "Su Guo and Deyou Liu and Yinghao Chu and Xingying Chen and Chang Xu and Qunming Liu and Tiezheng Guo",
+keywords = "Solar trough",
+keywords = "Direct steam generation",
+keywords = "Once-through mode",
+keywords = "Collector field",
+keywords = "Dynamic behavior",
+keywords = "Transfer function"
+}
+
+@Article{IRENA_CSP_2013,
+  author   = {{IEA-ETSAP and IRENA}},
+  title    = {{Concentrating Solar Power Technology Brief}},
+  journal  = {IEA-ETSAP and IRENA Technology Brief E10},
+  year     = {2013},
+  volume   = {1},
+  number   = {2},
+  pages    = {331--339},
+  issn     = {0094243X},
+  doi      = {10.1063/1.2993731},
+  abstract = {Chapter 10 Robert Pitz-Paal German Aerospace Center (DLR), Institute of Technical Thermodynamics, K{\"{o}}ln, Germany Summary: High-temperature heat from collectors can be used to generate in a conventional cycle instead ofor in},
+  file     = {:Users/adriano/Google Drive/Literature/IEA-ETSAP and IRENA - 2013 - Concentrating Solar Power Technology Brief.pdf:pdf},
+  isbn     = {9780849317309},
+  keywords = {Concentrated Solar Power (CSP),IRENA publication},
+  pmid     = {26511904},
+}
+
+@Book{Winter1991,
+  author    = {Winter, C J and Sizmann, R L and Hull, LL Vant},
+  title     = {{Solar Power Plants}},
+  year      = {1991},
+  publisher = {Springer Verlag},
+  doi       = {10.1007/978-3-642-61245-9},
+  file      = {:Users/adriano/Google Drive/Literature/Winter - 1991 - Solar power plants.pdf:pdf},
+}
+
+@Book{Butti_1980,
+  author    = {Butti, Ken and Perlin, John},
+  title     = {{A golden thread: 2500 years of solar architecture and technology}},
+  year      = {1980},
+  pages     = {265},
+  abstract  = {Butti, Ken; John Perlin (1980). A Golden Thread: 2500 Years of Solar Architecture. Palo Alto, CA: Cheshire Books.},
+  booktitle = {Energy Policy},
+  file      = {:Users/adriano/Google Drive/Literature/Ken Butti, John Perlin-A Golden Thread{\_} 2500 Years of Solar Architecture and Technology-Cheshire Books (1980).pdf:pdf},
+}
+
+@Article{Canada_Saguaro_2005,
+  author   = {Canada, S and Cohen, G and Cable, R and Brosseau, D and Price, H},
+  title    = {{Parabolic Trough Organic Rankine Cycle Solar Power Plant}},
+  journal  = {National Renewable Energy Laboratory},
+  year     = {2005},
+  volume   = {1},
+  number   = {January},
+  pages    = {1--2},
+  file     = {:Users/adriano/Google Drive/Literature/Canada et al. - 2005 - Parabolic Trough Organic Rankine Cycle Solar Power Plant.pdf:pdf},
+  keywords = {January 2005,NREL/CP-550-37077,PV,concentrating solar power,parabolic trough,solar energy systems},
 }
 
 @Comment{jabref-meta: databaseType:biblatex;}

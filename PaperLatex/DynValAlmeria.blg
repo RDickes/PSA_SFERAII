@@ -4,51 +4,52 @@ The top-level auxiliary file: DynValAlmeria.aux
 The style file: model3-num-names.bst
 Database file #1: Solar.bib
 Warning--entry type for "Desideri2016" isn't style-file defined
---line 6265 of file Solar.bib
+--line 6240 of file Solar.bib
+Warning--I didn't find a database entry for "ThermoCycle"
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Warning--missing institution in Prabhu2006
 Warning--empty pages in Hirsch2005
 Warning--empty pages in Quoilin2014a
-You've used 29 entries,
+You've used 33 entries,
             3138 wiz_defined-function locations,
-            883 strings with 11698 characters,
-and the built_in function-call counts, 22272 in all, are:
-= -- 1747
-> -- 619
-< -- 14
-+ -- 329
-- -- 162
-* -- 2475
-:= -- 2880
-add.period$ -- 104
-call.type$ -- 29
-change.case$ -- 149
-chr.to.int$ -- 28
-cite$ -- 32
-duplicate$ -- 1898
-empty$ -- 1895
-format.name$ -- 233
-if$ -- 4343
+            911 strings with 12234 characters,
+and the built_in function-call counts, 25297 in all, are:
+= -- 1977
+> -- 703
+< -- 16
++ -- 373
+- -- 184
+* -- 2800
+:= -- 3264
+add.period$ -- 116
+call.type$ -- 33
+change.case$ -- 167
+chr.to.int$ -- 32
+cite$ -- 36
+duplicate$ -- 2172
+empty$ -- 2165
+format.name$ -- 267
+if$ -- 4937
 int.to.chr$ -- 2
-int.to.str$ -- 30
-missing$ -- 294
-newline$ -- 176
-num.names$ -- 87
-pop$ -- 563
+int.to.str$ -- 34
+missing$ -- 336
+newline$ -- 197
+num.names$ -- 99
+pop$ -- 655
 preamble$ -- 1
-purify$ -- 145
+purify$ -- 165
 quote$ -- 0
-skip$ -- 462
+skip$ -- 527
 stack$ -- 0
-substring$ -- 1780
-swap$ -- 1070
+substring$ -- 2018
+swap$ -- 1208
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 172
+type$ -- 192
 warning$ -- 3
-while$ -- 106
+while$ -- 120
 width$ -- 0
-write$ -- 442
-(There were 4 warnings)
+write$ -- 496
+(There were 5 warnings)

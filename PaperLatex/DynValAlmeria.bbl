@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\href}[2]{#2}
@@ -29,6 +29,26 @@
 \newblock \bibinfo{type}{Tech. Rep.} \bibinfo{number}{March};
   \bibinfo{year}{2006}.
 \newblock \DOIprefix\doi{NREL/SR-550-39433}.
+%Type = Book
+\bibitem[{Butti and Perlin(1980)}]{Butti_1980}
+\bibinfo{author}{Butti\xfnm[ K.]}, \bibinfo{author}{Perlin\xfnm[ J.]}.
+\newblock \bibinfo{title}{{A golden thread: 2500 years of solar architecture
+  and technology}}.
+\newblock \bibinfo{year}{1980}.
+%Type = Article
+\bibitem[{{IEA-ETSAP and IRENA}(2013)}]{IRENA_CSP_2013}
+\bibinfo{author}{{IEA-ETSAP and IRENA}\xfnm[]}.
+\newblock \bibinfo{title}{{Concentrating Solar Power Technology Brief}}.
+\newblock \bibinfo{journal}{IEA-ETSAP and IRENA Technology Brief E10}
+  \bibinfo{year}{2013};\bibinfo{volume}{1}(\bibinfo{number}{2}):\bibinfo{pages}{331--339}.
+\newblock \DOIprefix\doi{10.1063/1.2993731}.
+%Type = Book
+\bibitem[{Winter et~al.(1991)Winter, Sizmann and Hull}]{Winter1991}
+\bibinfo{author}{Winter\xfnm[ C.J.]}, \bibinfo{author}{Sizmann\xfnm[ R.L.]},
+  \bibinfo{author}{Hull\xfnm[ L.V.]}.
+\newblock \bibinfo{title}{{Solar Power Plants}}.
+\newblock \bibinfo{publisher}{Springer Verlag}; \bibinfo{year}{1991}.
+\newblock \DOIprefix\doi{10.1007/978-3-642-61245-9}.
 %Type = Article
 \bibitem[{Verneau(1978)}]{Verneau1978}
 \bibinfo{author}{Verneau\xfnm[ A.]}.
@@ -56,6 +76,16 @@
   \bibinfo{year}{2010};\bibinfo{volume}{14}(\bibinfo{number}{7}):\bibinfo{pages}{1695
   -- 1721}.
 \newblock \DOIprefix\doi{https://doi.org/10.1016/j.rser.2010.03.012}.
+%Type = Article
+\bibitem[{Canada et~al.(2005)Canada, Cohen, Cable, Brosseau and
+  Price}]{Canada_Saguaro_2005}
+\bibinfo{author}{Canada\xfnm[ S.]}, \bibinfo{author}{Cohen\xfnm[ G.]},
+  \bibinfo{author}{Cable\xfnm[ R.]}, \bibinfo{author}{Brosseau\xfnm[ D.]},
+  \bibinfo{author}{Price\xfnm[ H.]}.
+\newblock \bibinfo{title}{{Parabolic Trough Organic Rankine Cycle Solar Power
+  Plant}}.
+\newblock \bibinfo{journal}{National Renewable Energy Laboratory}
+  \bibinfo{year}{2005};\bibinfo{volume}{1}(\bibinfo{number}{January}):\bibinfo{pages}{1--2}.
 %Type = Article
 \bibitem[{Bonilla et~al.(2015)Bonilla, Dormido and Cellier}]{Bonilla_MB_2015}
 \bibinfo{author}{Bonilla\xfnm[ J.]}, \bibinfo{author}{Dormido\xfnm[ S.]},
@@ -121,10 +151,8 @@
 \newblock \bibinfo{journal}{Energy Procedia}
   \bibinfo{year}{2014};\bibinfo{volume}{49}(\bibinfo{number}{Supplement
   C}):\bibinfo{pages}{1127 -- 1137}.
-\newblock \URLprefix
-  \url{http://www.sciencedirect.com/science/article/pii/S1876610214005761}.
-  \DOIprefix\doi{10.1016/j.egypro.2014.03.122}; \bibinfo{note}{proceedings of
-  the SolarPACES 2013 International Conference}.
+\newblock \DOIprefix\doi{10.1016/j.egypro.2014.03.122};
+  \bibinfo{note}{proceedings of the SolarPACES 2013 International Conference}.
 %Type = Article
 \bibitem[{Al-Maliki et~al.(2016{\natexlab{a}})Al-Maliki, Alobaid, Starkloff,
   Kez and Epple}]{Almaliki2016_1}
@@ -242,7 +270,6 @@
 \bibinfo{author}{Kipp\xfnm[]}, \bibinfo{author}{Zonen\xfnm[]}.
 \newblock \bibinfo{title}{CH1 NIO (normal incidence pyrhelimeter) manual};
   \bibinfo{year}{1997}.
-\newblock \URLprefix \url{http:// www.kippzonen.com}.
 %Type = Article
 \bibitem[{Sallaberry et~al.(2016)Sallaberry, Valenzuela, de~Jal{\'{o}}n, Leon
   and Bernad}]{Sallaberry2016}

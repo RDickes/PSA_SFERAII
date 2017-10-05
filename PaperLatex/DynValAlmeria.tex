@@ -165,12 +165,12 @@ Campus du Sart Tilman, B49, B-4000 Li\`ege, Belgium}
 %
 \begin{abstract}
 %% Text of abstract
-
+Small-capacity  ($<200$ kW$_\mathrm{el}$)  concentrated solar power plants has been recognized as a promising  technology for micro power applications. In particular, parabolic through collectors have been identified as the most promising focusing technology. In this context, physics-based dynamic model of parabolic through constitutes a significant tool for the further development of the technology, allowing to evaluate and optimize response times during transients, or to implement and test innovative control strategies. In this contribution, the dynamic model of a parabolic trough line t based on the ThermoCycle Modelica library is validated against steady-state and transient experimental results from the parabolic through test loop available at the Plataforma Solar de Almer\'ia, Spain. The simulation results are in good agreement with the measurements, both in steady-state and in transient conditions. The validated model is readily usable to investigate demanding dynamics-based problems for low capacity solar power systems.
 \end{abstract}
 %
 \begin{keyword}
 %% keywords here, in the form: keyword \sep keyword
-Dynamic modelling, dynamic validation
+Parabolic through collectors, Dynamic validation, Modelica
 %% PACS codes here, in the form: \PACS code \sep code
 
 %% MSC codes here, in the form: \MSC code \sep code
@@ -192,75 +192,72 @@ Dynamic modelling, dynamic validation
 \begin{tabular}{lp{7.5cm}}
 \textbf{Nomenclature}\\
 \textit{Acronyms} \\
-WHR & Waste heat recovery \\
-ORC & Organic Rankine cycle\\\ 
-PI  & Proportional integer \\
-APS & Absolute pressure sensor \\
-RTD & Resistance temperature detector \\
-CFM & Coriolis flow meter \\
-UFM & Ultrasonic flow meter \\
-DPS & Pressure difference transmitter \\
-PLC & Programmable logic controller\\
+CSP & Concentrated solar power\\
+PTC & Parabolic through collectors\\
+ORC & Organic Rankine cycle\\
+HTF & Heat transfer fluid\\
+DSG & Direct steam generation\\
+FV  & Finite volume \\
+MB & Moving boundary \\
+PSA & Plataforma solar de Almer\' ia \\
+HCE & Heat collection element \\
+CV & Control volume \\
+TT & Temperature transmittance \\
+DNI & Direct normal irradiation \\
+ETC & EuroThrough collector \\
+SF & Solar field \\
+EI & eEogenous inputs \\
+IAM & incidence angle modifier \\
+PCE & Percentage computational effort \\
 \textit{Subscripts} \\
-P & pump \\
-nom & nominal \\
-n  & reference \\
-int & internal\\
-ext & external\\
-pred & predicted \\
-meas & measured \\
 su  & supply \\
-el & electrical \\
-ex & exit \\
-sf & secondary fluid\\
-wf & working fluid \\
-is  & isentropic \\
+ex & exhaust \\
+conv & convection \\
+amb & ambient \\
 \end{tabular}
 \begin{tabular}{lp{7.5cm}}
-w  & wall \\
-l  & lateral \\
-exp & expander \\
+sol  & solar\\
+rad & radiation\\
+ext & external\\
+int & internal \\
+meas & measured \\
+el & electrical \\
+wf & working fluid \\
 \textit{Symbols} \\
 $p$ & pressure (bar)\\
 $T$ & temperature ($^{\circ}$C)\\
-$s$ & entropy ($kJ kg^{-1} K^{-1}$)\\
-$\dot{V}$ & volume flow rate (m$^3$.s$^{-1}$)\\
-$V_\mathrm{s}$ & swept volume (m$^3$)\\
+$V_\mathrm{s}$ & volume (m$^3$)\\
 $\dot{q}$& heat flux (kW.m$^{-2}$) \\
 $M$ & mass (kg)\\
 $h$ & specific enthalpy (kJ.kg$^{-1}$)\\
 $\rho$ & density (kg m$^{-3}$)\\
-$A$ & area (m$^{2}$)\\
-$N$ & rotational speed (rpm)\\
-$\Phi$ & filling factor \\
-$\dot{W}$ & electrical power (kW) \\
 $\dot{m}$& mass flow (kg.s$^{-1}$) \\
-$ U $& heat transfer coefficient (kJ.(kg.K)$^{-1}$) \\
-$\varepsilon$ & efficiency \\
+$ C_\mathrm{p} $& specific heat capacity (kJ.(kg.K)$^{-1}$) \\
+$A$ & area (m$^{2}$)\\
+$D$ & diameter (m)\\
+$N$ & number of nodes (-)\\
+$\bar{\varepsilon}$ & relative error (\%)\\
+$E$ & energy  (kJ)\\
 %$\epsilon$ & percentage relative error\\
 %$N_c$ & number of cells \\
 \end{tabular}
 \end{table}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END NOMENCLATURE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-Recent studies have envisaged the potential of small-capacity concentrated solar power (CSP) plants in case the future distributed energy scenario is considered \cite{Casati2012a,Prabhu2006}. CONTESTUALISE CSP systems a bit more....\\
+Recent studies have envisaged the potential of small-capacity ($<200$ kW$_\mathrm{el}$) concentrated solar power (CSP) plants in case the future distributed energy scenario is considered \cite{Casati2012a,Prabhu2006}. The first documented CSP systems date back to the end of the 10$^\mathrm{th}$ century \cite{Butti_1980}. Several CSP systems were developed and tested during the years, and the first commercial plants were built in the 80's in California, USA \cite{IRENA_CSP_2013}.  The main collector technologies are point-focussing parabolic dishes, solar towers, and line-focussing parabolic troughs, vacuum tube or non-concentrating flat plate collectors \cite{Winter1991}. Non or low-concentrating configurations are particularly attractive for small-scale power units, as the lower investment costs may lead to economic viability. In particular,  parabolic through collectors (PTCs) are suited to supply low or medium temperature thermal energy to generate electricity in combination with low-temperature organic Rankine cycle (ORC) engines \cite{Verneau1978,Angelino1984Areview}.\\
 
-These power systems have been studied and prototypes were constructed in the 70’s \cite{Verneau1978,Angelino1984Areview}. \\
+PTCs are by far the most mature solar concentrating technologies, as demonstrated commercially \cite{Fernandez_Garcia2010}. 
+ A PTC is a line-focusing  parabola-shaped mirror which concentrates direct solar radiation on the absorber tube, located in the parabola's focal line. An heat transfer fluid (HTF) is pumped through the absorber tube acquiring thermal energy from the concentrated solar radiation. Parabolic trough solar thermal power plants commonly use thermal oil as HTF. This technology has been continuously improved since its first commercial implementation \cite{Canada_Saguaro_2005}. In recent years, water has been tested as HTF in the collectors. The technology, called Direct Steam Generation (DSG),  generates  superheated steam directly from the collectors and presents important challenges due to phase changes in the HTF \cite{Bonilla_MB_2015}.\\
 
+Due to the non-constant nature characterizing the direct solar irradiation, specific control strategies ensuring safe and optimal operation of the CSP systems in any conditions are required. Before a control system can be designed, the dynamic behaviour of the CSP plant must be investigated.
+To this end,  it is fundamental to study the transient related to the solar field. In the literature,  dynamic process models of PTCs are mainly one-dimensional in flow direction and date back to the late ’70s. The Finite Volume (FV) method is the preferred approach for the discretization of the absorber tube. Nevertheless, when DSG is considered Moving Boundary (MB) models can be also applied.\\
 
-Among CSP technologies, Parabolic Trough Collectors (PTCs) allow reaching temperatures that perfectly fit the working conditions of ORC systems.
+Ray \cite{Ray1981} presented in 1980 a non-linear dynamic model of a parabolic trough unit for DSG. The FV modelling approach was adopted and the transient response of the model under different step disturbances was presented as typical results. Hirsch et al. \cite{Hirsch2005,Eck2007} developed one of the first Modelica PTC models.  A FV based solar collector model of a DSG plant was introduced together with a preliminary validation based on the first experimental results of the DISS facility at the Plataforma Solar de Almer\'ia (PSA), Spain. More recently, a tri-dimensional non-linear dynamic thermohydraulic model of a PTC was also developed in Modelica and coupled to a solar industrial process heat plant modelled in TRNSYS \citep{Silva2013}. A DSG PTC model was validated against results from the DISS facility, in \cite{Lobon2014}, showing a good agreement. Several dynamic models of CSP plants were developed in Modelica based on the ThermoSysPro library \citep{Hefni2014}.  A full scale dynamic model of a parabolic trough power plant with a thermal storage system is presented in \cite{Almaliki2016_1}; simulation results are compared to experimental data from the real power plant.
+This work is extended in \cite{Almaliki2016_2} including the power block and all the automation processes, simulated results are compared to measured data from an existing solar power plant. A simulation model for DSG in PTCs is developed in TRNSYS \cite{Biencinto2016}, results are validated with real data at the DISS facility. A thermal hydraulic RELAP5 DSG PTC model was validated against the DISS facility in \cite{Serrano2017}, a new experimental correlation for heat losses was also provided. A non-linear dynamic model of once-through DSG PTCs was developed in \citep{Guo2017}, transfer functions of outlet fluid temperature and mass flow rate were also derived.\\
 
- Furthermore, PTCs are by far the most mature solar concentrating technologies, as demonstrated commercially \cite{Fernandez_Garcia2010}. 
- 
- A PTC is basically a parabola-shaped mirror which concentrates direct solar radiation on the absorber tube, which is located in the parabola's focal line. Through the absorber tube a Heat Transfer Fluid (HTF) is pumped to acquire thermal energy from concentrated solar radiation. Parabolic trough solar thermal power plants commonly use thermal oil as HTF. This technology has been continuously improved since its first commercial implementation. When the HTF in the solar field is water, the technology is called Direct Steam Generation (DSG), since superheated steam can be directly produced in the solar field. DSG presents some important challenges due to phase changes in the HTF \cite{Bonilla_MB_2015}.
-
-In order to investigate the transients related to CSP plants, it is fundamental to study the transient related to the solar field. Dynamic process models of PTCs in the literature are mainly one-dimensional in flow direction. The Finite Volume (FV) method is the preferred method for the discretization of the absorber tube. Nevertheless, when DSG is considered Moving Boundary (MB) models can be also applied.
-
-Dynamic process models of PTCs date back from the late ’70s. Ray \cite{Ray1981} presented in 1980 a non-linear dynamic model of a parabolic trough unit for DSG. The FV modelling approach was adopted and the transient response of the model under different step disturbances was presented as typical results. Hirsch et al. \cite{Hirsch2005,Eck2007} presented one of the first Modelica PTC models.  A FV based solar collector model of a DSG plant was introduced together with a preliminary validation based on the first experimental results of the DISS facility at the Plataforma Solar de Almeria (PSA), Spain. More recently, a tri-dimensional non-linear dynamic thermohydraulic model of a PTC was also developed in Modelica and coupled to a solar industrial process heat plant modeled in TRNSYS \citep{Silva2013}. A DSG PTC model was validated against results from the DISS facility, in \cite{Lobon2014}, showing a good agreement. Several dynamic models of CSP plants were developed in Modelica thanked to the ThermoSysPro library \citep{Hefni2014}.  A full scale dynamic model of a parabolic trough power plant with a thermal storage system is presented in \cite{Almaliki2016_1}; simulation results are compared to experimental data from the real power plant. This work is extended in \cite{Almaliki2016_2} including the power block and all the automation processes, simulated results are compared to measured data from an existing solar power plant. A simulation model for DSG in PTCs is developed in TRNSYS \cite{Biencinto2016}, results are validated with real data at the DISS facility. A thermal hydraulic RELAP5 DSG PTC model was validated against the DISS facility in \cite{Serrano2017}, a new experimental correlation for heat losses is also provided. A nonlinear dynamic model of once-through DSG PTCs was developed in \citep{Guo2017}, transfer functions of outlet fluid temperature and mass flow rate were also derived.
-
-The goal of this work is the development and experimental validation of a dynamic Modelica PTC field model. Although there are plenty of PTC models in the literature, the one presented in this paper is open source and freely available in the ThermoCycle library. It is a detailed implementation of the Forristal model \citep{Forristal2003}. It is highly customizable and can be used to model any kind of PTC field by setting some model parameters which depend on the particular solar field under consideration: size, dimensions, optical and thermal properties, HTF, etc.
-
-This paper is organized as follows: section~\ref{Sec:DynModel} presents the PTC model in detail. Section~\ref{Sec:Measurements} details the experimental campaign. Section~\ref{Sec:Validation} report the results for the steady-state and dynamic validation analysis. Section~\ref{Sec:Disccusion} discusses critical aspects when modelling parabolic through collectors. Finally, section~\ref{Sec:Conclusions} draws the main conclusions of this work.
+The present work focuses on the steady-state and dynamic validation of a parabolic through collector model included in the open-source ThermoCycle Modelica library, for the modelling of small thermo-hydraulic system \cite{Quoilin2014a}. The main contribution consists in a through validation of the PTC model against experimental data collected at the PTTL facility in Almer\'ia, Spain. 
+The model is a detailed implementation of the Forristal approach \citep{Forristal2003}, it is highly customizable and can be used to model any kind of PTC solar field.
+The paper is organized as follows: section~\ref{Sec:DynModel} presents the PTC model in detail. Section~\ref{Sec:Measurements} details the experimental campaign. Section~\ref{Sec:Validation} report the results for the steady-state and dynamic validation analysis. Section~\ref{Sec:Disccusion} discusses critical aspects when modelling parabolic through collectors. Finally, section~\ref{Sec:Conclusions} draws the main conclusions of this work.
 %
 \section{Parabolic trough collector modelling}
 \label{Sec:DynModel}
@@ -354,7 +351,7 @@ During the experimental campaign on the PTTL facility, the EuroTrough collectors
 %
 \subsection{Steady-state and dynamic experiments}
 %
-In order to characterize the performance of the ETC line, 24 steady-state points were collected for different operating conditions, by varying the pump speed and the temperature at the inlet of the ETC for a total of 5 days of testing. The system was run in stable conditions (RTD temperature variations
+In order to characterize the performance of the ETC line, 24 steady-state points were collected for different operating conditions, by varying the pump speed and the temperature at the inlet of the ETC for a total of 5 days of testing. The system was run in stable conditions (TT temperature variations
 below 2$^{\circ}$C) for 10 minutes and the steady-state point was recorded by averaging the measurements over a period of 6 minutes. The acquired data were used to calibrate and validate the model in steady-state.
 In order to characterize the dynamic performance of the ETC, step changes where applied to the pump speed and the ETC inlet temperature. In Table \ref{Tab:SF_workCond}, the working conditions of the main variables and of the external ambient parameters during the experimental campaign are reported. 
 %

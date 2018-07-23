@@ -52,29 +52,30 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}Measurements and experiments}{6}}
 \newlabel{Sec:Measurements}{{3}{6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Experimental facility}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Aerial view of the PTTL facility at PSA, Almer\' ia\relax }}{6}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Aerial view of the HTF loop at PSA, Almer\' ia\relax }}{6}}
 \newlabel{fig:PTTL_photo}{{3}{6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Process flow diagram of the PTTL facility with the relative sensors position.\relax }}{7}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Process flow diagram of the HTF facility with the relative sensors position.\relax }}{7}}
 \newlabel{fig:PTTL_PI}{{4}{7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Steady-state and dynamic experiments}{7}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Range of operation of the ETC main variable and of the external ambient condition during the experimental campaign.\relax }}{7}}
 \newlabel{Tab:SF_workCond}{{1}{7}}
-\citation{Sallaberry2016}
-\citation{Valenzuela2014}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Simulation results and experimental validation}{8}}
 \newlabel{Sec:Validation}{{4}{8}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Initial conditions, model inputs and parameters}{8}}
 \newlabel{subsec:SF_model}{{4.1}{8}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces List of exogenous inputs (EI) imposed to the SF model.$v_{wind}$: wind speed, $\Theta _\mathrm  {incid}$: solar radiation incidence angle, $T_{amb}$: ambient temperature, DNI: direct normal irradiation, $F_{vector}$: vector for defocusing action, $\mathaccentV {dot}05F{m}_{oil,su}$: oil mass flow at SF inlet, $T_{oil,su}$: oil temperature at SF inlet, $p_{ex}$: oil pressure at SF outlet\relax }}{8}}
-\newlabel{Tab:SF_Inputs}{{2}{8}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Modelica model of the ETC line installed at the HTF Loop facility from the Dymola graphical user interface (GUI).\relax }}{8}}
+\newlabel{fig:SF_ModModel}{{5}{8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces List of exogenous inputs (EI) imposed to the SF model.$v_{wind}$: wind speed, $\Theta _\mathrm  {incid}$: solar radiation incidence angle, $T_{amb}$: ambient temperature, DNI: direct normal irradiation, $F_{vector}$: vector for defocusing action, $\mathaccentV {dot}05F{m}_{oil,su}$: oil mass flow at SF inlet, $T_{oil,su}$: oil temperature at SF inlet, $p_{ex}$: oil pressure at SF outlet\relax }}{9}}
+\newlabel{Tab:SF_Inputs}{{2}{9}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Values of the parameters for the SF Modelica model\relax }}{9}}
+\newlabel{tab:SF_parameter}{{3}{9}}
+\citation{Sallaberry2016}
+\citation{Valenzuela2014}
 \citation{Gnielinski2010}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Modelica model of the ETC line installed at the PTTL facility from the Dymola graphical user interface (GUI).\relax }}{9}}
-\newlabel{fig:SF_ModModel}{{5}{9}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Results: Steady-state validation}{9}}
 \citation{Petzold1983}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Values of the parameters for the SF Modelica model\relax }}{10}}
-\newlabel{tab:SF_parameter}{{3}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Results: Steady-state validation}{10}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Results:Dynamic validation}{10}}
+\newlabel{Sec:DynamicValidation}{{4.3}{10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Parity plot for the ETC model outlet temperature compared against the experimental steady-state data.\relax }}{11}}
 \newlabel{fig:SF_ModModel}{{6}{11}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Simulation and experimental results plotted versus time for: a) MFE - Mass flow change experiment b) TE - inlet ETC temperature change experiment c) SBE - solar beam radiation change experiment. The measured inlet and outlet ETC temperatures and the outlet SF model temperature are plotted on the left abscissa. The normalized DNI and oil mass flow rate values are plotted on the right abscissa.\relax }}{13}}
@@ -83,16 +84,28 @@
 \newlabel{fig:SF_ModRes_First3Days}{{8}{14}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Simulation versus experimental results for the second three days of the experimental campaign plotted versus time. \relax }}{15}}
 \newlabel{fig:SF_ModRes_Second3Days}{{9}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{16}}
-\newlabel{Sec:Disccusion}{{5}{16}}
-\newlabel{eq:PCE}{{7}{16}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Total energy percentage relative error for the different levels of discretization of the SF model.\relax }}{17}}
-\newlabel{tab:SF_Etot}{{4}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Simulation results versus the experimental results for each full day of the experimental campaign. PCE: percentage computational effort.\relax }}{18}}
-\newlabel{fig:SF_ModRes_ParAnalysis}{{10}{18}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{19}}
-\newlabel{Sec:Conclusions}{{6}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgements}{19}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Simulation tool}{16}}
+\newlabel{Sec:SimTool}{{4.4}{16}}
+\newlabel{fig:SimTool1}{{10a}{16}}
+\newlabel{sub@fig:SimTool1}{{a}{16}}
+\newlabel{fig:SimTool2}{{10b}{16}}
+\newlabel{sub@fig:SimTool2}{{b}{16}}
+\newlabel{fig:SimTool3}{{10c}{16}}
+\newlabel{sub@fig:SimTool3}{{c}{16}}
+\newlabel{fig:SimTool4}{{10d}{16}}
+\newlabel{sub@fig:SimTool4}{{d}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces EuroTrough simulation tool.\relax }}{16}}
+\newlabel{fig:SimTool}{{10}{16}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{17}}
+\newlabel{Sec:Disccusion}{{5}{17}}
+\newlabel{eq:PCE}{{7}{18}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Total energy percentage relative error for the different levels of discretization of the SF model.\relax }}{18}}
+\newlabel{tab:SF_Etot}{{4}{18}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Simulation results versus the experimental results for each full day of the experimental campaign. PCE: percentage computational effort.\relax }}{19}}
+\newlabel{fig:SF_ModRes_ParAnalysis}{{11}{19}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusions}{20}}
+\newlabel{Sec:Conclusions}{{6}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Acknowledgements}{21}}
 \bibstyle{model3-num-names}
 \bibdata{Solar}
 \bibcite{Casati2012a}{{1}{2012}{{Casati et~al.}}{{Casati, Desideri, Casella and Colonna}}}

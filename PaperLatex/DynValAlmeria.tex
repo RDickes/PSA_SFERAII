@@ -474,7 +474,7 @@ The SF model is able to reproduce the measured data points with a good agreement
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/StSt_Validation.pdf}
 	\caption{Parity plot for the ETC model outlet temperature compared against the experimental steady-state data.}
-	\label{fig:SF_ModModel}
+	\label{fig:SF_ModError}
 \end{figure}
 %
 %
@@ -523,9 +523,9 @@ In Figures~\ref{fig:SF_ModRes_First3Days} - \ref{fig:SF_ModRes_Second3Days},  th
 %
 \subsection{Simulation tool} \label{Sec:SimTool}
 %
-A simulation application of the developed PTC model was built as a tool to reproduce the results presented in section \ref{Sec:Validation}. This application can be used for studying the system dynamics and to evaluate the influence of the model parameters. The simulator is open source and is freely available at \url{https://ciemat-psa.gitlab.io/surf-simulator/projects/EuroTrough}. Currently, there are binary versions for Linux and Windows platforms.
+A simulation application of the developed PTC model was built as a tool to reproduce the results presented in section \ref{Sec:Validation}. The simulator is open source and is freely available at \url{https://ciemat-psa.gitlab.io/surf-simulator/projects/EuroTrough}. Currently, there are binary versions for Linux and Windows platforms. This tool allows users to easily reproduce the results presented in the validation section. Furthermore, users can change the PTC configuration and evaluate how such changes affect the performance and results.
 
-In Figure~\ref{fig:SimTool}. a graphical overview of the simulation tool is reported. The application includes the Modelica model exported following the Functional Mock-up Interface (FMI) standard, input files, experimental results, diagrams and documentation.
+In Figure~\ref{fig:SimTool}, a graphical overview of the simulation tool is reported. The application includes the Modelica model exported following the Functional Mock-up Interface (FMI) standard, input files, experimental results, diagrams and documentation.
 
 \begin{figure}[h]
 	\centering
@@ -557,9 +557,11 @@ In Figure~\ref{fig:SimTool}. a graphical overview of the simulation tool is repo
 	\label{fig:SimTool}
 \end{figure}
 
-In the main window menu, one of the six operating days, discussed in section~\ref{Sec:DynamicValidation} (\textit{Day I} - \textit{IV}), can be selected. Model parameters (see Table \ref{tab:SF_parameter}) are shown in a tree structure on the top left side, where the user can change their default values. Simulation controls are shown on the bottom left side. When the simulation is completed, a particular time instant can be selected by manipulating the simulation bar. Inputs and results are shown on the right top side. Several tabs organize this information. A summary in a table, displays some variables' values for a particular point in time (see Figure~\ref{fig:SimTool2}). Simulation results are also compared against experimental data in line plots (see Figure~\ref{fig:SimTool1}). A bar plot presents the fluid, tube and glass temperatures for a particular point in time in each CV (see Figure~\ref{fig:SimTool3}). On the bottom right side, there are three tabs, the \textit{authors} tab provides information about the authors, the \textit{resources} tab can include documents, pictures and external links and the \textit{model \& experiment} tab provides additional information. There is a thumbnail in this tab. A diagram of the process is displayed in another window when the thumbnail is clicked. This diagram can graphically describe the process and displays information about a particular point in time of the simulation (see Figure~\ref{fig:SimTool4}).
+%In the main window menu, one of the six operating days, discussed in section~\ref{Sec:DynamicValidation} (\textit{Day I} - \textit{IV}), can be selected. Model parameters (see Table \ref{tab:SF_parameter}) are shown in a tree structure on the top left side, where the user can change their default values. Simulation controls are shown on the bottom left side. When the simulation is completed, a particular time instant can be selected by manipulating the simulation bar. Inputs and results are shown on the right top side. Several tabs organize this information. A summary in a table, displays some variables' values for a particular point in time (see Figure~\ref{fig:SimTool2}). Simulation results are also compared against experimental data in line plots (see Figure~\ref{fig:SimTool1}). A bar plot presents the fluid, tube and glass temperatures for a particular point in time in each CV (see Figure~\ref{fig:SimTool3}). On the bottom right side, there are three tabs, the \textit{authors} tab provides information about the authors, the \textit{resources} tab can include documents, pictures and external links and the \textit{model \& experiment} tab provides additional information. There is a thumbnail in this tab. A diagram of the process is displayed in another window when the thumbnail is clicked. This diagram can graphically describes the process and displays information about a particular point in time of the simulation (see Figure~\ref{fig:SimTool4}).
 
-Plots have contextual menus which allow the user to change their appearance and configuration. Additionally, results in plots can be exported as data or graphs to files or the clipboard.
+%Plots have contextual menus which allow the user to change their appearance and configuration. Additionally, results in plots can be exported as data or graphs to files or the clipboard.
+
+Each one of the six operating days, discussed in section~\ref{Sec:DynamicValidation} (\textit{Day I} - \textit{IV}), can be simulated. Model parameters (see Table \ref{tab:SF_parameter}) can be also freely set. Once the simulation is complete, the user can evaluate the simulation result at any particular simulation time instant (see Figure~\ref{fig:SimTool2}). Comparison between experimental data and simulation results is also given by the tool (see Figure~\ref{fig:SimTool1}). Information about each CV is also provided, for instance Figure~\ref{fig:SimTool3} shows the fluid, tube and glass temperatures for a particular point in time. The tool also includes a diagram of the process which graphically describes it and displays information about a particular point in time of the simulation (see Figure~\ref{fig:SimTool4}).
 
 %
 \section{Discussion} \label{Sec:Disccusion}

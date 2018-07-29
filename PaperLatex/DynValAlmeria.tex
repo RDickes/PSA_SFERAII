@@ -229,12 +229,12 @@ wf & working fluid \\
 $p$ & pressure (bar)\\
 $T$ & temperature ($^{\circ}$C)\\
 $V_\mathrm{s}$ & volume (m$^3$)\\
-$\dot{q}$& heat flux (kW.m$^{-2}$) \\
+$\dot{q}$& heat flux (kW m$^{-2}$) \\
 $M$ & mass (kg)\\
-$h$ & specific enthalpy (kJ.kg$^{-1}$)\\
+$h$ & specific enthalpy (kJ kg$^{-1}$)\\
 $\rho$ & density (kg m$^{-3}$)\\
-$\dot{m}$& mass flow (kg.s$^{-1}$) \\
-$ C_\mathrm{p} $& specific heat capacity (kJ.(kg.K)$^{-1}$) \\
+$\dot{m}$& mass flow (kg s$^{-1}$) \\
+$ C_\mathrm{p} $& specific heat capacity (kJ (kg K)$^{-1}$) \\
 $A$ & area (m$^{2}$)\\
 $D$ & diameter (m)\\
 $N$ & number of nodes (-)\\
@@ -343,7 +343,7 @@ The experiments were carried out at the HTF Loop, at the Plataforma Solar de Alm
 \label{fig:PTTL_photo}
 \end{figure}
 %
-The solar field was characterized by three parallel lines of parabolic trough collectors (PTC) from different manufacturers AlbiasaTrough, EuroTrough and UrssaTrough. The system was a closed loop, with an East-West orientation and it was charged with the thermal oil Syltherm 800 \cite{DowOilandGas1997}. The process flow diagram of the HTF facility is shown in Figure \ref{fig:PTTL_PI}. Looking at the bottom of Figure \ref{fig:PTTL_PI} it is possible to recognize the pump which drove the fluid, in liquid state, through one of the three parallel PTC lines of the solar field. The fluid was heated from (2) to (3) absorbing the solar energy reflected by the collectors to the receiver tubes. At the outlet of the collectors, the fluid was cooled down by air-cooler II characterized by a maximum thermal capacity of 400 kW$_\mathrm{th}$. Once cooled down the oil reached the pump suction port (1). A 1 m$^3$ expansion vessel with Nitrogen (N$_\mathrm{2}$) inertization, located in between the two air coolers, was used to regulate the loop pressure, limited to 18 bar. In the whole circuit, oil was maintained in liquid state. Two electric heaters installed at the pump outlet allowed controlling the temperature at the inlet of the PTC lines. A mass flow meter at the outlet of the pump was used to measure the oil mass flow rate. The temperatures at the inlet and at the outlet of the PTC were measured with PT100 (TT) sensors. The direct normal irradiation (DNI) was measured with a pyrheliometer model CH1 by Kipp\&Zonen \cite{Kipp1997}. Ambient temperature and the wind speed were acquired from a weather station installed nearby the experimental facility. A sampling time of 5 seconds was set to acquire the experimental data and LabView was used for data visualization. 
+The solar field was characterized by three parallel lines of parabolic trough collectors (PTC) from different manufacturers AlbiasaTrough, EuroTrough and UrssaTrough. The system was a closed loop, with an East-West orientation and it was charged with the thermal oil Syltherm 800 \cite{DowOilandGas1997}. The process flow diagram of the HTF facility is shown in Figure \ref{fig:PTTL_PI}. Looking at the bottom of Figure \ref{fig:PTTL_PI} it is possible to recognize the pump which drove the fluid, in liquid state, through one of the three parallel PTC lines of the solar field. The fluid was heated from (2) to (3) absorbing the solar energy reflected by the collectors to the receiver tubes. At the outlet of the collectors, the fluid was cooled down by air-cooler II characterized by a maximum thermal capacity of 400 kW$_\mathrm{th}$. Once cooled down the oil reached the pump suction port (1). A 1 m$^3$ expansion vessel with Nitrogen (N$_\mathrm{2}$) inertization, located in between the two air coolers, was used to regulate the loop pressure, limited to 18 bar. In the whole circuit, oil was maintained in liquid state. Two electric heaters installed at the pump outlet allowed controlling the temperature at the inlet of the PTC lines. A mass flow meter at the outlet of the pump was used to measure the oil mass flow rate. The temperatures at the inlet and at the outlet of the PTC were measured with PT100 (TT) sensors, characterized with an uncertainty of $\pm$~1~K \cite{Sallaberry2017}. The direct normal irradiation (DNI) was measured with a pyrheliometer model CH1 by Kipp\&Zonen \cite{Kipp1997}. Ambient temperature and the wind speed were acquired from a weather station installed nearby the experimental facility. A sampling time of 5 seconds was set to acquire the experimental data and LabView was used for data visualization. 
 %
 \begin{figure}[h!]
 \centering
@@ -481,7 +481,7 @@ The SF model is able to reproduce the measured data points with a good agreement
 \subsection{Results:Dynamic validation}  \label{Sec:DynamicValidation}
 %
 The SF Modelica model was run on Dymola2017. The Differential Algebraic System Solver (DASSL) \cite{Petzold1983} was selected as numerical solver, setting the relative tolerance to 10$^{-4}$. In order to increase the model robustness and decrease the computational time, the measured variables imposed as exogenous inputs to the SF model, see Table \ref{Tab:SF_Inputs}, were approximated by a spline function in the Modelica/Dymola simulation environment.\\
-In Figure \ref{fig:SF_ModRes_Zoomed}, the simulated ETC outlet temperature is plotted versus time and compared against the measured data for each of the three performed dynamic experiments. On the left abscissa the measured ETC inlet and outlet temperatures and the simulated ETC outlet temperature are plotted versus time. On the right abscissa the DNI and oil mass flow rate, $\dot{m}_\mathrm{wf}$, normalized with respect to the maximum value reached during the day are reported. For all the plots it is possible to see how the DNI was characterized by variation smaller than 2\%.\\
+In Figure \ref{fig:SF_ModRes_Zoomed}, the simulated ETC outlet temperature is plotted versus time and compared against the measured data for each of the three performed dynamic experiments. On the left abscissa the measured ETC inlet and outlet temperatures and the simulated ETC outlet temperature are plotted versus time. On the right abscissa the DNI and oil mass flow rate, $\dot{m}_\mathrm{wf}$, normalized with respect to the maximum value reached during the day (DNI$_\mathrm{max}$, $\dot{m}_\mathrm{wf,max}$), are reported.  For all the plots, it is possible to see how the DNI was characterized by variation smaller than 2\%. \\
 
 In Figure \ref{fig:SF_ModRes_Zoomed}a, the results of the MFE experiment and simulation are reported. Starting from a steady-state condition two consecutive steps of the same magnitude upwards and downwards were imposed to the pump rotational speed at t=450 seconds and t=1430 seconds respectively. As the pump rotational speed was raised at t=450 seconds, the velocity and pressure of the fluid in the high pressure line increased. This resulted in an oil mass flow rate, $\dot{m}_\mathrm{wf}$, increment of about 40\% in around 60 seconds. The increase in oil mass flow rate caused a drop in the temperature at the outlet of the ETC, $T_\mathrm{ex}$. The temperature drop was registered at around t=500 seconds, 50 seconds after the oil mass flow rate changed. This was due to the time required by the oil mass flow rate to reach the outlet of the 70.8 m long receiver tubes. During the experiments, the ETC inlet temperature, $T_\mathrm{su}$, was maintained constant  by manually manipulating the air cooler and electrical heaters power. 
 When a step upwards was imposed to the oil mass flow rate, as $T_\mathrm{su}$ was expected to drop, the air cooler power  and the electrical heaters power were manually modified. This led to a small bump of 2~K in the temperature as it is shown in Figure \ref{fig:SF_ModRes_Zoomed}a.  
@@ -498,8 +498,8 @@ In Figures~\ref{fig:SF_ModRes_First3Days} - \ref{fig:SF_ModRes_Second3Days},  th
 %
 \begin{figure}[h!]
 \centering
-\includegraphics[width=0.7\textwidth]{Figures/_MassFlowChange.pdf}
-\caption{Simulation and experimental results plotted versus time for: a) MFE - Mass flow change experiment  b) TE - inlet ETC temperature change experiment c) SBE - solar beam radiation change experiment. The measured inlet and outlet ETC temperatures and the outlet SF model temperature are plotted on the left abscissa. The normalized DNI and oil mass flow rate values are plotted on the right abscissa.}
+\includegraphics[width=0.7\textwidth]{Figures/_MassFlowChange_Unc.pdf}
+\caption{Simulation and experimental results plotted versus time for: a) MFE - Mass flow change experiment [DNI$_\mathrm{max}$: 822.76~W~$m^{-2}$, $\dot{m}_\mathrm{wf,max}$: 4.41~kg~$m^{-1}$] b) TE - inlet ETC temperature change experiment [DNI$_\mathrm{max}$: 842.2~W~$m^{-2}$, $\dot{m}_\mathrm{wf,max}$: 4.82~kg~$m^{-1}$] c) SBE - solar beam radiation change experiment  [DNI$_\mathrm{max}$: 804.15~W~$m^{-2}$, $\dot{m}_\mathrm{wf,max}$: 4.92~kg~$m^{-1}$]. The measured inlet and outlet ETC temperatures and the outlet SF model temperature are plotted on the left abscissa. The normalized DNI and oil mass flow rate values are plotted on the right abscissa.}
 \label{fig:SF_ModRes_Zoomed}
 \end{figure}
 %
@@ -561,7 +561,7 @@ In Figure~\ref{fig:SimTool}, a graphical overview of the simulation tool is repo
 
 %Plots have contextual menus which allow the user to change their appearance and configuration. Additionally, results in plots can be exported as data or graphs to files or the clipboard.
 
-Each one of the six operating days, discussed in section~\ref{Sec:DynamicValidation} (\textit{Day I} - \textit{IV}), can be simulated. Model parameters (see Table \ref{tab:SF_parameter}) can be also freely set. Once the simulation is complete, the user can evaluate the simulation result at any particular simulation time instant (see Figure~\ref{fig:SimTool2}). Comparison between experimental data and simulation results is also given by the tool (see Figure~\ref{fig:SimTool1}). Information about each CV is also provided, for instance Figure~\ref{fig:SimTool3} shows the fluid, tube and glass temperatures for a particular point in time. The tool also includes a diagram of the process which graphically describes it and displays information about a particular point in time of the simulation (see Figure~\ref{fig:SimTool4}).
+Each one of the six operating days, discussed in section~\ref{Sec:DynamicValidation} (\textit{Day I} - \textit{IV}), can be simulated. Model parameters, reported in Table \ref{tab:SF_parameter}, are accessible. Once the simulation is complete, the user can evaluate the results at any particular time instant, as shown in Figure~\ref{fig:SimTool2}. The simulated results can be compared against experimental data (see Figure~\ref{fig:SimTool1}). Information on each CV is provided, as shown in Figure~\ref{fig:SimTool3} where fluid, tube and glass temperatures for a particular point in time are reported. Furthermore, the tool includes a diagram of the process, displaying information about a particular point in time of the simulation (see Figure~\ref{fig:SimTool4}).
 
 %
 \section{Discussion} \label{Sec:Disccusion}

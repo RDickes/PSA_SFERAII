@@ -1,7 +1,7 @@
 %% 
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL DynValAlmeria_OLD.tex   Sat Jul 21 14:14:32 2018
-%DIF ADD DynValAlmeria.tex       Sun Jul 29 13:17:01 2018
+%DIF DEL DynvalAlmeria_OLD.tex   Sat Jul 21 14:14:32 2018
+%DIF ADD DynValAlmeria.tex       Wed Aug  1 19:58:15 2018
 %% Copyright 2007, 2008, 2009 Elsevier Ltd
 %% 
 %% This file is part of the 'Elsarticle Bundle'.
@@ -168,7 +168,7 @@
 \author[rvt]{Adriano Desideri\corref{cor1}}
 \ead{adesideri@ulg.ac.be}
 \cortext[cor1]{Corresponding author}
-\author[rvt]{Remi Dickes}
+\author[rvt]{\DIFdelbegin \DIFdel{Remi }\DIFdelend \DIFaddbegin \DIFadd{R\'emi }\DIFaddend Dickes}
 \author[focal]{Javier Bonilla}
 \author[focal]{Loreto Valenzuela}
 \author[rvt]{Sylvain Quoilin}
@@ -268,7 +268,7 @@ $E$ & energy  (kJ)\\
 \end{table}
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% END NOMENCLATURE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-Recent studies have envisaged the potential of small-capacity ($<200$ kW$_\mathrm{el}$) concentrated solar power (CSP) plants in case the future distributed energy scenario is considered \cite{Casati2012a,Prabhu2006}. The first documented CSP systems date back to the end of the 10$^\mathrm{th}$ century \cite{Butti_1980}. Several CSP systems were developed and tested during the years, and the first commercial plants were built in the 80's in California, USA \cite{IRENA_CSP_2013}.  The main collector technologies are point-focus sing parabolic dishes, solar towers, and line-focussing parabolic troughs, vacuum tube or non-concentrating flat plate collectors \cite{Winter1991}. Non or low-concentrating configurations are particularly attractive for small-scale power units, as the lower investment costs may lead to economic viability. In particular,  parabolic through collectors (PTCs) are suited to supply low or medium temperature thermal energy to generate electricity in combination with low-temperature organic Rankine cycle (ORC) engines \cite{Verneau1978,Angelino1984Areview}.\\
+Recent studies have envisaged the potential of small-capacity ($<200$ kW$_\mathrm{el}$) concentrated solar power (CSP) plants in case the future distributed energy scenario is considered \cite{Casati2012a,Prabhu2006}. The first documented CSP systems date back to the end of the 10$^\mathrm{th}$ century \cite{Butti_1980}. Several CSP systems were developed and tested during the years, and the first commercial plants were built in the 80's in California, USA \cite{IRENA_CSP_2013}.  The main collector technologies are point-focus \DIFdelbegin \DIFdel{sing }\DIFdelend \DIFaddbegin \DIFadd{single }\DIFaddend parabolic dishes, solar towers, and line-focussing parabolic troughs, vacuum tube or non-concentrating flat plate collectors \cite{Winter1991}. Non or low-concentrating configurations are particularly attractive for small-scale power units, as the lower investment costs may lead to economic viability. In particular,  parabolic through collectors (PTCs) are suited to supply low or medium temperature thermal energy to generate electricity in combination with low-temperature organic Rankine cycle (ORC) engines \cite{Verneau1978,Angelino1984Areview}.\\
 
 PTCs are by far the most mature solar concentrating \DIFdelbegin \DIFdel{technologies, as demonstrated commercially }\DIFdelend \DIFaddbegin \DIFadd{technology, as commercially demonstrated  }\DIFaddend \cite{Fernandez_Garcia2010}. 
  A PTC is a line-focusing  parabola-shaped mirror which concentrates direct solar radiation on the absorber tube, located in the parabola's focal line. \DIFdelbegin \DIFdel{An }\DIFdelend \DIFaddbegin \DIFadd{A }\DIFaddend heat transfer fluid (HTF) is pumped through the absorber tube acquiring thermal energy from the concentrated solar radiation. Parabolic trough solar thermal power plants commonly use thermal oil as HTF. \DIFdelbegin \DIFdel{This technology has been continuously improved since its }\DIFdelend \DIFaddbegin \DIFadd{These systems have been significantly improved since the }\DIFaddend first commercial implementation \cite{Canada_Saguaro_2005}\DIFdelbegin \DIFdel{. In }\DIFdelend \DIFaddbegin \DIFadd{, and, in }\DIFaddend recent years, water has been tested as HTF in the collectors. The technology, called Direct Steam Generation (DSG),  generates  superheated steam directly from the collectors and presents important challenges due to phase changes in the HTF \cite{Bonilla_MB_2015}.\\
@@ -353,7 +353,7 @@ The \textit{Flow1D} component simulates the fluid flow in the HCE. In each CV, b
 \label{eq:EnergyBalance}
 V\rho \frac{dh}{dt} & = \dot{m}_{su}(h_{su} - h) - \dot{m}_{ex}(h_{ex} - h) + V \frac{dp}{dt} + A \cdot \dot{q}_{conv,fl} \\
 \label{eq:MomentumBalance}
-p_{su} & = p_{ex}
+p_{su} & = p_{ex} 
 \end{align}
 %
 The ''su'' (supply) and ''ex'' (exhaust) subscripts denote the nodes variable of each CV, $A$ is the lateral surface through which the heat flux $\dot{q}_{conv,fl}$ is transferred to the fluid and $V$ is the constant volume of each CV. An upwind discretization scheme is selected.
@@ -379,7 +379,7 @@ The environmental parameters, i.e. the direct normal irradiation, DNI, the solar
 \label{eq:GlassThBal}
 \rho_g C_{p,g} \frac{d T_g}{dt} & = \dot{q}_{int,g} D_{int,g} \pi + \dot{q}_{ext,g} D_{ext,g} \pi \\
 \label{eq:TubeThBal}
-\rho_t C_{p,t} \frac{d T_t}{dt} & = \dot{q}_{int,t} D_{int,t} \pi + \dot{q}_{ext,t} D_{ext,t} \pi
+\rho_t C_{p,t} \frac{d T_t}{dt} & = \dot{q}_{int,t} D_{int,t} \pi + \dot{q}_{ext,t} D_{ext,t} \pi 
 \end{align}
 \DIFdelbegin \DIFdel{Temperature dependence of the tube and glass envelopes thermodynamic properties can be activated with two flags, $GlassUD$ and $TubeUD$. }\DIFdelend %DIF > 
 %DIF > The  thermodynamic properties of the tube and the glass envelopes are  dependent on temperature  considered and 
@@ -512,8 +512,8 @@ Unit & [m s$^{-1}$] & [Rad]    &  [$^{\circ}$C] &  [$W$ m$^{-2}$]      & [-]    
 The SF model was parametrized based on the data-sheets of the EuroTrough collector and the receiver\DIFdelbegin \DIFdel{tubes}\DIFdelend . The incidence angle modifier (IAM), required for the optical efficiency calculation, was computed with an empirical equation as:
 %
 \begin{equation}
-IAM = 1 - \frac{a_\mathrm{I} \cdot \Theta_\mathrm{incid} + a_\mathrm{II}\cdot \Theta_\mathrm{incid}^2}{\cos{\Theta_\mathrm{incid}}}
-\end{equation} 
+IAM = 1 - \frac{a_\mathrm{I} \cdot \Theta_\mathrm{incid} + a_\mathrm{II}\cdot \Theta_\mathrm{incid}^2}{\cos{\Theta_\mathrm{incid}}}\DIFaddbegin \DIFadd{,
+}\DIFaddend \end{equation} 
 %
 where $\Theta_\mathrm{incid}$ is the incidence angle of solar radiation and $a_\mathrm{I}-a_\mathrm{II}$ are two empirical parameters derived through experimental data reported in \cite{Sallaberry2016}, following the methodology presented in \cite{Valenzuela2014}. In order to consider unaccounted optical effects\DIFdelbegin \DIFdel{during testing}\DIFdelend , e.g., dirt on the parabolic mirrors and tube receivers, the parameter $\epsilon_\mathrm{un}$ was included in the calculation of the optical efficiency. Its value was obtained through a least square optimization routine aimed at minimizing the error between the simulated SF outlet temperature and the measured one over a six minutes interval  of the initial steady-state condition characterizing the first day of testing, see Figure \ref{fig:SF_ModRes_First3Days}. In Table \ref{tab:SF_parameter}, the values assigned to the parameters of the SF model are reported.
 %

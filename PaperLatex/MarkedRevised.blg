@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: Diff.aux
+The top-level auxiliary file: MarkedRevised.aux
 The style file: model3-num-names.bst
 Database file #1: Solar.bib
 Warning--entry type for "Desideri2016" isn't style-file defined
@@ -16,7 +16,7 @@ Warning--empty pages in Hirsch2005
 Warning--empty pages in Quoilin2014a
 You've used 34 entries,
             3138 wiz_defined-function locations,
-            916 strings with 12484 characters,
+            916 strings with 12502 characters,
 and the built_in function-call counts, 26093 in all, are:
 = -- 2041
 > -- 726
